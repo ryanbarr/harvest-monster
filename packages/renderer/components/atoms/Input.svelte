@@ -2,11 +2,12 @@
   let clazz = "";
   let name = "";
   let value = "";
-  export { clazz as class, name, value };
+  let dark = false;
+  export { clazz as class, dark, name, value };
 </script>
 
 <input
   bind:value
-  class={`bg-background text-text px-3 py-2 rounded-lg ${clazz}`}
+  class={`${dark ? "bg-container" : "bg-background"} text-text text-sm px-3 py-1 rounded-lg focus:outline-0 focus:ring-0 border-2 border-container focus:border-highlight ${clazz}`}
   {name}
 />

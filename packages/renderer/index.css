@@ -6,4 +6,5 @@ html,
 body {
   @apply bg-background;
   @apply text-text;
+  @apply font-mono;
 }

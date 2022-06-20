@@ -4,6 +4,8 @@ import {URL} from 'url';
 
 async function createWindow() {
   const browserWindow = new BrowserWindow({
+    width: 705,
+    height: 780,
     show: false, // Use 'ready-to-show' event to show window
     webPreferences: {
       webviewTag: false, // The webview tag is not recommended. Consider alternatives like iframe or Electron's BrowserView. https://www.electronjs.org/docs/latest/api/webview-tag#warning
@@ -20,9 +22,9 @@ async function createWindow() {
   browserWindow.on('ready-to-show', () => {
     browserWindow?.show();
 
-    if (import.meta.env.DEV) {
-      browserWindow?.webContents.openDevTools();
-    }
+    // if (import.meta.env.DEV) {
+    //   browserWindow?.webContents.openDevTools();
+    // }
   });
 
   /**

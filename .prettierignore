@@ -1,0 +1,9 @@
+.idea/**/*
+buildResources/**/*
+node_modules/**/*
+packages/main/dist
+packages/preload/dist
+packages/renderer/dist
+.browserslistrc
+.electron-vendors.cache.json
+.eslintcache
