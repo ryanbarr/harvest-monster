@@ -23,7 +23,7 @@
   },
 
   "include": [
-    "src/**/*.vue",
+    "src/**/*.svelte",
     "src/**/*.ts",
     "src/**/*.tsx",
     "types/**/*.d.ts",
