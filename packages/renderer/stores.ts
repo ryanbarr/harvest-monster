@@ -45,7 +45,7 @@ function createSettings() {
   const { set, subscribe, update } = writable<Settings>({
     backgroundColor: "#353535",
     containerColor: "#232323",
-    highlightColor: "#8BCC00",
+    highlightColor: "#52DFFF",
     textColor: "#C6C6C6",
   });
 

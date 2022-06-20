@@ -8,6 +8,8 @@
 
 <input
   bind:value
-  class={`${dark ? "bg-container" : "bg-background"} text-text text-sm px-3 py-1 rounded-lg focus:outline-0 focus:ring-0 border-2 border-container focus:border-highlight ${clazz}`}
+  class={`${
+    dark ? "bg-container" : "bg-background"
+  } text-text text-sm px-3 py-1 rounded-xl focus:outline-2 focus:outline-highlight focus:ring-0 ${clazz}`}
   {name}
 />

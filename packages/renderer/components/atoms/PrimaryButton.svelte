@@ -6,7 +6,7 @@
 
 <button
   on:click
-  class={`bg-container px-3 pt-0.5 leading-none rounded-lg ${clazz}`}
+  class={`bg-highlight text-container font-bold px-3.5 py-3 leading-none rounded-lg ${clazz}`}
   {disabled}
 >
   <slot />

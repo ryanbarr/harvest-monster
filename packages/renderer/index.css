@@ -4,7 +4,28 @@
 
 html,
 body {
-  @apply bg-background;
   @apply text-text;
   @apply font-mono;
+}
+
+.active {
+  @apply text-highlight;
+  @apply border-highlight;
+  @apply border-l-2;
+  @apply pl-1.5;
+}
+
+.inactive {
+  @apply border-background;
+  @apply border-l-2;
+  @apply pl-1.5;
+}
+
+#titlebar {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+}
+
+#titlebar button {
+  -webkit-app-region: no-drag;
 }

@@ -1,6 +1,11 @@
 /**
  * @module preload
  */
+import { ipcRenderer } from "electron";
 import { parseCrafts } from "./parseCrafts";
 
-export { parseCrafts };
+const minimize = async () => {
+  await ipcRenderer.invoke("minimize");
+};
+
+export { parseCrafts, minimize };

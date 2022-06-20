@@ -1,17 +1,26 @@
 <script>
-  import { Router, Route, Link } from "svelte-routing";
-  import Button from "./components/atoms/Button.svelte";
+  import { Router, Route } from "svelte-routing";
+  import Link from "./components/atoms/Link.svelte";
+  import PrimaryButton from "./components/atoms/PrimaryButton.svelte";
+  import LabeledToggle from "./components/molecules/LabeledToggle.svelte";
+  import ToolbarButton from "./components/atoms/ToolbarButton.svelte";
   import Crafts from "./pages/Crafts.svelte";
   import SettingsPage from "./pages/Settings.svelte";
-  import { ServerIcon, SettingsIcon } from "svelte-feather-icons";
+  import {
+    Maximize2Icon,
+    MinusIcon,
+    ServerIcon,
+    SettingsIcon,
+    XIcon,
+  } from "svelte-feather-icons";
   import { settings } from "./stores";
+  import { minimize } from "#preload";
 
+  export let url = "";
   let autoList = false;
   function handleAutoListToggle() {
-    console.log("yes");
     autoList = !autoList;
   }
-  import LabeledToggle from "./components/molecules/LabeledToggle.svelte";
   import "./index.css";
   import { onDestroy } from "svelte";
 
@@ -24,45 +33,59 @@
   });
 
   onDestroy(unsubscribe);
+
+  const getProps = () => {};
 </script>
 
-<span />
-
-<Router>
-  <div class="flex flex-row justify-between items-center p-2 space-x-4">
-    <div>
-      <h1 class="font-mono text-2xl">
-        <span class="text-highlight">C</span>raft<span class="text-highlight"
-          >S</span
-        >ell
-      </h1>
+<Router {url}>
+  <div
+    id="titlebar"
+    class="bg-container px-1 py-1 fixed w-full flex justify-between rounded-t-lg"
+  >
+    <span class="px-2">Harvest<span class="text-highlight">Monster</span></span>
+    <div class="flex flex-grow justify-end space-x-1">
+      <ToolbarButton on:click={() => minimize()}
+        ><MinusIcon size="1x" /></ToolbarButton
+      >
+      <ToolbarButton on:click={() => window.close()}
+        ><XIcon size="1x" /></ToolbarButton
+      >
     </div>
-    <div class="grow">
-      <div class="flex flex-row justify-end">
-        <LabeledToggle on:click={handleAutoListToggle} enabled={autoList}
-          >Autolist</LabeledToggle
-        >
-      </div>
+  </div>
+  <div
+    class="flex flex-row justify-between items-center p-2 space-x-6 fixed w-full bg-background z-10 mt-8"
+  >
+    <div class="pl-2">
+      <img src="./hm-logo.png" alt="HarvestMonster" class="w-10" />
     </div>
-    <nav class="flex flex-row justify-end space-x-2">
-      <Link to="/">
-        <Button
-          ><div class="inline-flex items-center">
-            <ServerIcon size="1.25x" class="mr-2" /> Crafts
-          </div></Button
-        >
+    <nav
+      class="flex flex-row justify-end items-center space-x-4 pt-1 leading-[0]"
+    >
+      <Link to="/" {getProps} class="border-l-4">
+        <span class="inline-flex items-center">
+          <ServerIcon size="1.25x" class="mr-2" /> Crafts
+        </span>
       </Link>
       <Link to="/settings">
-        <Button
-          ><div class="inline-flex items-center">
-            <SettingsIcon size="1.25x" class="mr-2" /> Settings
-          </div></Button
-        >
+        <span class="inline-flex items-center">
+          <SettingsIcon size="1.25x" class="mr-2" /> Settings
+        </span>
       </Link>
     </nav>
+    <div class="grow">
+      <div class="flex flex-row justify-end space-x-6">
+        <LabeledToggle on:click={handleAutoListToggle} enabled={autoList}>
+          Autolist
+        </LabeledToggle>
+        <PrimaryButton>Create post</PrimaryButton>
+      </div>
+    </div>
   </div>
-  <Route path="/settings"><SettingsPage /></Route>
-  <Route path="/"><Crafts /></Route>
+  <div class="h-20" />
+  <div class="bg-background rounded-b-lg">
+    <Route path="/settings"><SettingsPage /></Route>
+    <Route path="/"><Crafts /></Route>
+  </div>
 </Router>
 
 <style>
