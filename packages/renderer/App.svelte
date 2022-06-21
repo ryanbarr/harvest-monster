@@ -1,10 +1,11 @@
 <script>
+  import "./i18n.js";
   import { Router } from "svelte-routing";
   import { settings } from "./stores";
   import MainTemplate from "./components/templates/MainTemplate.svelte";
   import "./index.css";
   import { onDestroy } from "svelte";
-  import themes from "./assets/themes";
+  import { isLoading } from "svelte-i18n";
 
   /**
    * This allows us to subscribe to store changes and change CSS variables
@@ -20,6 +21,10 @@
   onDestroy(unsubscribe);
 </script>
 
-<Router>
-  <MainTemplate />
-</Router>
+{#if $isLoading}
+  <span>Loading...</span>
+{:else}
+  <Router>
+    <MainTemplate />
+  </Router>
+{/if}

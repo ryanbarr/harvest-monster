@@ -1,4 +1,5 @@
 <script>
+  import { _ } from "svelte-i18n";
   import Button from "../atoms/Button.svelte";
   import Input from "../atoms/Input.svelte";
   import { DollarSignIcon, XIcon } from "svelte-feather-icons";
@@ -21,12 +22,14 @@
   <div class="w-44 flex space-x-2 text-sm">
     <Button class="flex-grow" disabled={craft === null}>
       <div class="inline-flex items-center">
-        <DollarSignIcon size="1x" class="mr-1" /> Sell
+        <DollarSignIcon size="1x" class="mr-1" />
+        {$_("crafts_sell")}
       </div>
     </Button>
     <Button class="flex-grow" disabled={craft === null}>
       <div class="inline-flex items-center">
-        <XIcon size="1x" class="mr-1" /> Delete
+        <XIcon size="1x" class="mr-1" />
+        {$_("crafts_delete")}
       </div>
     </Button>
   </div>

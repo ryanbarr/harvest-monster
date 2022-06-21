@@ -1,4 +1,5 @@
 <script>
+  import { _, locale } from "svelte-i18n";
   import ColorPicker from "../components/molecules/ColorPicker.svelte";
   import Card from "../components/atoms/Card.svelte";
   import Container from "../components/atoms/Container.svelte";
@@ -10,12 +11,10 @@
   import themes from "../assets/themes";
 
   let languages = [
-    "Chinese",
-    "English",
-    "Japanese",
-    "Korean",
-    "Portuguese",
-    "Russian",
+    { code: "en", name: "English" }, // English
+    { code: "es", name: "Español" }, // Spanish
+    { code: "jp", name: "日本" }, // Japanese
+    { code: "ko", name: "한국인" }, // Korean
   ];
   let leagues = ["Standard", "Sentinel", "Hardcore Sentinel"];
 
@@ -40,13 +39,11 @@
 <div class="py-4 px-8 overflow-y-auto">
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4">
     <Container>
-      <H2>User settings</H2>
+      <H2>{$_("settings_user")}</H2>
       <Card class="space-y-4">
         <InputGroup>
-          <label for="poeUsername">Path of Exile Username</label>
-          <span class="text-xs"
-            >This is the name other players will use to message you.</span
-          >
+          <label for="poeUsername">{$_("settings_username")}</label>
+          <span class="text-xs">{$_("settings_username_desc")}</span>
           <Input
             name="username"
             bind:value={$settings.username}
@@ -54,10 +51,8 @@
           />
         </InputGroup>
         <InputGroup>
-          <label for="poeUsername">Path of Exile League</label>
-          <span class="text-xs"
-            >Select the league in which your crafts are available.</span
-          >
+          <label for="poeUsername">{$_("settings_league")}</label>
+          <span class="text-xs">{$_("settings_league_desc")}</span>
           <Select
             name="league"
             bind:value={$settings.league}
@@ -71,35 +66,37 @@
       </Card>
     </Container>
     <Container>
-      <H2>App settings</H2>
+      <H2>{$_("settings_app")}</H2>
       <Card>
         <InputGroup>
-          <label for="poeUsername">Language</label>
-          <span class="text-xs"
-            >Adjust the language of HarvestMonster. Craft posts will remain in
-            English.</span
-          >
+          <label for="poeUsername">{$_("settings_language")}</label>
+          <span class="text-xs">{$_("settings_language_desc")}</span>
           <Select
             name="language"
             bind:value={$settings.language}
-            on:change={() => settings.save()}
+            on:change={() => {
+              locale.set($settings.language);
+              settings.save();
+            }}
           >
             {#each languages as language}
-              <option>{language}</option>
+              <option value={language.code}>{language.name}</option>
             {/each}
           </Select>
         </InputGroup>
       </Card>
     </Container>
     <Container>
-      <H2>Discord connection</H2>
+      <H2>{$_("settings_discord")}</H2>
       <Card>Test</Card>
     </Container>
     <Container>
-      <H2>Theme</H2>
+      <H2>{$_("settings_theme")}</H2>
       <Card class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <InputGroup>
-          <label for="backgroundColorInput">Background color</label>
+          <label for="backgroundColorInput"
+            >{$_("settings_background_color")}</label
+          >
           <ColorPicker
             bind:color={$settings.backgroundColor}
             on:change={() =>
@@ -108,34 +105,37 @@
           />
         </InputGroup>
         <InputGroup>
-          <label for="containerColorInput">Container color</label>
+          <label for="containerColorInput"
+            >{$_("settings_container_color")}</label
+          >
           <ColorPicker
             bind:color={$settings.containerColor}
             on:change={() =>
-              customTheme("backgroundColor", $settings.backgroundColor)}
+              customTheme("containerColor", $settings.containerColor)}
             name="containerColorInput"
           />
         </InputGroup>
         <InputGroup>
-          <label for="highlightColorInput">Highlight color</label>
+          <label for="highlightColorInput"
+            >{$_("settings_highlight_color")}</label
+          >
           <ColorPicker
             bind:color={$settings.highlightColor}
             on:change={() =>
-              customTheme("backgroundColor", $settings.backgroundColor)}
+              customTheme("highlightColor", $settings.highlightColor)}
             name="highlightColorInput"
           />
         </InputGroup>
         <InputGroup>
-          <label for="textColorInput">Text color</label>
+          <label for="textColorInput">{$_("settings_text_color")}</label>
           <ColorPicker
             bind:color={$settings.textColor}
-            on:change={() =>
-              customTheme("backgroundColor", $settings.backgroundColor)}
+            on:change={() => customTheme("textColor", $settings.textColor)}
             name="textColorInput"
           />
         </InputGroup>
         <InputGroup>
-          <label for="">Apply theme</label>
+          <label for="">{$_("settings_apply_theme")}</label>
           <Select
             name="theme"
             bind:value={$settings.theme}

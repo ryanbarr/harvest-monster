@@ -3,6 +3,7 @@
   import PrimaryButton from "../atoms/PrimaryButton.svelte";
   import LabeledToggle from "../molecules/LabeledToggle.svelte";
   import { ServerIcon, SettingsIcon } from "svelte-feather-icons";
+  import { _ } from "svelte-i18n";
 
   let autoList = false;
   function handleAutoListToggle() {
@@ -23,21 +24,23 @@
   >
     <Link to="/" {getProps} class="border-l-4">
       <span class="inline-flex items-center">
-        <ServerIcon size="1.25x" class="mr-2" /> Crafts
+        <ServerIcon size="1.25x" class="mr-2" />
+        {$_("nav_crafts")}
       </span>
     </Link>
     <Link to="/settings">
       <span class="inline-flex items-center">
-        <SettingsIcon size="1.25x" class="mr-2" /> Settings
+        <SettingsIcon size="1.25x" class="mr-2" />
+        {$_("nav_settings")}
       </span>
     </Link>
   </nav>
   <div class="grow">
     <div class="flex flex-row justify-end space-x-6">
       <LabeledToggle on:click={handleAutoListToggle} enabled={autoList}>
-        Autolist
+        {$_("nav_autolist")}
       </LabeledToggle>
-      <PrimaryButton>Copy to clipboard</PrimaryButton>
+      <PrimaryButton>{$_("nav_copy")}</PrimaryButton>
     </div>
   </div>
 </div>

@@ -8,7 +8,7 @@ const app = new App({
   target: document.getElementById("app"),
 });
 
-document.onpaste = async function() {
+document.onpaste = async function () {
   const newCrafts = await parseCrafts();
 
   if (newCrafts && newCrafts.length > 0) {
