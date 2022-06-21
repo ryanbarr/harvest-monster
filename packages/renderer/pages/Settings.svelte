@@ -30,31 +30,32 @@
       <H2>Theme</H2>
       <Card class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <InputGroup>
-          <label for="backgroundColorInput">Background Color</label>
+          <label for="backgroundColorInput">Background color</label>
           <ColorPicker
             bind:color={$settings.backgroundColor}
             name="backgroundColorInput"
           />
         </InputGroup>
         <InputGroup>
-          <label for="containerColorInput">Container Color</label>
+          <label for="containerColorInput">Container color</label>
           <ColorPicker
             bind:color={$settings.containerColor}
             name="containerColorInput"
           />
         </InputGroup>
         <InputGroup>
-          <label for="highlightColorInput">Highlight Color</label>
+          <label for="highlightColorInput">Highlight color</label>
           <ColorPicker
             bind:color={$settings.highlightColor}
             name="highlightColorInput"
           />
         </InputGroup>
         <InputGroup>
-          <label for="textColorInput">Text Color</label>
+          <label for="textColorInput">Text color</label>
           <ColorPicker bind:color={$settings.textColor} name="textColorInput" />
         </InputGroup>
         <InputGroup>
+          <label for="">Apply theme</label>
           <Select name="theme"
             bind:value={selectedTheme}
             on:change={() => settings.applyTheme(selectedTheme)}>
@@ -62,9 +63,6 @@
               <option value={theme.id}>{theme.name}</option>
             {/each}
           </Select>
-        </InputGroup>
-        <InputGroup>
-          <Button on:click={settings.reset}>Reset Colors</Button>
         </InputGroup>
       </Card>
     </Container>
