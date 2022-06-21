@@ -1,6 +1,7 @@
 import { writable } from "svelte/store";
 import themes from "./assets/themes";
 
+const CRAFTS_KEY = "hmStoredCrafts";
 const SETTINGS_KEY = "hmUserSettings";
 const standardTheme = themes.filter((t) => t.id === "standard")[0];
 
@@ -35,9 +36,16 @@ const defaultSettings: Settings = {
 };
 
 function createCrafts() {
-  const { subscribe, update } = writable<Craft[]>([]);
+  const saved = window.localStorage.getItem(CRAFTS_KEY);
+  const def = saved ? JSON.parse(saved) : [];
+  const { subscribe, update } = writable<Craft[]>(def);
 
   return {
+    save: () =>
+      update((crafts: Craft[]) => {
+        window.localStorage.setItem(CRAFTS_KEY, JSON.stringify(crafts));
+        return crafts;
+      }),
     subscribe,
     addCraft: (craft: Craft) =>
       update((arr: Craft[]) => {
