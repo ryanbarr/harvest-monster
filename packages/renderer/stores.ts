@@ -13,6 +13,7 @@ export interface Craft {
 }
 
 export interface Settings {
+  username: string;
   language: string;
   league: string;
   theme: string;
@@ -23,6 +24,7 @@ export interface Settings {
 }
 
 const defaultSettings: Settings = {
+  username: "",
   language: "English",
   league: "Sentinel",
   theme: "standard",

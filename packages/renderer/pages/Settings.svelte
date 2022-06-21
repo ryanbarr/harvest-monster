@@ -47,7 +47,11 @@
           <span class="text-xs"
             >This is the name other players will use to message you.</span
           >
-          <Input />
+          <Input
+            name="username"
+            bind:value={$settings.username}
+            on:change={() => settings.save()}
+          />
         </InputGroup>
         <InputGroup>
           <label for="poeUsername">Path of Exile League</label>
