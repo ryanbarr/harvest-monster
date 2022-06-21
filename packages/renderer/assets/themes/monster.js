@@ -1,6 +1,6 @@
 export const monster = {
   id: "monster",
-  name: "monster",
+  name: "Monster",
   backgroundColor: "#120231",
   containerColor: "#2a0859",
   highlightColor: "#eb0095",
