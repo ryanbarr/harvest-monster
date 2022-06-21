@@ -37,7 +37,7 @@
       <LabeledToggle on:click={handleAutoListToggle} enabled={autoList}>
         Autolist
       </LabeledToggle>
-      <PrimaryButton>Create post</PrimaryButton>
+      <PrimaryButton>Copy to clipboard</PrimaryButton>
     </div>
   </div>
 </div>
