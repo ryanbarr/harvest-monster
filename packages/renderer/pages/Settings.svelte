@@ -6,11 +6,13 @@
   import H2 from "../components/atoms/H2.svelte";
   import InputGroup from "../components/atoms/InputGroup.svelte";
   import { settings } from "../stores";
+  import themes from "../assets/themes";
+
+  let selectedTheme = "standard";
 </script>
 
-<div class="p-8">
-  <h1>Settings</h1>
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="py-4 px-8 overflow-y-auto">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4">
     <Container>
       <H2>User settings</H2>
       <Card />
@@ -50,6 +52,16 @@
         <InputGroup>
           <label for="textColorInput">Text Color</label>
           <ColorPicker bind:color={$settings.textColor} name="textColorInput" />
+        </InputGroup>
+        <InputGroup>
+          <select
+            bind:value={selectedTheme}
+            on:change={() => settings.applyTheme(selectedTheme)}
+          >
+            {#each themes as theme}
+              <option value={theme.id}>{theme.name}</option>
+            {/each}
+          </select>
         </InputGroup>
         <InputGroup>
           <Button on:click={settings.reset}>Reset Colors</Button>

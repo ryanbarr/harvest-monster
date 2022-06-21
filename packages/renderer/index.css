@@ -29,3 +29,7 @@ body {
 #titlebar button {
   -webkit-app-region: no-drag;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}

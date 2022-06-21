@@ -6,9 +6,11 @@
   import SettingsPage from "../../pages/Settings.svelte";
 </script>
 
-<Titlebar />
-<Navigation />
-<div class="bg-background rounded-b-lg pt-20">
-  <Route path="/settings"><SettingsPage /></Route>
-  <Route path="/"><Crafts /></Route>
+<div class="bg-background w-full rounded-lg overflow-hidden bg-clip-content">
+  <Titlebar />
+  <Navigation />
+  <div class="pt-20 relative">
+    <Route path="/"><Crafts /></Route>
+    <Route path="/settings"><SettingsPage /></Route>
+  </div>
 </div>

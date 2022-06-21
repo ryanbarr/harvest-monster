@@ -1,4 +1,5 @@
 import { writable } from "svelte/store";
+import themes from "./assets/themes";
 
 export interface Craft {
   id: Symbol;
@@ -52,15 +53,26 @@ function createSettings() {
   return {
     reset: () =>
       update((currentSettings) => {
-        console.log("update");
         return {
           ...currentSettings,
           backgroundColor: "#353535",
           containerColor: "#232323",
-          highlightColor: "#8BCC00",
+          highlightColor: "#52DFFF",
           textColor: "#C6C6C6",
         };
       }),
+    applyTheme: (themeId) => {
+      const theme = themes[themes.findIndex((t) => t.id === themeId)];
+      update((currentSettings) => {
+        return {
+          ...currentSettings,
+          backgroundColor: theme.backgroundColor,
+          containerColor: theme.containerColor,
+          highlightColor: theme.highlightColor,
+          textColor: theme.textColor,
+        };
+      });
+    },
     set,
     subscribe,
   };
