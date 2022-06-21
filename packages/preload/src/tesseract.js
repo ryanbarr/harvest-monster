@@ -7,7 +7,9 @@ import tft_crafts from "../assets/tft_crafts";
 
 export const tesseract = (blob) => {
   return new Promise(async (resolve) => {
-    const worker = createWorker();
+    const worker = createWorker({
+      logger: (v) => window.postMessage(v),
+    });
     await worker.load();
     await worker.loadLanguage();
     await worker.initialize();

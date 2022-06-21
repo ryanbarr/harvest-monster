@@ -1,5 +1,7 @@
 // @ts-ignore
 import App from "./App.svelte";
+import CraftProcessingModal from "./components/organisms/CraftProcessingModal.svelte";
+import { openModal } from "svelte-modals";
 import { crafts } from "./stores";
 import { parseCrafts } from "#preload";
 
@@ -9,6 +11,7 @@ const app = new App({
 });
 
 document.onpaste = async function () {
+  openModal(CraftProcessingModal);
   const newCrafts = await parseCrafts();
 
   // If we have parsed new crafts, build and save.

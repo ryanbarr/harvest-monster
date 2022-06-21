@@ -1,7 +1,9 @@
 <script>
   import "./i18n.js";
   import { Router } from "svelte-routing";
+  import { Modals } from "svelte-modals";
   import { settings } from "./stores";
+  import ModalBackdrop from "./components/atoms/ModalBackdrop.svelte";
   import MainTemplate from "./components/templates/MainTemplate.svelte";
   import "./index.css";
   import { onDestroy } from "svelte";
@@ -25,6 +27,9 @@
   <span>Loading...</span>
 {:else}
   <Router>
+    <Modals>
+      <ModalBackdrop slot="backdrop" />
+    </Modals>
     <MainTemplate />
   </Router>
 {/if}
