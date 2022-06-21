@@ -31,10 +31,6 @@ async function createWindow() {
     }
   });
 
-  browserWindow.on("maximize", () => {
-    console.log("Test");
-  });
-
   /**
    * URL for main window.
    * Vite dev server for development.

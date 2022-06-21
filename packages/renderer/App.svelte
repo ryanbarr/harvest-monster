@@ -4,6 +4,7 @@
   import MainTemplate from "./components/templates/MainTemplate.svelte";
   import "./index.css";
   import { onDestroy } from "svelte";
+  import themes from "./assets/themes";
 
   /**
    * This allows us to subscribe to store changes and change CSS variables

@@ -8,6 +8,7 @@
 
 <input
   bind:value
+  on:change
   class={`${
     dark ? "bg-container" : "bg-background"
   } text-text text-sm px-3 py-1 rounded-xl focus:outline-2 focus:outline-highlight focus:ring-0 ${clazz}`}

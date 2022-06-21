@@ -1,6 +1,9 @@
 import { writable } from "svelte/store";
 import themes from "./assets/themes";
 
+const SETTINGS_KEY = "hmUserSettings";
+const standardTheme = themes.filter((t) => t.id === "standard")[0];
+
 export interface Craft {
   id: Symbol;
   key: string;
@@ -10,11 +13,24 @@ export interface Craft {
 }
 
 export interface Settings {
-  backgroundColor?: string;
-  containerColor?: string;
-  highlightColor?: string;
-  textColor?: string;
+  language: string;
+  league: string;
+  theme: string;
+  backgroundColor: string;
+  containerColor: string;
+  highlightColor: string;
+  textColor: string;
 }
+
+const defaultSettings: Settings = {
+  language: "English",
+  league: "Sentinel",
+  theme: "standard",
+  backgroundColor: standardTheme.backgroundColor,
+  containerColor: standardTheme.containerColor,
+  highlightColor: standardTheme.highlightColor,
+  textColor: standardTheme.textColor,
+};
 
 function createCrafts() {
   const { subscribe, update } = writable<Craft[]>([]);
@@ -43,38 +59,26 @@ function createCrafts() {
 }
 
 function createSettings() {
-  const { set, subscribe, update } = writable<Settings>({
-    backgroundColor: "#353535",
-    containerColor: "#232323",
-    highlightColor: "#52DFFF",
-    textColor: "#C6C6C6",
-  });
+  const saved = window.localStorage.getItem(SETTINGS_KEY);
+  const def = saved ? JSON.parse(saved) : defaultSettings;
+  const { set, subscribe, update } = writable<Settings>(def);
 
   return {
-    reset: () =>
-      update((currentSettings) => {
-        return {
-          ...currentSettings,
-          backgroundColor: "#353535",
-          containerColor: "#232323",
-          highlightColor: "#52DFFF",
-          textColor: "#C6C6C6",
+    updateSettings: (newSettings: Partial<Settings>) =>
+      update((settings: Settings) => {
+        const updatedSettings = {
+          ...settings,
+          ...newSettings,
         };
+        window.localStorage.setItem(
+          SETTINGS_KEY,
+          JSON.stringify(updatedSettings)
+        );
+        return updatedSettings;
       }),
-    applyTheme: (themeId) => {
-      const theme = themes[themes.findIndex((t) => t.id === themeId)];
-      update((currentSettings) => {
-        return {
-          ...currentSettings,
-          backgroundColor: theme.backgroundColor,
-          containerColor: theme.containerColor,
-          highlightColor: theme.highlightColor,
-          textColor: theme.textColor,
-        };
-      });
-    },
     set,
     subscribe,
+    update,
   };
 }
 

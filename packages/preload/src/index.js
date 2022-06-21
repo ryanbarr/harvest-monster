@@ -8,4 +8,4 @@ const minimize = async () => {
   await ipcRenderer.invoke("minimize");
 };
 
-export { parseCrafts, minimize };
+export { minimize, parseCrafts };
