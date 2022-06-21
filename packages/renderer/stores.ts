@@ -64,6 +64,11 @@ function createSettings() {
   const { set, subscribe, update } = writable<Settings>(def);
 
   return {
+    save: () =>
+      update((settings: Settings) => {
+        window.localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+        return settings;
+      }),
     updateSettings: (newSettings: Partial<Settings>) =>
       update((settings: Settings) => {
         const updatedSettings = {

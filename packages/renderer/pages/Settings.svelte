@@ -54,7 +54,11 @@
           <span class="text-xs"
             >Select the league in which your crafts are available.</span
           >
-          <Select name="league" bind:value={$settings.league}>
+          <Select
+            name="league"
+            bind:value={$settings.league}
+            on:change={() => settings.save()}
+          >
             {#each leagues as league}
               <option>{league}</option>
             {/each}
@@ -71,7 +75,11 @@
             >Adjust the language of HarvestMonster. Craft posts will remain in
             English.</span
           >
-          <Select name="language" bind:value={$settings.language}>
+          <Select
+            name="language"
+            bind:value={$settings.language}
+            on:change={() => settings.save()}
+          >
             {#each languages as language}
               <option>{language}</option>
             {/each}
