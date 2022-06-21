@@ -5,6 +5,7 @@
   import Container from "../components/atoms/Container.svelte";
   import H2 from "../components/atoms/H2.svelte";
   import InputGroup from "../components/atoms/InputGroup.svelte";
+  import Select from "../components/atoms/Select.svelte";
   import { settings } from "../stores";
   import themes from "../assets/themes";
 
@@ -54,14 +55,13 @@
           <ColorPicker bind:color={$settings.textColor} name="textColorInput" />
         </InputGroup>
         <InputGroup>
-          <select
+          <Select name="theme"
             bind:value={selectedTheme}
-            on:change={() => settings.applyTheme(selectedTheme)}
-          >
+            on:change={() => settings.applyTheme(selectedTheme)}>
             {#each themes as theme}
               <option value={theme.id}>{theme.name}</option>
             {/each}
-          </select>
+          </Select>
         </InputGroup>
         <InputGroup>
           <Button on:click={settings.reset}>Reset Colors</Button>
