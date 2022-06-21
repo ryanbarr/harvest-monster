@@ -8,7 +8,10 @@
   id="titlebar"
   class="bg-container px-1 py-1 fixed w-full flex justify-between rounded-t-lg z-20"
 >
-  <span class="px-2">Harvest<span class="text-highlight">Monster</span></span>
+  <span class="px-2"
+    >Harvest<span class="text-highlight">Monster</span>
+    <span class="text-xs opacity-40">Beta</span></span
+  >
   <div class="flex flex-grow justify-end space-x-1">
     <ToolbarButton on:click={() => minimize()}
       ><MinusIcon size="1x" /></ToolbarButton
