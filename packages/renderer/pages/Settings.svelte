@@ -7,6 +7,7 @@
   import InputGroup from "../components/atoms/InputGroup.svelte";
   import Select from "../components/atoms/Select.svelte";
   import Input from "../components/atoms/Input.svelte";
+  import ExtLink from "../components/atoms/ExtLink.svelte";
   import { settings } from "../stores";
   import themes from "../assets/themes";
 
@@ -149,6 +150,32 @@
             {/each}
           </Select>
         </InputGroup>
+      </Card>
+    </Container>
+    <Container>
+      <H2>{$_("settings_credits")}</H2>
+      <Card class="space-y-4">
+        <p
+          >Developed by <ExtLink href="https://twitch.tv/spooky">Spooky</ExtLink
+          >, designed by <ExtLink href="https://dribbble.com/m0nster"
+            >Monster</ExtLink
+          >, and tested by <ExtLink href="https://twitch.tv/nb2k">nb2k</ExtLink
+          >.</p
+        >
+        <p
+          >Portuguese translations by <ExtLink
+            href="https://twitch.tv/little_fabz">little_fabz</ExtLink
+          >.</p
+        >
+        <p
+          >Inspired by <ExtLink href="https://github.com/esge/PoE-HarvestVendor"
+            >HarvestVendor by Esge</ExtLink
+          >
+          and
+          <ExtLink href="https://github.com/esge/PoE-HarvestVendor"
+            >HarvestVendor fork by Stregon</ExtLink
+          >.</p
+        >
       </Card>
     </Container>
   </div>

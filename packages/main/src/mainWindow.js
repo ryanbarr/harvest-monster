@@ -1,4 +1,4 @@
-import { BrowserWindow, ipcMain } from "electron";
+import { BrowserWindow, ipcMain, shell } from "electron";
 import { join } from "path";
 import { URL } from "url";
 
@@ -45,6 +45,10 @@ async function createWindow() {
         ).toString();
 
   await browserWindow.loadURL(pageUrl);
+
+  browserWindow.webContents.setWindowOpenHandler(({ url }) => {
+    shell.openExternal(url);
+  });
 
   ipcMain.handle("minimize", async () => {
     browserWindow.minimize();
