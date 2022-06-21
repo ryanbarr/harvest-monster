@@ -17,7 +17,7 @@
       class="w-12 text-center"
       value={craft?.level > 0 ? craft?.level : craft === null ? "" : 83}
     />
-    <Input class="w-12 text-center" />
+    <Input class="w-16 text-center text-xs" />
   </div>
   <div class="w-44 flex space-x-2 text-sm">
     <Button class="flex-grow" disabled={craft === null}>

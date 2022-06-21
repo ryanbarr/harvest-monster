@@ -11,7 +11,7 @@
       <span class="w-12">{$_("crafts_quantity")}</span>
       <span class="w-72 flex-grow">{$_("crafts_craft")}</span>
       <span class="w-12">{$_("crafts_level")}</span>
-      <span class="w-12">{$_("crafts_price")}</span>
+      <span class="w-16">{$_("crafts_price")}</span>
     </div>
     <div class="w-44 text-sm" />
   </div>
