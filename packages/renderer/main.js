@@ -15,7 +15,7 @@ document.onpaste = async function () {
   if (newCrafts && newCrafts.length > 0) {
     for (let craft of newCrafts) {
       // Add the craft to the store.
-      crafts.addCraft(craft);
+      crafts.add(craft);
     }
     // Save all of the crafts to memory.
     crafts.save();

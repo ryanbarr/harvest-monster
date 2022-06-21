@@ -34,7 +34,14 @@
         {$_("crafts_sell")}
       </div>
     </Button>
-    <Button class="flex-grow" disabled={craft === null}>
+    <Button
+      class="flex-grow"
+      disabled={craft === null}
+      on:click={() => {
+        crafts.delete(craft);
+        crafts.save();
+      }}
+    >
       <div class="inline-flex items-center">
         <XIcon size="1x" class="mr-1" />
         {$_("crafts_delete")}

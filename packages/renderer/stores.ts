@@ -47,7 +47,7 @@ function createCrafts() {
         return crafts;
       }),
     subscribe,
-    addCraft: (craft: Craft) =>
+    add: (craft: Craft) =>
       update((crafts: Craft[]) => {
         // Check to see if this craft exists in the store already.
         const existingCraftIndex: number = crafts.findIndex(
@@ -64,6 +64,12 @@ function createCrafts() {
         } else {
           return [...crafts, craft];
         }
+      }),
+    delete: (craft: Craft) =>
+      update((crafts: Craft[]) => {
+        const thisCraftIndex = crafts.findIndex((c) => c.key === craft.key);
+        crafts.splice(thisCraftIndex, 1);
+        return [...crafts];
       }),
     sell: (craft: Craft) =>
       update((crafts: Craft[]) => {
