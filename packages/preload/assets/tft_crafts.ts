@@ -105,7 +105,7 @@ const tft_crafts = {
   "reroll suffix lucky": "Reroll Suffix Lucky",
   "sacrifice corrupted gem 40": "Sacrifice Gem, 40% XP As Facetor Lens",
   "sacrifice corrupted gem 50": "Sacrifice Gem, 50% XP As Facetor Lens",
-  "sacrifice divination 0 twice card": "Sacrifice Divination Card 0-2x",
+  // "sacrifice divination 0 twice card": "Sacrifice Divination Card 0-2x",
   "sacrifice weapon armour amulet": "Sacrifice Weapon/Armour to Amulet",
   "sacrifice weapon armour jewel": "Sacrifice Weapon/Armour to Jewel",
   "sacrifice weapon armour ring": "Sacrifice Weapon/Armour to Ring",
