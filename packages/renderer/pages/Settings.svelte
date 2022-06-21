@@ -15,6 +15,7 @@
     { code: "es", name: "Español" }, // Spanish
     { code: "jp", name: "日本" }, // Japanese
     { code: "ko", name: "한국인" }, // Korean
+    { code: "pt", name: "Português" }, // Portuguese
     { code: "ru", name: "Русский" }, // Russian
     { code: "zh", name: "简体中文" }, // Chinese Simplified
   ];
