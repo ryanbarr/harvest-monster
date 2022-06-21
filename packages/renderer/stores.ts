@@ -48,22 +48,36 @@ function createCrafts() {
       }),
     subscribe,
     addCraft: (craft: Craft) =>
-      update((arr: Craft[]) => {
+      update((crafts: Craft[]) => {
         // Check to see if this craft exists in the store already.
-        const existingCraftIndex: number = arr.findIndex(
+        const existingCraftIndex: number = crafts.findIndex(
           (v) => v.key == craft.key
         );
 
         // If the craft does exist, update its quantity by one and splice it over the old craft.
         if (existingCraftIndex > -1) {
-          const existingCraft = arr[existingCraftIndex];
+          const existingCraft = crafts[existingCraftIndex];
           existingCraft.quantity += 1;
-          arr.splice(existingCraftIndex, 1, existingCraft);
-          return [...arr];
+          crafts.splice(existingCraftIndex, 1, existingCraft);
+          return [...crafts];
           // Otherwise, just add the craft to the array.
         } else {
-          return [...arr, craft];
+          return [...crafts, craft];
         }
+      }),
+    sell: (craft: Craft) =>
+      update((crafts: Craft[]) => {
+        const thisCraftIndex = crafts.findIndex((c) => c.key === craft.key);
+        const thisCraft = crafts[thisCraftIndex];
+        // If we have more than one of this craft, decrement and save.
+        if (thisCraft.quantity > 1) {
+          thisCraft.quantity -= 1;
+          crafts.splice(thisCraftIndex, 1, thisCraft);
+          // Otherwise, remove it from the list.
+        } else {
+          crafts.splice(thisCraftIndex, 1);
+        }
+        return [...crafts];
       }),
   };
 }

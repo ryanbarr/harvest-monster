@@ -3,6 +3,7 @@
   import Button from "../atoms/Button.svelte";
   import Input from "../atoms/Input.svelte";
   import { DollarSignIcon, XIcon } from "svelte-feather-icons";
+  import { crafts } from "../../stores";
 
   let craft;
 
@@ -20,7 +21,14 @@
     <Input class="w-16 text-center text-xs" />
   </div>
   <div class="w-44 flex space-x-2 text-sm">
-    <Button class="flex-grow" disabled={craft === null}>
+    <Button
+      class="flex-grow"
+      disabled={craft === null}
+      on:click={() => {
+        crafts.sell(craft);
+        crafts.save();
+      }}
+    >
       <div class="inline-flex items-center">
         <DollarSignIcon size="1x" class="mr-1" />
         {$_("crafts_sell")}
