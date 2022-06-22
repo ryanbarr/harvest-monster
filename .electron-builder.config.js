@@ -16,6 +16,8 @@ const config = {
   },
   files: ["packages/**/dist/**"],
   fileAssociations: {
+    ext: "png",
+    name: "PNG",
     icon: "icon.png",
   },
   extraMetadata: {
