@@ -2,6 +2,7 @@
   "name": "vite-electron-builder",
   "description": "Secure boilerplate for Electron app based on Vite",
   "private": true,
+  "version": "0.1.0",
   "license": "GPL-3.0-or-later",
   "engines": {
     "node": ">=v16.13",
@@ -19,29 +20,17 @@
     "build:preload": "cd ./packages/preload && vite build",
     "build:renderer": "cd ./packages/renderer && vite build",
     "compile": "cross-env MODE=production npm run build && electron-builder build --config .electron-builder.config.js --dir --config.asar=false",
-    "test": "npm run test:main && npm run test:preload && npm run test:renderer && npm run test:e2e",
+    "test": "npm run test:e2e",
     "test:e2e": "vitest run",
-    "test:main": "vitest run -r packages/main --passWithNoTests",
-    "test:preload": "vitest run -r packages/preload --passWithNoTests",
-    "test:renderer": "vitest run -r packages/renderer --passWithNoTests",
     "watch": "node scripts/watch.js",
-    "lint": "eslint . --ext js,ts,vue",
-    "typecheck:main": "tsc --noEmit -p packages/main/tsconfig.json",
-    "typecheck:preload": "tsc --noEmit -p packages/preload/tsconfig.json",
-    "typecheck:renderer": "vue-tsc --noEmit -p packages/renderer/tsconfig.json",
-    "typecheck": "npm run typecheck:main && npm run typecheck:preload && npm run typecheck:renderer",
     "postinstall": "cross-env ELECTRON_RUN_AS_NODE=1 npx --no-install electron ./scripts/update-electron-vendors.js "
   },
   "devDependencies": {
     "@types/tesseract.js": "^2.0.0",
-    "@typescript-eslint/eslint-plugin": "5.28.0",
-    "@vue/test-utils": "2.0.1",
     "autoprefixer": "^10.4.7",
     "cross-env": "7.0.3",
     "electron": "19.0.4",
     "electron-builder": "23.0.3",
-    "eslint": "8.17.0",
-    "eslint-plugin-vue": "9.1.1",
     "happy-dom": "5.3.1",
     "playwright": "1.22.2",
     "postcss": "^8.4.14",
@@ -51,8 +40,7 @@
     "typescript": "4.7.3",
     "unplugin-auto-expose": "0.0.1",
     "vite": "^2.9.12",
-    "vitest": "0.15.1",
-    "vue-tsc": "0.37.8"
+    "vitest": "0.15.1"
   },
   "dependencies": {
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.49",
@@ -61,7 +49,6 @@
     "svelte-i18n": "^3.4.0",
     "svelte-modals": "^1.1.0",
     "svelte-routing": "^1.6.0",
-    "tesseract.js": "^2.1.5",
-    "vue": "3.2.37"
+    "tesseract.js": "^2.1.5"
   }
 }
