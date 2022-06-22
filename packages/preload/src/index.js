@@ -1,6 +1,7 @@
 /**
  * @module preload
  */
+import { copyPost } from "./copyPost";
 import { fetchNinjaPrices } from "./fetchNinjaPrices";
 import { fetchTFTPrices } from "./fetchTFTPrices";
 import { ipcRenderer } from "electron";
@@ -10,4 +11,4 @@ const minimize = async () => {
   await ipcRenderer.invoke("minimize");
 };
 
-export { fetchNinjaPrices, fetchTFTPrices, minimize, parseCrafts };
+export { copyPost, fetchNinjaPrices, fetchTFTPrices, minimize, parseCrafts };

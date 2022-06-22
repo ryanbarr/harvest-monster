@@ -33,10 +33,15 @@ export interface Currency {
   icon: string;
 }
 
+export interface League {
+  code: "std" | "lsc" | "lhc";
+  name: "Standard" | "Sentinel Softcore" | "Sentinel Hardcore";
+}
+
 export interface Settings {
   username: string;
   language: string;
-  league: string;
+  league: League;
   theme: string;
   backgroundColor: string;
   containerColor: string;
@@ -55,7 +60,7 @@ export interface TFTData {
 const defaultSettings: Settings = {
   username: "",
   language: "English",
-  league: "Sentinel",
+  league: { code: "lsc", name: "Sentinel Softcore" },
   theme: "standard",
   backgroundColor: standardTheme.backgroundColor,
   containerColor: standardTheme.containerColor,

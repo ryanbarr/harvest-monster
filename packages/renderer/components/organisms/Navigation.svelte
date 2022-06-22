@@ -4,6 +4,8 @@
   import LabeledToggle from "../molecules/LabeledToggle.svelte";
   import { ServerIcon, SettingsIcon } from "svelte-feather-icons";
   import { _ } from "svelte-i18n";
+  import { copyPost } from "#preload";
+  import { formatPost } from "../../utils/formatPost";
 
   let autoList = false;
   function handleAutoListToggle() {
@@ -40,7 +42,9 @@
       <LabeledToggle on:click={handleAutoListToggle} enabled={autoList}>
         {$_("nav_autolist")}
       </LabeledToggle>
-      <PrimaryButton>{$_("nav_copy")}</PrimaryButton>
+      <PrimaryButton on:click={() => copyPost(formatPost())}
+        >{$_("nav_copy")}</PrimaryButton
+      >
     </div>
   </div>
 </div>

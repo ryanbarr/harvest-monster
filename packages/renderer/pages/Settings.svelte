@@ -24,8 +24,8 @@
   ];
   let leagues = [
     { code: "std", name: "Standard" },
-    { code: "lsc", name: "Sentinel" },
-    { code: "lhc", name: "Hardcore Sentinel" },
+    { code: "lsc", name: "Sentinel Softcore" },
+    { code: "lhc", name: "Sentinel Hardcore" },
   ];
 
   const applyTheme = (themeId) => {
@@ -52,7 +52,7 @@
       <H2>{$_("settings_user")}</H2>
       <Card class="space-y-4">
         <InputGroup>
-          <label for="poeUsername">{$_("settings_username")}</label>
+          <label for="username">{$_("settings_username")}</label>
           <span class="text-xs">{$_("settings_username_desc")}</span>
           <Input
             name="username"
@@ -61,7 +61,7 @@
           />
         </InputGroup>
         <InputGroup>
-          <label for="poeUsername">{$_("settings_league")}</label>
+          <label for="league">{$_("settings_league")}</label>
           <span class="text-xs">{$_("settings_league_desc")}</span>
           <Select
             name="league"
@@ -82,7 +82,7 @@
       <H2>{$_("settings_app")}</H2>
       <Card class="space-y-4">
         <InputGroup>
-          <label for="poeUsername">{$_("settings_language")}</label>
+          <label for="language">{$_("settings_language")}</label>
           <span class="text-xs">{$_("settings_language_desc")}</span>
           <Select
             name="language"
