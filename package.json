@@ -1,6 +1,6 @@
 {
-  "name": "vite-electron-builder",
-  "description": "Secure boilerplate for Electron app based on Vite",
+  "name": "harvest-monster",
+  "description": "Path of Exile Harvest Craft Management Tool",
   "private": true,
   "version": "0.1.0",
   "license": "GPL-3.0-or-later",
@@ -9,9 +9,9 @@
     "npm": ">=8.1"
   },
   "author": {
-    "email": "kozackunisoft@gmail.com",
-    "name": "Alex Kozack",
-    "url": "https://kozack.me"
+    "email": "ryanbarr@gmail.com",
+    "name": "Ryan Barr",
+    "url": "https://twitch.tv/spooky"
   },
   "main": "packages/main/dist/index.cjs",
   "scripts": {
@@ -26,7 +26,6 @@
     "postinstall": "cross-env ELECTRON_RUN_AS_NODE=1 npx --no-install electron ./scripts/update-electron-vendors.js "
   },
   "devDependencies": {
-    "@tailwindcss/forms": "^0.4.0-alpha.2",
     "@types/tesseract.js": "^2.0.0",
     "autoprefixer": "^10.4.7",
     "cross-env": "7.0.3",
