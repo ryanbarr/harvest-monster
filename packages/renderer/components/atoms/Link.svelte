@@ -3,7 +3,7 @@
 
   export let to = "";
 
-  function getProps({ location, href, isPartiallyCurrent, isCurrent }) {
+  function getProps({ href, isPartiallyCurrent, isCurrent }) {
     const isActive = href === "/" ? isCurrent : isPartiallyCurrent || isCurrent;
 
     if (isActive) {
@@ -11,6 +11,8 @@
     }
     return { class: "inactive" };
   }
+
+  export { getProps };
 </script>
 
 <Link {to} {getProps}>

@@ -43,6 +43,8 @@ export interface Settings {
   highlightColor: string;
   textColor: string;
   autoPrice: boolean;
+  sortColumn: "quantity" | "name" | "level" | "price";
+  sortDirection: "ascending" | "descending";
 }
 
 export interface TFTData {
@@ -60,6 +62,8 @@ const defaultSettings: Settings = {
   highlightColor: standardTheme.highlightColor,
   textColor: standardTheme.textColor,
   autoPrice: true,
+  sortColumn: "name",
+  sortDirection: "ascending",
 };
 
 /**
@@ -77,6 +81,25 @@ function createCrafts() {
       update((crafts: Craft[]) => {
         window.localStorage.setItem(LS_CRAFTS_KEY, JSON.stringify(crafts));
         return crafts;
+      }),
+    sort: () =>
+      update((crafts: Craft[]) => {
+        const { sortColumn, sortDirection } = get(settings);
+
+        // Whenever we save the crafts, also sort them.
+        crafts.sort((a, b) => {
+          const ax = a[sortColumn] ?? "";
+          const bx = b[sortColumn] ?? "";
+
+          if (sortDirection === "ascending") {
+            return ax > bx ? 1 : -1;
+          } else {
+            return bx > ax ? 1 : -1;
+          }
+          return 0;
+        });
+
+        return [...crafts];
       }),
     subscribe,
     set,
