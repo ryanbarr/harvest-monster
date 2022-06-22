@@ -7,7 +7,7 @@ const leagueMap = {
 export const fetchNinjaPrices = async (poeLeague) => {
   const res = await fetch(
     `https://raw.githubusercontent.com/The-Forbidden-Trove/poeninja-prices/main/${
-      leagueMap[poeLeague]
+      leagueMap[poeLeague] ?? "League"
     }/Currency.txt?ts=${new Date().getTime()}`,
     { method: "GET" }
   );

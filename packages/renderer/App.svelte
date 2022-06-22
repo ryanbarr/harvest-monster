@@ -9,6 +9,8 @@
   import { onDestroy } from "svelte";
   import { isLoading } from "svelte-i18n";
 
+  export let url = "/";
+
   /**
    * This allows us to subscribe to store changes and change CSS variables
    * on-the-fly, and is what powers real-time theme changes from settings.
@@ -26,7 +28,7 @@
 {#if $isLoading}
   <span>Loading...</span>
 {:else}
-  <Router>
+  <Router {url}>
     <Modals>
       <ModalBackdrop slot="backdrop" />
     </Modals>

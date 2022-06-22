@@ -26,6 +26,7 @@ const config = {
   linux: {
     target: ["deb", "AppImage"],
   },
+  productName: "HarvestMonster",
 };
 
 module.exports = config;
