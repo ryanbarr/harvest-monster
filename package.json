@@ -2,6 +2,7 @@
   "name": "vite-electron-builder",
   "description": "Secure boilerplate for Electron app based on Vite",
   "private": true,
+  "license": "GPL-3.0-or-later",
   "engines": {
     "node": ">=v16.13",
     "npm": ">=8.1"

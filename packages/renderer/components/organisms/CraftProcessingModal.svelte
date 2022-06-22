@@ -47,7 +47,7 @@
           <img src="./hm-logo.png" alt="HarvestMonster" class="w-1/4 mx-auto" />
           <div class="mt-3 text-center sm:mt-5 space-y-4">
             <h3
-              class="text-lg leading-6 font-medium text-text capital"
+              class="text-lg leading-6 font-medium text-text capitalize"
               id="modal-title">{message}</h3
             >
             <ProgressBar percent={progress} />

@@ -8,7 +8,7 @@
   type="button"
   class={`${
     enabled ? "bg-highlight" : "bg-container"
-  } relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none`}
+  } relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 outline-highlight outline`}
   role="switch"
   aria-checked="false"
   on:click
@@ -18,13 +18,13 @@
     aria-hidden="true"
     class={`${
       enabled ? "translate-x-5" : "translate-x-0"
-    } pointer-events-none inline-block h-5 w-5 rounded-full bg-background text-container shadow transform ring-0 transition ease-in-out duration-200`}
+    } pointer-events-none inline-block h-5 w-5 rounded-full bg-background text-container shadow transform ring-0 transition ease-in-out duration-200 border border-highlight`}
     ><span
       class={`${
         enabled
           ? "opacity-0 ease-out duration-100"
           : "opacity-100 ease-in duration-200"
-      } absolute inset-0 h-full w-full flex items-center justify-center transition-opacity`}
+      } absolute inset-0 h-full w-full flex items-center justify-center transition-opacity text-highlight`}
       aria-hidden="true"><XIcon size="1x" /></span
     >
     <span

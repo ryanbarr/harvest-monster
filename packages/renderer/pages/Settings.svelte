@@ -8,8 +8,10 @@
   import Select from "../components/atoms/Select.svelte";
   import Input from "../components/atoms/Input.svelte";
   import ExtLink from "../components/atoms/ExtLink.svelte";
+  import Toggle from "../components/atoms/Toggle.svelte";
   import { settings } from "../stores";
   import themes from "../assets/themes";
+  import { fetchData } from "../utils/fetchData";
 
   let languages = [
     { code: "en", name: "English" }, // English
@@ -20,7 +22,11 @@
     { code: "ru", name: "Русский" }, // Russian
     { code: "zh", name: "简体中文" }, // Chinese Simplified
   ];
-  let leagues = ["Standard", "Sentinel", "Hardcore Sentinel"];
+  let leagues = [
+    { code: "std", name: "Standard" },
+    { code: "lsc", name: "Sentinel" },
+    { code: "lhc", name: "Hardcore Sentinel" },
+  ];
 
   const applyTheme = (themeId) => {
     const newTheme = themes.filter((t) => t.id === themeId)[0];
@@ -60,10 +66,13 @@
           <Select
             name="league"
             bind:value={$settings.league}
-            on:change={() => settings.save()}
+            on:change={async () => {
+              await fetchData();
+              settings.save();
+            }}
           >
             {#each leagues as league}
-              <option>{league}</option>
+              <option value={league.code}>{league.name}</option>
             {/each}
           </Select>
         </InputGroup>
@@ -71,7 +80,7 @@
     </Container>
     <Container>
       <H2>{$_("settings_app")}</H2>
-      <Card>
+      <Card class="space-y-4">
         <InputGroup>
           <label for="poeUsername">{$_("settings_language")}</label>
           <span class="text-xs">{$_("settings_language_desc")}</span>
@@ -87,6 +96,25 @@
               <option value={language.code}>{language.name}</option>
             {/each}
           </Select>
+        </InputGroup>
+        <InputGroup>
+          <div class="flex flex-row items-center space-x-8 justify-between">
+            <div class="flex flex-col">
+              <label for="autoPrices">Auto-update prices</label>
+              <span class="text-xs"
+                >HarvestMonster will manage your craft prices automatically,
+                using the latest prices from The Forbidden Trove.</span
+              >
+            </div>
+            <Toggle
+              on:click={async () => {
+                settings.changeSetting("autoPrice", !$settings.autoPrice);
+                await fetchData();
+                settings.save();
+              }}
+              enabled={$settings.autoPrice}
+            />
+          </div>
         </InputGroup>
       </Card>
     </Container>

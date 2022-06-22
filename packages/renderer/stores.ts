@@ -1,16 +1,36 @@
-import { writable } from "svelte/store";
+import { get, writable } from "svelte/store";
 import themes from "./assets/themes";
+import {
+  HM_STANDARD_THEME,
+  LS_CRAFTS_KEY,
+  LS_EXALT_PRICE_KEY,
+  LS_SETTINGS_KEY,
+  NINJA_EXALT_NAME,
+} from "./constants";
 
-const CRAFTS_KEY = "hmStoredCrafts";
-const SETTINGS_KEY = "hmUserSettings";
-const standardTheme = themes.filter((t) => t.id === "standard")[0];
+const standardTheme = themes.filter((t) => t.id === HM_STANDARD_THEME)[0];
 
 export interface Craft {
   id: Symbol;
   key: string;
   level: number;
   name: string;
+  price?: number;
   quantity: number;
+}
+
+export interface CraftPrice {
+  chaos: number;
+  exalt: number;
+  lowConfidence: boolean;
+  name: string;
+}
+
+export interface Currency {
+  id: number;
+  chaosEquivalent: number;
+  name: string;
+  icon: string;
 }
 
 export interface Settings {
@@ -22,6 +42,12 @@ export interface Settings {
   containerColor: string;
   highlightColor: string;
   textColor: string;
+  autoPrice: boolean;
+}
+
+export interface TFTData {
+  timestamp?: number;
+  data?: CraftPrice[];
 }
 
 const defaultSettings: Settings = {
@@ -33,20 +59,27 @@ const defaultSettings: Settings = {
   containerColor: standardTheme.containerColor,
   highlightColor: standardTheme.highlightColor,
   textColor: standardTheme.textColor,
+  autoPrice: true,
 };
 
+/**
+ * A store for keeping track of crafts the user is selling. We specifically aren't
+ * using a derived store (derived from TFT prices) because a user may choose to opt
+ * out of automatic pricing.
+ */
 function createCrafts() {
-  const saved = window.localStorage.getItem(CRAFTS_KEY);
+  const saved = window.localStorage.getItem(LS_CRAFTS_KEY);
   const def = saved ? JSON.parse(saved) : [];
-  const { subscribe, update } = writable<Craft[]>(def);
+  const { set, subscribe, update } = writable<Craft[]>(def);
 
   return {
     save: () =>
       update((crafts: Craft[]) => {
-        window.localStorage.setItem(CRAFTS_KEY, JSON.stringify(crafts));
+        window.localStorage.setItem(LS_CRAFTS_KEY, JSON.stringify(crafts));
         return crafts;
       }),
     subscribe,
+    set,
     add: (craft: Craft) =>
       update((crafts: Craft[]) => {
         // Check to see if this craft exists in the store already.
@@ -87,17 +120,24 @@ function createCrafts() {
       }),
   };
 }
+const crafts = createCrafts();
 
 function createSettings() {
-  const saved = window.localStorage.getItem(SETTINGS_KEY);
+  const saved = window.localStorage.getItem(LS_SETTINGS_KEY);
   const def = saved ? JSON.parse(saved) : defaultSettings;
   const { set, subscribe, update } = writable<Settings>(def);
 
   return {
     save: () =>
       update((settings: Settings) => {
-        window.localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+        window.localStorage.setItem(LS_SETTINGS_KEY, JSON.stringify(settings));
         return settings;
+      }),
+    changeSetting: (setting: keyof Settings, value) =>
+      update((settings: Settings) => {
+        const newSettings = {};
+        newSettings[setting] = value;
+        return { ...settings, ...newSettings };
       }),
     updateSettings: (newSettings: Partial<Settings>) =>
       update((settings: Settings) => {
@@ -106,7 +146,7 @@ function createSettings() {
           ...newSettings,
         };
         window.localStorage.setItem(
-          SETTINGS_KEY,
+          LS_SETTINGS_KEY,
           JSON.stringify(updatedSettings)
         );
         return updatedSettings;
@@ -116,6 +156,38 @@ function createSettings() {
     update,
   };
 }
+const settings = createSettings();
 
-export const crafts = createCrafts();
-export const settings = createSettings();
+const ninjaPrices = writable<Currency[]>([]);
+
+/**
+ * After we fetch new PoE.Ninja data (via TFT) we store the exalt price
+ * in memory so we can quickly access it when we format prices.
+ */
+ninjaPrices.subscribe((v: Currency[]) => {
+  const exalt = v?.filter((c) => c.name === NINJA_EXALT_NAME)[0];
+  let exaltToChaos = Math.round(exalt?.chaosEquivalent) ?? 0;
+  if (isNaN(exaltToChaos)) exaltToChaos = -1;
+  window.localStorage.setItem(LS_EXALT_PRICE_KEY, exaltToChaos.toString());
+});
+
+const tftPrices = writable<TFTData>({});
+
+/**
+ * After we fetch new TFT Harvest craft prices for the current league,
+ * we update all of the existing crafts prices.
+ */
+tftPrices.subscribe((tft: TFTData) => {
+  const currentCrafts = get(crafts);
+  const updatedCrafts: Craft[] = currentCrafts.map((craft: Craft) => {
+    // TODO: Only apply price if user indicated they prefer this.
+    const price = tft?.data?.filter((v) => v.name === craft.name)[0];
+    // TODO: Limit low confidence.
+    craft.price = price?.exalt ?? -1;
+    return craft;
+  });
+  crafts.set(updatedCrafts);
+  crafts.save();
+});
+
+export { crafts, ninjaPrices, settings, tftPrices };

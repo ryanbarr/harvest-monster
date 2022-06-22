@@ -4,6 +4,7 @@
   import Input from "../atoms/Input.svelte";
   import { DollarSignIcon, XIcon } from "svelte-feather-icons";
   import { crafts } from "../../stores";
+  import { formatPrice } from "../../utils/formatPrice";
 
   let craft;
 
@@ -18,7 +19,7 @@
       class="w-12 text-center"
       value={craft?.level > 0 ? craft?.level : craft === null ? "" : 83}
     />
-    <Input class="w-16 text-center text-xs" />
+    <Input class="w-16 text-center text-xs" value={formatPrice(craft?.price)} />
   </div>
   <div class="w-44 flex space-x-2 text-sm">
     <Button

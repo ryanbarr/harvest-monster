@@ -2,8 +2,11 @@
 import App from "./App.svelte";
 import CraftProcessingModal from "./components/organisms/CraftProcessingModal.svelte";
 import { openModal } from "svelte-modals";
+import { fetchData } from "./utils/fetchData";
 import { crafts } from "./stores";
 import { parseCrafts } from "#preload";
+
+await fetchData();
 
 // Bind the application to the root element.
 const app = new App({
@@ -17,6 +20,13 @@ document.onpaste = async function () {
   // If we have parsed new crafts, build and save.
   if (newCrafts && newCrafts.length > 0) {
     for (let craft of newCrafts) {
+      // TODO: Only apply price if user indicated they prefer this.
+      const price = currentTFTPrices?.data?.filter(
+        (c) => c.name === craft.name
+      )[0];
+      // TODO: Limit low confidence.
+      craft.price = price?.exalt ?? -1;
+
       // Add the craft to the store.
       crafts.add(craft);
     }
