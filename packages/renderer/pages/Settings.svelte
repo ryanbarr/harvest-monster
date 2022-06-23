@@ -12,6 +12,9 @@
   import { settings } from "../stores";
   import themes from "../assets/themes";
   import { fetchData } from "../utils/fetchData";
+  import { get } from "svelte/store";
+
+  const currentSettings = get(settings);
 
   let languages = [
     { code: "en", name: "English" }, // English
@@ -44,6 +47,9 @@
     customTheme[color] = value;
     settings.updateSettings(customTheme);
   };
+
+  let selectedLanguage = currentSettings.language.code;
+  $: currentLanguage = languages.find((l) => l.code === selectedLanguage);
 </script>
 
 <div class="py-4 px-8 overflow-y-auto">
@@ -65,7 +71,7 @@
           <span class="text-xs">{$_("settings_league_desc")}</span>
           <Select
             name="league"
-            bind:value={$settings.league}
+            bind:value={$settings.league.code}
             on:change={async () => {
               await fetchData();
               settings.save();
@@ -86,9 +92,10 @@
           <span class="text-xs">{$_("settings_language_desc")}</span>
           <Select
             name="language"
-            bind:value={$settings.language}
+            bind:value={selectedLanguage}
             on:change={() => {
-              locale.set($settings.language);
+              const lang = locale.set(currentLanguage.code);
+              settings.changeSetting("language", currentLanguage);
               settings.save();
             }}
           >
