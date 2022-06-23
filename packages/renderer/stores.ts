@@ -33,6 +33,11 @@ export interface Currency {
   icon: string;
 }
 
+export interface Language {
+  code: string;
+  name: string;
+}
+
 export interface League {
   code: "std" | "lsc" | "lhc";
   name: "Standard" | "Sentinel Softcore" | "Sentinel Hardcore";
@@ -40,7 +45,7 @@ export interface League {
 
 export interface Settings {
   username: string;
-  language: string;
+  language: Language;
   league: League;
   theme: string;
   backgroundColor: string;
@@ -59,7 +64,7 @@ export interface TFTData {
 
 const defaultSettings: Settings = {
   username: "",
-  language: "English",
+  language: { code: "en", name: "English" },
   league: { code: "lsc", name: "Sentinel Softcore" },
   theme: "standard",
   backgroundColor: standardTheme.backgroundColor,
@@ -153,7 +158,10 @@ const crafts = createCrafts();
 function createSettings() {
   const saved = window.localStorage.getItem(LS_SETTINGS_KEY);
   const def = saved ? JSON.parse(saved) : defaultSettings;
-  const { set, subscribe, update } = writable<Settings>(def);
+  const { set, subscribe, update } = writable<Settings>({
+    ...defaultSettings,
+    ...def,
+  });
 
   return {
     save: () =>
