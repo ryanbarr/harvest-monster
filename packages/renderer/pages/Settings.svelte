@@ -216,7 +216,9 @@
           and
           <ExtLink href="https://github.com/Stregon/PoE-HarvestVendor"
             >HarvestVendor fork by Stregon</ExtLink
-          >.</p
+          >. Intended for use with <ExtLink href="https://forbiddentrove.com/"
+            >The Forbidden Trove</ExtLink
+          >'s Discord server.</p
         >
       </Card>
     </Container>
