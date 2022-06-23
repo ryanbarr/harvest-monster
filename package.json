@@ -7,6 +7,10 @@
     "node": ">=v16.13",
     "npm": ">=8.1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryanbarr/harvest-monster.git"
+  },
   "author": {
     "email": "ryanbarr@gmail.com",
     "name": "Ryan Barr",
