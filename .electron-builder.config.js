@@ -24,7 +24,7 @@ const config = {
     icon: "icon.png",
   },
   extraMetadata: {
-    version: process.env.VITE_APP_VERSION,
+    version: pkg.version,
   },
   linux: {
     target: ["deb", "AppImage"],
