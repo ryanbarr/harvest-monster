@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.49",
+    "electron-log": "^4.4.8",
     "electron-updater": "5.0.1",
     "svelte-feather-icons": "^4.0.0",
     "svelte-i18n": "^3.4.0",

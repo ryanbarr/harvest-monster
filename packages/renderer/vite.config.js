@@ -31,7 +31,6 @@ const config = {
     outDir: "dist",
     assetsDir: ".",
     rollupOptions: {
-      external: ["electron-log"],
       input: join(PACKAGE_ROOT, "index.html"),
     },
     emptyOutDir: true,

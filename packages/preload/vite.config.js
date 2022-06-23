@@ -1,5 +1,5 @@
-import { chrome } from '../../.electron-vendors.cache.json';
-import { preload } from 'unplugin-auto-expose';
+import { chrome } from "../../.electron-vendors.cache.json";
+import { preload } from "unplugin-auto-expose";
 
 const PACKAGE_ROOT = __dirname;
 
@@ -13,26 +13,24 @@ const config = {
   envDir: process.cwd(),
   build: {
     ssr: true,
-    sourcemap: 'inline',
+    sourcemap: "inline",
     target: `chrome${chrome}`,
-    outDir: 'dist',
-    assetsDir: '.',
-    minify: process.env.MODE !== 'development',
+    outDir: "dist",
+    assetsDir: ".",
+    minify: process.env.MODE !== "development",
     lib: {
-      entry: 'src/index.js',
-      formats: ['cjs'],
+      entry: "src/index.js",
+      formats: ["cjs"],
     },
     rollupOptions: {
       output: {
-        entryFileNames: '[name].cjs',
+        entryFileNames: "[name].cjs",
       },
     },
     emptyOutDir: true,
     brotliSize: false,
   },
-  plugins: [
-    preload.vite(),
-  ],
+  plugins: [preload.vite()],
 };
 
 export default config;
