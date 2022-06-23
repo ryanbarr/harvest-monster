@@ -23,8 +23,23 @@ const config = {
   extraMetadata: {
     version: process.env.VITE_APP_VERSION,
   },
+  win: {
+    target: [
+      {
+        target: "nsis",
+        arch: ["x64", "ia32"],
+      },
+    ],
+  },
   linux: {
     target: ["deb", "AppImage"],
+  },
+  nsis: {
+    artifactName: "${productName}-Setup-${version}.${ext}",
+    oneClick: true,
+    perMachine: false,
+    runAfterFinish: true,
+    deleteAppDataOnUninstall: true,
   },
   productName: "HarvestMonster",
   publish: {
