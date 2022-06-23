@@ -1,4 +1,4 @@
-import pkg from "./package.json";
+const pkg = require("./package.json");
 
 if (process.env.VITE_APP_VERSION === undefined) {
   // const now = new Date();
