@@ -27,6 +27,9 @@ const config = {
     target: ["deb", "AppImage"],
   },
   productName: "HarvestMonster",
+  publish: {
+    provider: "github",
+  },
 };
 
 module.exports = config;

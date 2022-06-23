@@ -14,9 +14,7 @@
   },
   "build": {
     "publish": {
-      "provider": "github",
-      "owner": "ryanbarr",
-      "repo": "harvest-monster"
+      "provider": "github"
     }
   },
   "main": "packages/main/dist/index.cjs",
@@ -30,7 +28,7 @@
     "test:e2e": "vitest run",
     "watch": "node scripts/watch.js",
     "postinstall": "cross-env ELECTRON_RUN_AS_NODE=1 npx --no-install electron ./scripts/update-electron-vendors.js ",
-    "release": "electron-builder"
+    "release": "electron-builder -p always"
   },
   "devDependencies": {
     "@types/tesseract.js": "^2.0.0",
