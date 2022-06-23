@@ -214,7 +214,7 @@
             >HarvestVendor by Esge</ExtLink
           >
           and
-          <ExtLink href="https://github.com/esge/PoE-HarvestVendor"
+          <ExtLink href="https://github.com/Stregon/PoE-HarvestVendor"
             >HarvestVendor fork by Stregon</ExtLink
           >.</p
         >
