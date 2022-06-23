@@ -12,11 +12,8 @@
   import { settings } from "../stores";
   import themes from "../assets/themes";
   import { fetchData } from "../utils/fetchData";
-  import { get } from "svelte/store";
   import { getAppVersion } from "#preload";
-  import { onMount } from "svelte";
-
-  const currentSettings = get(settings);
+  import { onMount, afterUpdate } from "svelte";
 
   let languages = [
     { code: "en", name: "English" }, // English
@@ -32,6 +29,7 @@
     { code: "lsc", name: "Sentinel Softcore" },
     { code: "lhc", name: "Sentinel Hardcore" },
   ];
+  let appVersion = "(Unknown Version)";
 
   const applyTheme = (themeId) => {
     const newTheme = themes.filter((t) => t.id === themeId)[0];
@@ -50,12 +48,23 @@
     settings.updateSettings(customTheme);
   };
 
-  let selectedLanguage = currentSettings.language.code;
+  let selectedLanguage = "en";
   $: currentLanguage = languages.find((l) => l.code === selectedLanguage);
-  let appVersion = "(Unknown Version)";
+
+  settings.subscribe((newSettings) => {
+    selectedLanguage = newSettings.language.code;
+    locale.set(newSettings.language.code);
+  });
 
   onMount(async () => {
     appVersion = `(v${await getAppVersion()})`;
+  });
+
+  afterUpdate(() => {
+    if (currentLanguage) {
+      settings.changeSetting("language", currentLanguage);
+      settings.save();
+    }
   });
 </script>
 
@@ -97,15 +106,7 @@
         <InputGroup>
           <label for="language">{$_("settings_language")}</label>
           <span class="text-xs">{$_("settings_language_desc")}</span>
-          <Select
-            name="language"
-            bind:value={selectedLanguage}
-            on:change={() => {
-              const lang = locale.set(currentLanguage.code);
-              settings.changeSetting("language", currentLanguage);
-              settings.save();
-            }}
-          >
+          <Select name="language" bind:value={selectedLanguage}>
             {#each languages as language}
               <option value={language.code}>{language.name}</option>
             {/each}
