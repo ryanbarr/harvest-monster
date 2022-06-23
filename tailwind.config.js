@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./packages/renderer/**/*.{html,svelte,css}"],
+  content: ["./**/*.svelte", "./packages/renderer/**/*.{html,svelte,css}"],
   theme: {
     extend: {
       colors: {

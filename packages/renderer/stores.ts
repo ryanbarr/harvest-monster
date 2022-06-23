@@ -218,4 +218,6 @@ tftPrices.subscribe((tft: TFTData) => {
   crafts.save();
 });
 
-export { crafts, ninjaPrices, settings, tftPrices };
+const page = writable<string>("crafts");
+
+export { crafts, ninjaPrices, page, settings, tftPrices };

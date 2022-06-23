@@ -1,6 +1,5 @@
 <script>
   import "./i18n.js";
-  import { Router } from "svelte-routing";
   import { Modals } from "svelte-modals";
   import { settings } from "./stores";
   import ModalBackdrop from "./components/atoms/ModalBackdrop.svelte";
@@ -8,8 +7,6 @@
   import "./index.css";
   import { onDestroy } from "svelte";
   import { isLoading } from "svelte-i18n";
-
-  export let url = "/";
 
   /**
    * This allows us to subscribe to store changes and change CSS variables
@@ -28,10 +25,10 @@
 {#if $isLoading}
   <span>Loading...</span>
 {:else}
-  <Router {url}>
+  <main>
     <Modals>
       <ModalBackdrop slot="backdrop" />
     </Modals>
     <MainTemplate />
-  </Router>
+  </main>
 {/if}

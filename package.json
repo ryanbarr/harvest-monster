@@ -48,7 +48,6 @@
     "svelte-feather-icons": "^4.0.0",
     "svelte-i18n": "^3.4.0",
     "svelte-modals": "^1.1.0",
-    "svelte-routing": "^1.6.0",
     "tesseract.js": "^2.1.5"
   }
 }

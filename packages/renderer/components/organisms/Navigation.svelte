@@ -1,18 +1,16 @@
 <script>
-  import Link from "../atoms/Link.svelte";
   import PrimaryButton from "../atoms/PrimaryButton.svelte";
   import LabeledToggle from "../molecules/LabeledToggle.svelte";
   import { ServerIcon, SettingsIcon } from "svelte-feather-icons";
   import { _ } from "svelte-i18n";
   import { copyPost } from "#preload";
   import { formatPost } from "../../utils/formatPost";
+  import { page } from "../../stores";
 
   let autoList = false;
   function handleAutoListToggle() {
     autoList = !autoList;
   }
-
-  const getProps = () => {};
 </script>
 
 <div
@@ -24,18 +22,24 @@
   <nav
     class="flex flex-row justify-end items-center space-x-4 pt-1 leading-[0]"
   >
-    <Link to="/" {getProps} class="border-l-4">
+    <button
+      class={`border-l-4 ${$page === "crafts" ? "active" : "inactive"}`}
+      on:click={() => page.set("crafts")}
+    >
       <span class="inline-flex items-center">
         <ServerIcon size="1.25x" class="mr-2" />
         {$_("nav_crafts")}
       </span>
-    </Link>
-    <Link to="/settings">
+    </button>
+    <button
+      class={`border-l-4 ${$page === "settings" ? "active" : "inactive"}`}
+      on:click={() => page.set("settings")}
+    >
       <span class="inline-flex items-center">
         <SettingsIcon size="1.25x" class="mr-2" />
         {$_("nav_settings")}
       </span>
-    </Link>
+    </button>
   </nav>
   <div class="grow">
     <div class="flex flex-row justify-end space-x-6">
