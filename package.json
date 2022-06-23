@@ -13,6 +13,13 @@
     "name": "Ryan Barr",
     "url": "https://twitch.tv/spooky"
   },
+  "build": {
+    "publish": {
+      "provider": "github",
+      "owner": "ryanbarr",
+      "repo": "harvest-monster"
+    }
+  },
   "main": "packages/main/dist/index.cjs",
   "scripts": {
     "build": "npm run build:main && npm run build:preload && npm run build:renderer",
@@ -23,7 +30,8 @@
     "test": "npm run test:e2e",
     "test:e2e": "vitest run",
     "watch": "node scripts/watch.js",
-    "postinstall": "cross-env ELECTRON_RUN_AS_NODE=1 npx --no-install electron ./scripts/update-electron-vendors.js "
+    "postinstall": "cross-env ELECTRON_RUN_AS_NODE=1 npx --no-install electron ./scripts/update-electron-vendors.js ",
+    "release": "electron-builder"
   },
   "devDependencies": {
     "@types/tesseract.js": "^2.0.0",

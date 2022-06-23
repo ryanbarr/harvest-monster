@@ -1,6 +1,7 @@
 import { app } from "electron";
 import "./security-restrictions";
 import { restoreOrCreateWindow } from "/@/mainWindow";
+import { AppUpdater } from "electron-updater";
 
 /**
  * Prevent multiple instances
