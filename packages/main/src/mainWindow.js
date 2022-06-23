@@ -1,8 +1,10 @@
+import log from "electron-log";
 import { app, BrowserWindow, ipcMain, shell } from "electron";
 import { join } from "path";
 import { URL } from "url";
 
 async function createWindow() {
+  log.info("Creating the main window...");
   const browserWindow = new BrowserWindow({
     width: 705,
     height: 760,
@@ -24,6 +26,7 @@ async function createWindow() {
    * @see https://github.com/electron/electron/issues/25012
    */
   browserWindow.on("ready-to-show", () => {
+    log.info("Main window is ready.");
     browserWindow?.show();
 
     if (import.meta.env.DEV) {
@@ -44,9 +47,12 @@ async function createWindow() {
           "file://" + __dirname
         ).toString();
 
+  log.info("Loading application into main window...");
   await browserWindow.loadURL(pageUrl);
+  log.info("Application has been loaded into main window.");
 
   browserWindow.webContents.setWindowOpenHandler(({ url }) => {
+    log.info("Opening external link...");
     shell.openExternal(url);
   });
 
@@ -55,7 +61,9 @@ async function createWindow() {
   });
 
   ipcMain.handle("version", async () => {
-    return app.getVersion();
+    const version = app.getVersion();
+    log.info(`Reporting app version as v${version}.`);
+    return version;
   });
 
   return browserWindow;

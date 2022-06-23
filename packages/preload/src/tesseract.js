@@ -4,11 +4,18 @@ import { filterBadWords } from "./filterBadWords";
 import { parseCraftLevel } from "./parseCraftLevel";
 import craft_keywords from "../assets/craft_keywords";
 import tft_crafts from "../assets/tft_crafts";
+import log from "electron-log";
 
 export const tesseract = (blob) => {
   return new Promise(async (resolve) => {
+    log.info("Creating Tesseract worker...");
     const worker = createWorker({
-      logger: (v) => window.postMessage(v),
+      logger: (v) => {
+        log.info(
+          `(${v.userJobId}) ${Math.ceil(v.progress * 100)}% - ${v.status}`
+        );
+        window.postMessage(v);
+      },
     });
     await worker.load();
     await worker.loadLanguage();
@@ -21,6 +28,7 @@ export const tesseract = (blob) => {
     );
     const crafts = [];
 
+    log.info("Identifying crafts...");
     for (let i in cleanLines) {
       const index = parseInt(i);
 
@@ -88,8 +96,9 @@ export const tesseract = (blob) => {
             level: lineFourLevel,
             quantity: 1,
           });
-          // console.log(`Identified TFT craft as: ${tft_crafts[lineThreeCraft]}`);
-          // console.log(`Level: ${lineFourLevel}`);
+          log.info(
+            `Identified ${lineThreeCraft} as ${tft_crafts[lineThreeCraft]} in three lines. (Level ${lineFourLevel})`
+          );
         } else if (
           tft_crafts.hasOwnProperty(lineTwoCraft) &&
           lineTwoLevel < 0
@@ -101,8 +110,9 @@ export const tesseract = (blob) => {
             level: lineThreeLevel,
             quantity: 1,
           });
-          // console.log(`Identified TFT craft as: ${tft_crafts[lineTwoCraft]}`);
-          // console.log(`Level: ${lineThreeLevel}`);
+          log.info(
+            `Identified ${lineTwoCraft} as ${tft_crafts[lineTwoCraft]} in three lines. (Level ${lineThreeLevel})`
+          );
         } else if (tft_crafts.hasOwnProperty(lineOneCraft)) {
           crafts.push({
             id: Symbol("harvest_craft"),
@@ -111,10 +121,11 @@ export const tesseract = (blob) => {
             level: lineTwoLevel,
             quantity: 1,
           });
-          // console.log(`Identified TFT craft as: ${tft_crafts[lineOneCraft]}`);
-          // console.log(`Level: ${lineTwoLevel}`);
+          log.info(
+            `Identified ${lineOneCraft} as ${tft_crafts[lineOneCraft]} in three lines. (Level ${lineTwoLevel})`
+          );
         } else {
-          // console.log(`Unable to find TFT craft for: ${lineThreeCraft}`);
+          log.info(`Unable to find a TFT craft for ${lineThreeCraft}.`);
         }
       }
     }

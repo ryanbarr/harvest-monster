@@ -1,3 +1,4 @@
+import log from "electron-log";
 import { app } from "electron";
 import "./security-restrictions";
 import { restoreOrCreateWindow } from "/@/mainWindow";
@@ -37,7 +38,7 @@ app.on("activate", restoreOrCreateWindow);
 app
   .whenReady()
   .then(restoreOrCreateWindow)
-  .catch((e) => console.error("Failed create window:", e));
+  .catch((e) => log.error("Failed to create window: ", e));
 
 /**
  * Check new app version in production mode only
@@ -47,7 +48,9 @@ if (import.meta.env.PROD) {
     .whenReady()
     .then(() => import("electron-updater"))
     .then(({ autoUpdater }) => {
+      log.info("Checking for app updates...");
+      autoUpdater.logger = log;
       autoUpdater.checkForUpdatesAndNotify();
     })
-    .catch((e) => console.error("Failed check updates:", e));
+    .catch((e) => log.error("Failed to check for updates: ", e));
 }

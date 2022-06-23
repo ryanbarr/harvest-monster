@@ -7,6 +7,8 @@ import {
   LS_SETTINGS_KEY,
   NINJA_EXALT_NAME,
 } from "./constants";
+// @ts-ignore-line
+import { log } from "#preload";
 
 const standardTheme = themes.filter((t) => t.id === HM_STANDARD_THEME)[0];
 
@@ -84,17 +86,20 @@ const defaultSettings: Settings = {
 function createCrafts() {
   const saved = window.localStorage.getItem(LS_CRAFTS_KEY);
   const def = saved ? JSON.parse(saved) : [];
+  log.info(`Loaded ${def.length} existing crafts.`);
   const { set, subscribe, update } = writable<Craft[]>(def);
 
   return {
     save: () =>
       update((crafts: Craft[]) => {
+        log.info("Saving crafts...");
         window.localStorage.setItem(LS_CRAFTS_KEY, JSON.stringify(crafts));
         return crafts;
       }),
     sort: () =>
       update((crafts: Craft[]) => {
         const { sortColumn, sortDirection } = get(settings);
+        log.info(`Sorting crafts by ${sortColumn}, ${sortDirection}...`);
 
         // Whenever we save the crafts, also sort them.
         crafts.sort((a, b) => {
@@ -115,6 +120,7 @@ function createCrafts() {
     set,
     add: (craft: Craft) =>
       update((crafts: Craft[]) => {
+        log.info("Adding craft...", craft);
         // Check to see if this craft exists in the store already.
         const existingCraftIndex: number = crafts.findIndex(
           (v) => v.key == craft.key
@@ -133,12 +139,14 @@ function createCrafts() {
       }),
     delete: (craft: Craft) =>
       update((crafts: Craft[]) => {
+        log.info("Deleting craft...", craft);
         const thisCraftIndex = crafts.findIndex((c) => c.key === craft.key);
         crafts.splice(thisCraftIndex, 1);
         return [...crafts];
       }),
     sell: (craft: Craft) =>
       update((crafts: Craft[]) => {
+        log.info("Selling craft...", craft);
         const thisCraftIndex = crafts.findIndex((c) => c.key === craft.key);
         const thisCraft = crafts[thisCraftIndex];
         // If we have more than one of this craft, decrement and save.
@@ -157,7 +165,17 @@ const crafts = createCrafts();
 
 function createSettings() {
   const saved = window.localStorage.getItem(LS_SETTINGS_KEY);
+
+  if (!saved) {
+    log.info("No existing user settings found, generating defaults...");
+  } else {
+    log.info("Existing user settings found, loading...");
+  }
+
   const def = saved ? JSON.parse(saved) : defaultSettings;
+  log.info("Loaded user settings.", def);
+
+  // We always spread default settings first in case an app update adds new settings.
   const { set, subscribe, update } = writable<Settings>({
     ...defaultSettings,
     ...def,
@@ -166,17 +184,20 @@ function createSettings() {
   return {
     save: () =>
       update((settings: Settings) => {
+        log.info("Saving user settings...");
         window.localStorage.setItem(LS_SETTINGS_KEY, JSON.stringify(settings));
         return settings;
       }),
     changeSetting: (setting: keyof Settings, value) =>
       update((settings: Settings) => {
+        log.info(`Setting ${setting} to: `, value);
         const newSettings = {};
         newSettings[setting] = value;
         return { ...settings, ...newSettings };
       }),
     updateSettings: (newSettings: Partial<Settings>) =>
       update((settings: Settings) => {
+        log.info(`Updating settings...`);
         const updatedSettings = {
           ...settings,
           ...newSettings,
@@ -204,6 +225,7 @@ ninjaPrices.subscribe((v: Currency[]) => {
   const exalt = v?.filter((c) => c.name === NINJA_EXALT_NAME)[0];
   let exaltToChaos = Math.round(exalt?.chaosEquivalent) ?? 0;
   if (isNaN(exaltToChaos)) exaltToChaos = -1;
+  log.info(`Storing Exalt to Chaos conversion rate at ${exaltToChaos}.`);
   window.localStorage.setItem(LS_EXALT_PRICE_KEY, exaltToChaos.toString());
 });
 
