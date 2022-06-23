@@ -2,7 +2,7 @@
   "name": "harvest-monster",
   "description": "Path of Exile Harvest Craft Management Tool",
   "private": true,
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "GPL-3.0-or-later",
   "engines": {
     "node": ">=v16.13",
