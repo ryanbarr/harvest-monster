@@ -11,4 +11,8 @@ const minimize = async () => {
   await ipcRenderer.invoke("minimize");
 };
 
+export const getAppVersion = async () => {
+  return await ipcRenderer.invoke("version");
+};
+
 export { copyPost, fetchNinjaPrices, fetchTFTPrices, minimize, parseCrafts };

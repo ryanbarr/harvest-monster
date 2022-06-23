@@ -1,4 +1,4 @@
-import { BrowserWindow, ipcMain, shell } from "electron";
+import { app, BrowserWindow, ipcMain, shell } from "electron";
 import { join } from "path";
 import { URL } from "url";
 
@@ -52,6 +52,10 @@ async function createWindow() {
 
   ipcMain.handle("minimize", async () => {
     browserWindow.minimize();
+  });
+
+  ipcMain.handle("version", async () => {
+    return app.getVersion();
   });
 
   return browserWindow;

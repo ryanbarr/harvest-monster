@@ -13,6 +13,8 @@
   import themes from "../assets/themes";
   import { fetchData } from "../utils/fetchData";
   import { get } from "svelte/store";
+  import { getAppVersion } from "#preload";
+  import { onMount } from "svelte";
 
   const currentSettings = get(settings);
 
@@ -50,6 +52,11 @@
 
   let selectedLanguage = currentSettings.language.code;
   $: currentLanguage = languages.find((l) => l.code === selectedLanguage);
+  let appVersion = "(Unknown Version)";
+
+  onMount(async () => {
+    appVersion = `(v${await getAppVersion()})`;
+  });
 </script>
 
 <div class="py-4 px-8 overflow-y-auto">
@@ -211,6 +218,11 @@
             >HarvestVendor fork by Stregon</ExtLink
           >.</p
         >
+      </Card>
+    </Container>
+    <Container>
+      <Card>
+        <p>HarvestMonster {appVersion}</p>
       </Card>
     </Container>
   </div>
