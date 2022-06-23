@@ -6,7 +6,7 @@
   import MainTemplate from "./components/templates/MainTemplate.svelte";
   import "./index.css";
   import { onDestroy } from "svelte";
-  import { isLoading } from "svelte-i18n";
+  import { isLoading, locale } from "svelte-i18n";
 
   /**
    * This allows us to subscribe to store changes and change CSS variables
@@ -14,6 +14,7 @@
    */
   const root = document.documentElement;
   const unsubscribe = settings.subscribe(() => {
+    locale.set($settings.language.code);
     root.style.setProperty("--color-background", $settings.backgroundColor);
     root.style.setProperty("--color-container", $settings.containerColor);
     root.style.setProperty("--color-highlight", $settings.highlightColor);
