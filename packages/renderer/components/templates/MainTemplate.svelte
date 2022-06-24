@@ -11,7 +11,7 @@
 >
   <Titlebar />
   <Navigation />
-  <div class="pt-20 relative">
+  <div class="pt-32 relative">
     {#if $page === "crafts"}
       <Crafts />
     {:else if $page === "settings"}
