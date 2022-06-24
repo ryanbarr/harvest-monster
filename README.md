@@ -2,6 +2,30 @@ HarvestMonster is a [Path of Exile](https://www.pathofexile.com/) Harvest craft 
 
 ![release](https://github.com/ryanbarr/harvest-monster/actions/workflows/release.yml/badge.svg) ![license](https://img.shields.io/github/license/ryanbarr/harvest-monster)
 
+## About HarvestMonster
+
+HarvestMonster drew inspiration from [HarvestVendor by Esge](https://github.com/esge/PoE-HarvestVendor) and the popular [HarvestVendor fork by Stregon](https://github.com/Stregon/PoE-HarvestVendor). The purpose of this tool is to quickly convert the Harvest crafts in your Horticrafting Station into text that can be used in Discord to advertise them for sale.
+
+Some of the unique features HarvestMonster includes are:
+
+* **Automatic listing management:** this tool can automatically post your crafts, edit the post with updated quantities, and delete and re-post listings in accordance with the active slowmode.
+* **Automatic price adjustments:** exalt-to-chaos currency conversions and craft prices are regularly fetched, resulting in crafts that are always priced at the current market rate.
+* **Sortable crafts:** crafts can be sorted with a primary and secondary sort, so you stay in control of how crafts are presented in the app and in your listings.
+* **Preset and customizable themes:** choose from over a dozen preset themes, adjust one to your liking, or supply your own colors to make the tool fit your style and preference.
+* **Language support:** the beta version of our tool ships with basic translations for half-a-dozen languages, including Spanish, Japanese, Korean, Portuguese, Russian, and Simplified Chinese.
+* **Support for all major platforms:** whether you play on Windows, your favorite flavor of Linux, or on Mac via cloud gaming or the native installer, HarvestMonster aims to work for you. This tool is actively developed on both Windows and Mac and is tested on Linux regularly.
+* **And much more** including the features you've come to expect in a tool like this, such as: support for multiple leagues, copying craft listings to your clipboard, and automatic updates delivered without needing to redownload.
+
+## Download, Install, and Setup
+
+It is recommended that you [visit our website](https://www.harvestmonster.com) which provides clear instruction on how to download, install, and use HarvestMonster. If you're comfortable using GitHub and understand which package is right for you, read ahead:
+
+### Latest Stable
+
+
+
+### Automatic Updates
+
 ## Roadmap
 
 First and foremost, this is a passion project built with the intent to meet three specific needs:
