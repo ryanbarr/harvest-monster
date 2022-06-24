@@ -250,4 +250,9 @@ tftPrices.subscribe((tft: TFTData) => {
 
 const page = writable<string>("crafts");
 
+page.subscribe(() => {
+  // When users switch pages, reset the scroll position.
+  window.scroll(0, 0);
+});
+
 export { crafts, ninjaPrices, page, settings, tftPrices };
