@@ -1,4 +1,4 @@
-# HarvestMonster
+# HarvestMonster (Beta)
 
 HarvestMonster is a [Path of Exile](https://www.pathofexile.com/) Harvest craft management tool that helps you sell crafts on [The Forbidden Trove](https://forbiddentrove.com/). It is built on [Electron](https://www.electronjs.org/) with [Svelte](https://svelte.dev/), [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript), [TypeScript](https://www.typescriptlang.org/), [Vite](https://vitejs.dev/), and [Tailwind](https://tailwindcss.com/).
 
