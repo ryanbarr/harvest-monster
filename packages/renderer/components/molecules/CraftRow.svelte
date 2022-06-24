@@ -21,7 +21,7 @@
     />
     <Input class="w-16 text-center text-xs" value={formatPrice(craft?.price)} />
   </div>
-  <div class="w-44 flex space-x-2 text-sm">
+  <div class="w-24 flex space-x-2 text-sm">
     <Button
       class="flex-grow"
       disabled={craft === null}
@@ -31,8 +31,8 @@
       }}
     >
       <div class="inline-flex items-center">
-        <DollarSignIcon size="1x" class="mr-1" />
-        {$_("crafts_sell")}
+        <DollarSignIcon size="1x" class="mx-auto" />
+        <!-- {$_("crafts_sell")} -->
       </div>
     </Button>
     <Button
@@ -44,8 +44,8 @@
       }}
     >
       <div class="inline-flex items-center">
-        <XIcon size="1x" class="mr-1" />
-        {$_("crafts_delete")}
+        <XIcon size="1x" class="mx-auto" />
+        <!-- {$_("crafts_delete")} -->
       </div>
     </Button>
   </div>

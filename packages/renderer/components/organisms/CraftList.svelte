@@ -23,7 +23,7 @@
         >{$_("crafts_price")}</ColumnHeader
       >
     </div>
-    <div class="w-44 text-sm" />
+    <div class="w-24 text-sm" />
   </div>
   <div class="space-y-1.5">
     {#each $crafts as craft}
