@@ -1,3 +1,5 @@
+# HarvestMonster
+
 HarvestMonster is a [Path of Exile](https://www.pathofexile.com/) Harvest craft management tool that helps you sell crafts on [The Forbidden Trove](https://forbiddentrove.com/). It is built on [Electron](https://www.electronjs.org/) with [Svelte](https://svelte.dev/), [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript), [TypeScript](https://www.typescriptlang.org/), [Vite](https://vitejs.dev/), and [Tailwind](https://tailwindcss.com/).
 
 ![release](https://github.com/ryanbarr/harvest-monster/actions/workflows/release.yml/badge.svg) ![license](https://img.shields.io/github/license/ryanbarr/harvest-monster)
@@ -22,9 +24,23 @@ It is recommended that you [visit our website](https://www.harvestmonster.com) w
 
 ### Latest Stable
 
+You can always find the latest stable build of HarvestMonster on [the releases page](https://github.com/ryanbarr/harvest-monster/releases):
 
+1. Look for the most recent release with the green "Latest" badge (hint: it should be at the top!)
+2. Expand the "Assets" section if it is not already open.
+3. Download the installer that is right for your operating system:
+
+#### Identifying the right download
+
+  * **For Windows:** download the latest `.exe` installer.
+  * **For Mac:** download the latest `.dmg` installer.
+  * **For Linux:** depending on your architecutre, download either the latest `.deb` or `.AppImage` package.
 
 ### Automatic Updates
+
+As we continue early development of the HarvestVendor Beta, automatic updates are enabled. Upon launching the application a check will be made in the background for a new version. When a new version is identified, it will be downloaded and the update applied the next time you launch the application.
+
+Once we become feature-stable and can feel confident about the latest stable build becoming more permanent on users' machines, we'll migrate to an opt-in update functionality where users can decide if the update will be downloaded and applied.
 
 ## Roadmap
 
