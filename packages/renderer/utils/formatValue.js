@@ -1,9 +1,10 @@
 import { formatPrice } from "./formatPrice";
 
 export const formatValue = (value) => {
-  const remainder = ((value * 100) % 100) / 100;
-  const exalts = formatPrice(parseInt(value - remainder));
-  const chaos = formatPrice(remainder);
+  const chaos = (parseInt(value * 100) % 100) / 100;
+  const exalts = parseInt(value - chaos);
 
-  return `~${exalts}${exalts > 0 ? " " : ""}${chaos}`;
+  console.log(exalts);
+
+  return `~${formatPrice(exalts)}${exalts > 0 ? " " : ""}${formatPrice(chaos)}`;
 };
