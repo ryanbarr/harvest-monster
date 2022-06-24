@@ -15,7 +15,7 @@ export const formatPost = () => {
   let post = ``;
 
   // Add league.
-  post += `**WTS ${leagues[currentSettings.league]}**`;
+  post += `**WTS ${leagues[currentSettings.league.code]}**`;
 
   // Add IGN.
   if (currentSettings.username && currentSettings.username.trim() !== "") {
