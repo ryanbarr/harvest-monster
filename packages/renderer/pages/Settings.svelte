@@ -61,7 +61,7 @@
   });
 
   afterUpdate(() => {
-    if (currentLanguage) {
+    if (currentLanguage?.code !== $settings?.language?.code) {
       settings.changeSetting("language", currentLanguage);
       settings.save();
     }
