@@ -40,7 +40,7 @@ export const formatPost = () => {
     const bufferLength = length - craft.name.length + 4;
     const buffer = Array.from(Array(bufferLength), () => "").join(" ");
     post += `   \`${craft.quantity}x ${craft.name}${buffer} [${
-      craft.level > 0 ? craft.level : "--"
+      craft.level > 0 ? craft.level : "83"
     }]  <${formatPrice(craft.price)}>\`\n`;
   }
 
