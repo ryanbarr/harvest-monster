@@ -8,13 +8,13 @@ HarvestMonster drew inspiration from [HarvestVendor by Esge](https://github.com/
 
 Some of the unique features HarvestMonster includes are:
 
-* **Automatic listing management:** this tool can automatically post your crafts, edit the post with updated quantities, and delete and re-post listings in accordance with the active slowmode.
-* **Automatic price adjustments:** exalt-to-chaos currency conversions and craft prices are regularly fetched, resulting in crafts that are always priced at the current market rate.
-* **Sortable crafts:** crafts can be sorted with a primary and secondary sort, so you stay in control of how crafts are presented in the app and in your listings.
-* **Preset and customizable themes:** choose from over a dozen preset themes, adjust one to your liking, or supply your own colors to make the tool fit your style and preference.
-* **Language support:** the beta version of our tool ships with basic translations for half-a-dozen languages, including Spanish, Japanese, Korean, Portuguese, Russian, and Simplified Chinese.
-* **Support for all major platforms:** whether you play on Windows, your favorite flavor of Linux, or on Mac via cloud gaming or the native installer, HarvestMonster aims to work for you. This tool is actively developed on both Windows and Mac and is tested on Linux regularly.
-* **And much more** including the features you've come to expect in a tool like this, such as: support for multiple leagues, copying craft listings to your clipboard, and automatic updates delivered without needing to redownload.
+* 🤖 **Automatic listing management:** this tool can automatically post your crafts, edit the post with updated quantities, and delete and re-post listings in accordance with the active slowmode.
+* 💱 **Automatic price adjustments:** exalt-to-chaos currency conversions and craft prices are regularly fetched, resulting in crafts that are always priced at the current market rate.
+* 🔼 **Sortable crafts:** crafts can be sorted with a primary and secondary sort, so you stay in control of how crafts are presented in the app and in your listings.
+* 🎨 **Preset and customizable themes:** choose from over a dozen preset themes, adjust one to your liking, or supply your own colors to make the tool fit your style and preference.
+* 🌐 **Language support:** the beta version of our tool ships with basic translations for half-a-dozen languages, including Spanish, Japanese, Korean, Portuguese, Russian, and Simplified Chinese.
+* 🖥️ **Support for all major platforms:** whether you play on Windows, your favorite flavor of Linux, or on Mac via cloud gaming or the native installer, HarvestMonster aims to work for you. This tool is actively developed on both Windows and Mac and is tested on Linux regularly.
+* 🌟 **And much more** including the features you've come to expect in a tool like this, such as: support for multiple leagues, copying craft listings to your clipboard, and automatic updates delivered without needing to redownload.
 
 ## Download, Install, and Setup
 
