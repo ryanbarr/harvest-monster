@@ -91,6 +91,7 @@
         bind:value={craft["quantity"]}
         on:change={() => handleChange("quantity")}
         on:mousewheel={(e) => handleMousewheel(e)}
+        round
       />
       <Input
         class="w-72 flex-grow"
@@ -102,12 +103,14 @@
         class="w-12 text-center"
         bind:value={craft["level"]}
         on:change={() => handleChange("level")}
+        round
       />
       <Input
         class="w-16 text-center text-xs"
         hasError={priceError}
         bind:value={fieldPrice}
         on:keyup={adjustPrice}
+        round
       />
     </div>
     <div class="w-24 flex space-x-2 text-sm">

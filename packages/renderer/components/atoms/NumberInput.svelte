@@ -3,9 +3,10 @@
     name = "",
     value = "",
     dark = false,
+    round = false,
     hasError = false,
     min = 0;
-  export { clazz as class, dark, hasError, min, name, value };
+  export { clazz as class, dark, hasError, min, name, round, value };
 </script>
 
 <input
@@ -17,8 +18,10 @@
   {min}
   class={`${
     dark ? "bg-container" : "bg-background"
-  } text-text text-center text-sm px-3 py-1 rounded-xl focus:outline-2 ${
-    hasError ? "focus:outline-red-500" : "focus:outline-highlight"
-  } focus:ring-0 ${clazz}`}
+  } text-text text-center text-sm px-3 py-1 border-none focus:ring focus:outline ${
+    hasError
+      ? "focus:outline-red-500 focus:ring-red-500"
+      : "focus:outline-highlight focus:ring-highlight"
+  } ${round ? "rounded-xl" : "rounded-lg"} ${clazz}`}
   {name}
 />
