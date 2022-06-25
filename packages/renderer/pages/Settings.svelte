@@ -207,7 +207,7 @@
     </Container> -->
     <Container>
       <H2>{$_("settings_theme")}</H2>
-      <Card class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <Card class="grid grid-cols-1 sm:grid-cols-3 gap-6">
         <InputGroup>
           <label for="backgroundColorInput"
             >{$_("settings_background_color")}</label
@@ -249,7 +249,7 @@
             name="textColorInput"
           />
         </InputGroup>
-        <InputGroup>
+        <InputGroup class="space-y-1 col-span-2">
           <label for="">{$_("settings_apply_theme")}</label>
           <Select
             name="theme"
