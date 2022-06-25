@@ -125,9 +125,9 @@
             </div>
             <Toggle
               on:click={async () => {
-                if (!$settings.autoPrice) await fetchData();
                 settings.changeSetting("autoPrice", !$settings.autoPrice);
                 settings.save();
+                await fetchData();
               }}
               enabled={$settings.autoPrice}
             />
