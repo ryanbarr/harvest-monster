@@ -4,6 +4,7 @@
   import throttle from "lodash/throttle";
   import Button from "../atoms/Button.svelte";
   import Input from "../atoms/Input.svelte";
+  import NumberInput from "../atoms/NumberInput.svelte";
   import { DollarSignIcon, XIcon } from "svelte-feather-icons";
   import { crafts, settings, exaltToChaosRate } from "../../stores";
   import { formatPrice } from "../../utils/formatPrice";
@@ -23,11 +24,18 @@
 
   const handleMousewheel = throttle((e) => {
     e.preventDefault();
+    let newQuantity = craft.quantity;
     if (e.deltaY > 0) {
-      crafts.edit(craft.key, "quantity", parseInt(craft.quantity) + 1);
+      newQuantity += 1;
     } else if (e.deltaY < 0) {
-      crafts.edit(craft.key, "quantity", parseInt(craft.quantity) - 1);
+      newQuantity -= 1;
     }
+
+    if (newQuantity < 0) {
+      newQuantity = 0;
+    }
+
+    crafts.edit(craft.key, "quantity", newQuantity);
     crafts.save();
   }, 100);
 
@@ -76,7 +84,7 @@
 {#if craft !== null}
   <div class={`flex flex-row space-x-2 ${craft ? "" : "opacity-50"}`}>
     <div class="bg-container rounded-2xl flex flex-row flex-grow space-x-1 p-1">
-      <Input
+      <NumberInput
         class="w-12 text-center"
         bind:value={craft["quantity"]}
         on:change={() => handleChange("quantity")}
