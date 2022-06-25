@@ -5,9 +5,9 @@
   export { enabled };
 </script>
 
-<div class="flex items-center">
+<div class="flex flex-row items-center space-x-3">
   <Toggle on:click {enabled} />
-  <span class="ml-2">
+  <span>
     <slot />
   </span>
 </div>
