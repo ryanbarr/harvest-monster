@@ -2,6 +2,7 @@
 import App from "./App.svelte";
 import CraftProcessingModal from "./components/organisms/CraftProcessingModal.svelte";
 import { openModal } from "svelte-modals";
+import { success, warning } from "./utils/toast";
 import { fetchData } from "./utils/fetchData";
 import { get } from "svelte/store";
 import { crafts, tftPrices } from "./stores";
@@ -38,6 +39,16 @@ document.onpaste = async function () {
     // Save all of the crafts to memory.
     crafts.save();
     forceResize();
+
+    success({
+      title: `${newCrafts.length} crafts added`,
+      text: `Success! We found ${newCrafts.length} crafts in your screenshot. Check to make sure everything looks right!`,
+    });
+  } else {
+    warning({
+      title: "No crafts found!",
+      text: "Ruh roh raggy. We didn't find any crafts in that screenshot. Make sure you get a clear capture.",
+    });
   }
 };
 
