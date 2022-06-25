@@ -36,7 +36,10 @@ const formatter = {
   },
   craft: (craft, { maxCraftLength }) => {
     let post = "";
-    const bufferLength = maxCraftLength - craft.name.length + 4;
+    const quantityLengthAdjustment = `${craft.quantity}`.length - 1;
+    let bufferLength =
+      maxCraftLength - craft.name.length + 4 - quantityLengthAdjustment;
+
     const buffer = Array.from(Array(bufferLength), () => "").join(" ");
 
     post += "   ";
