@@ -22,6 +22,7 @@
   const adjustPrice = () => {
     if ($settings.autoPrice) {
       settings.changeSetting("autoPrice", false);
+      settings.save();
       warning({
         title: "Auto-pricing turned off!",
         text: "Crafts will no longer be priced automatically since a price was changed manually.",
