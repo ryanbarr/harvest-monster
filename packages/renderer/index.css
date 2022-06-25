@@ -23,6 +23,7 @@ html,
 body {
   @apply text-text;
   @apply font-mono;
+  @apply bg-background;
 }
 
 button {
