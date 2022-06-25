@@ -106,6 +106,30 @@
       </Card>
     </Container>
     <Container>
+      <H2>{$_("settings_post")}</H2>
+      <Card>
+        <InputGroup>
+          <div class="flex flex-row items-center space-x-8 justify-between">
+            <div class="flex flex-col">
+              <label for="autoPrices">{$_("settings_willing")}</label>
+              <span class="text-xs">{$_("settings_willing_desc")}</span>
+            </div>
+            <Toggle
+              on:click={async () => {
+                settings.changeSetting(
+                  "willingToStream",
+                  !$settings.willingToStream
+                );
+                settings.save();
+                await fetchData();
+              }}
+              enabled={$settings.willingToStream}
+            />
+          </div>
+        </InputGroup>
+      </Card>
+    </Container>
+    <Container>
       <H2>{$_("settings_app")}</H2>
       <Card class="space-y-4">
         <InputGroup>
@@ -161,10 +185,10 @@
         </InputGroup>
       </Card>
     </Container>
-    <Container>
+    <!-- <Container>
       <H2>{$_("settings_discord")}</H2>
       <Card>Test</Card>
-    </Container>
+    </Container> -->
     <Container>
       <H2>{$_("settings_theme")}</H2>
       <Card class="grid grid-cols-1 sm:grid-cols-2 gap-6">

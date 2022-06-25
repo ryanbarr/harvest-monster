@@ -56,6 +56,7 @@ export interface Settings {
   autoPrice: boolean;
   sortColumn: "quantity" | "name" | "level" | "price";
   sortDirection: "ascending" | "descending";
+  willingToStream: boolean;
 }
 
 export interface TFTData {
@@ -75,6 +76,7 @@ const defaultSettings: Settings = {
   autoPrice: true,
   sortColumn: "name",
   sortDirection: "ascending",
+  willingToStream: false,
 };
 
 /**
