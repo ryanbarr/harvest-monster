@@ -1,6 +1,7 @@
 <script>
   import { _ } from "svelte-i18n";
   import { get } from "svelte/store";
+  import throttle from "lodash/throttle";
   import Button from "../atoms/Button.svelte";
   import Input from "../atoms/Input.svelte";
   import { DollarSignIcon, XIcon } from "svelte-feather-icons";
@@ -19,6 +20,16 @@
     crafts.edit(craft.key, field, craft[field]);
     crafts.save();
   };
+
+  const handleMousewheel = throttle((e) => {
+    e.preventDefault();
+    if (e.deltaY > 0) {
+      crafts.edit(craft.key, "quantity", parseInt(craft.quantity) + 1);
+    } else if (e.deltaY < 0) {
+      crafts.edit(craft.key, "quantity", parseInt(craft.quantity) - 1);
+    }
+    crafts.save();
+  }, 100);
 
   const adjustPrice = () => {
     if ($settings.autoPrice) {
@@ -69,6 +80,7 @@
         class="w-12 text-center"
         bind:value={craft["quantity"]}
         on:change={() => handleChange("quantity")}
+        on:mousewheel={(e) => handleMousewheel(e)}
       />
       <Input
         class="w-72 flex-grow"
