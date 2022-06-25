@@ -91,8 +91,8 @@
             name="league"
             bind:value={$settings.league.code}
             on:change={async () => {
-              await fetchData();
               settings.save();
+              await fetchData();
             }}
           >
             {#each leagues as league}
