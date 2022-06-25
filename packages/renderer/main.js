@@ -28,6 +28,7 @@ document.onpaste = async function () {
       text: "There was something wrong with what you pasted. Make sure an image is on your clipboard and try again.",
     });
     closeAllModals();
+    forceResize();
     return;
   }
 
