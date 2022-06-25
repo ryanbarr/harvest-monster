@@ -13,7 +13,7 @@
 
 <div
   id="titlebar"
-  class="bg-container px-2 py-2 fixed w-full flex justify-between rounded-t-lg z-50 space-x-6"
+  class="bg-container pl-1 pr-0.5 py-2 fixed w-full flex justify-between rounded-t-lg z-50 space-x-6"
 >
   <div class="pl-2">
     <img src="./hm-logo.png" alt="HarvestMonster" class="w-12" />
@@ -40,7 +40,7 @@
       </span>
     </button>
   </nav>
-  <div class="flex flex-grow justify-end space-x-1 pr-2">
+  <div class="inline-flex items-center flex-grow justify-end space-x-0.5 pr-2">
     <ToolbarButton on:click={() => minimize()}
       ><MinusIcon size="1x" /></ToolbarButton
     >
