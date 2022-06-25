@@ -1,19 +1,24 @@
 import log from "electron-log";
-import { app, BrowserWindow, ipcMain, shell } from "electron";
+import { app, BrowserWindow, ipcMain, screen, shell } from "electron";
 import { join } from "path";
 import { URL } from "url";
 
 async function createWindow() {
   log.info("Creating the main window...");
   const browserWindow = new BrowserWindow({
-    width: 705,
-    height: 760,
+    // width: 705,
+    // height: 760,
+    minWidth: 705,
+    minHeight: 400,
+    height: 400,
+    useContentSize: true,
     show: false, // Use 'ready-to-show' event to show window
     frame: false,
     transparent: true,
     webPreferences: {
       webviewTag: false, // The webview tag is not recommended. Consider alternatives like iframe or Electron's BrowserView. https://www.electronjs.org/docs/latest/api/webview-tag#warning
       preload: join(__dirname, "../../preload/dist/index.cjs"),
+      enablePreferredSizeMode: true,
     },
   });
 
@@ -64,6 +69,20 @@ async function createWindow() {
     const version = app.getVersion();
     log.info(`Reporting app version as v${version}.`);
     return version;
+  });
+
+  ipcMain.handle("forceResize", async (event, requestedHeight) => {
+    const primaryDisplay = screen.getPrimaryDisplay();
+    const { height } = primaryDisplay.workAreaSize;
+    const maxHeight = parseInt(height * 0.7);
+    let setHeight = requestedHeight;
+
+    // Don't allow the window to get _too_ tall on forced resizes.
+    if (requestedHeight > maxHeight) {
+      setHeight = maxHeight;
+    }
+
+    browserWindow.setSize(browserWindow.getSize()[0], setHeight);
   });
 
   return browserWindow;

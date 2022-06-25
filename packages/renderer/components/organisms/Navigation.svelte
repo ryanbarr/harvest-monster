@@ -8,6 +8,8 @@
   import { getInventory } from "../../utils/getInventory";
   import { crafts } from "../../stores";
   import { LS_EXALT_PRICE_KEY } from "../../constants";
+  import { onDestroy } from "svelte";
+  import { success } from "../../utils/toast";
 
   let inventory = getInventory($crafts);
   let autoList = false;
@@ -15,9 +17,11 @@
     autoList = !autoList;
   }
 
-  crafts.subscribe(() => {
+  const unsubscribe = crafts.subscribe(() => {
     inventory = getInventory($crafts);
   });
+
+  onDestroy(unsubscribe);
 </script>
 
 <div
@@ -37,8 +41,14 @@
       <LabeledToggle on:click={handleAutoListToggle} enabled={autoList}>
         {$_("nav_autolist")}
       </LabeledToggle>
-      <PrimaryButton on:click={() => copyPost(formatPost())}
-        >{$_("nav_copy")}</PrimaryButton
+      <PrimaryButton
+        on:click={() => {
+          success({
+            title: "Copied to clipboard!",
+            text: "Paste your clipboard contents in the appropriate TFT channel.",
+          });
+          copyPost(formatPost());
+        }}>{$_("nav_copy")}</PrimaryButton
       >
     </div>
   </div>

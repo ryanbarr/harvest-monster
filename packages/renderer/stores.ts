@@ -8,7 +8,7 @@ import {
   NINJA_EXALT_NAME,
 } from "./constants";
 // @ts-ignore-line
-import { log } from "#preload";
+import { log, forceResize } from "#preload";
 
 const standardTheme = themes.filter((t) => t.id === HM_STANDARD_THEME)[0];
 
@@ -137,6 +137,12 @@ function createCrafts() {
           return [...crafts, craft];
         }
       }),
+    edit: (key, field, value) =>
+      update((crafts: Craft[]) => {
+        const index = crafts.findIndex((c) => c.key === key);
+        crafts[index][field] = value;
+        return [...crafts];
+      }),
     delete: (craft: Craft) =>
       update((crafts: Craft[]) => {
         log.info("Deleting craft...", craft);
@@ -250,9 +256,11 @@ tftPrices.subscribe((tft: TFTData) => {
 
 const page = writable<string>("crafts");
 
-page.subscribe(() => {
+page.subscribe(async () => {
   // When users switch pages, reset the scroll position.
   window.scroll(0, 0);
+  // We use setTimeout to trick the resize to happen after the page content has updated.
+  setTimeout(() => forceResize(), 0);
 });
 
 export { crafts, ninjaPrices, page, settings, tftPrices };

@@ -1,16 +1,20 @@
 <script>
-  let clazz = "";
-  let name = "";
-  let value = "";
-  let dark = false;
-  export { clazz as class, dark, name, value };
+  let clazz = "",
+    name = "",
+    value = "",
+    dark = false,
+    hasError = false;
+  export { clazz as class, dark, hasError, name, value };
 </script>
 
 <input
   bind:value
   on:change
+  on:keyup
   class={`${
     dark ? "bg-container" : "bg-background"
-  } text-text text-sm px-3 py-1 rounded-xl focus:outline-2 focus:outline-highlight focus:ring-0 ${clazz}`}
+  } text-text text-sm px-3 py-1 rounded-xl focus:outline-2 ${
+    hasError ? "focus:outline-red-500" : "focus:outline-highlight"
+  } focus:ring-0 ${clazz}`}
   {name}
 />

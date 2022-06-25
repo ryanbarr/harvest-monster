@@ -18,4 +18,8 @@ export const getAppVersion = async () => {
   return await ipcRenderer.invoke("version");
 };
 
+export const forceResize = async () => {
+  ipcRenderer.invoke("forceResize", document.body.scrollHeight);
+};
+
 export { copyPost, fetchNinjaPrices, fetchTFTPrices, minimize, parseCrafts };

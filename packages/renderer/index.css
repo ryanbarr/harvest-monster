@@ -5,6 +5,18 @@
 :root {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+  /* Toast Styles */
+  --toastContainerTop: auto;
+  --toastContainerRight: 8px;
+  --toastContainerBottom: 8px;
+  --toastContainerLeft: auto;
+  --toastBoxShadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --toastBorderRadius: 8px;
+  --toastBarHeight: 0;
+  --toastPadding: 0;
+  --toastMargin: 0;
+  --toastMsgPadding: 0;
 }
 
 html,

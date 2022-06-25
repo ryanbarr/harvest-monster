@@ -13,7 +13,7 @@
   import themes from "../assets/themes";
   import { fetchData } from "../utils/fetchData";
   import { getAppVersion } from "#preload";
-  import { onMount, afterUpdate } from "svelte";
+  import { onDestroy, onMount, afterUpdate } from "svelte";
 
   let languages = [
     { code: "en", name: "English" }, // English
@@ -51,7 +51,7 @@
   let selectedLanguage = "en";
   $: currentLanguage = languages.find((l) => l.code === selectedLanguage);
 
-  settings.subscribe((newSettings) => {
+  const unsubscribe = settings.subscribe((newSettings) => {
     selectedLanguage = newSettings.language.code;
     locale.set(newSettings.language.code);
   });
@@ -66,6 +66,8 @@
       settings.save();
     }
   });
+
+  onDestroy(unsubscribe);
 </script>
 
 <div class="py-4 px-8 overflow-y-auto">
@@ -123,8 +125,8 @@
             </div>
             <Toggle
               on:click={async () => {
+                if (!$settings.autoPrice) await fetchData();
                 settings.changeSetting("autoPrice", !$settings.autoPrice);
-                await fetchData();
                 settings.save();
               }}
               enabled={$settings.autoPrice}
