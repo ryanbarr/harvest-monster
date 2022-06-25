@@ -25,6 +25,11 @@ body {
   @apply font-mono;
 }
 
+button {
+  @apply ring-0;
+  @apply outline-none;
+}
+
 .active {
   @apply text-highlight;
   @apply border-highlight;
