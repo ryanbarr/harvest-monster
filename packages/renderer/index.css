@@ -23,7 +23,15 @@ html,
 body {
   @apply text-text;
   @apply font-mono;
+  @apply w-full;
+  @apply h-full;
+}
+
+#app {
   @apply bg-background;
+  @apply h-full;
+  @apply w-full;
+  @apply rounded-lg;
 }
 
 button {
