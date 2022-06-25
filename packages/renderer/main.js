@@ -1,8 +1,8 @@
 // @ts-ignore
 import App from "./App.svelte";
 import CraftProcessingModal from "./components/organisms/CraftProcessingModal.svelte";
-import { openModal } from "svelte-modals";
-import { success, warning } from "./utils/toast";
+import { openModal, closeAllModals } from "svelte-modals";
+import { error, success, warning } from "./utils/toast";
 import { fetchData } from "./utils/fetchData";
 import { get } from "svelte/store";
 import { crafts, tftPrices } from "./stores";
@@ -18,7 +18,19 @@ const app = new App({
 document.onpaste = async function () {
   openModal(CraftProcessingModal);
   forceResize(400);
-  const newCrafts = await parseCrafts();
+  let newCrafts;
+
+  try {
+    newCrafts = await parseCrafts();
+  } catch (e) {
+    error({
+      title: "Unable to process crafts!",
+      text: "There was something wrong with what you pasted. Make sure an image is on your clipboard and try again.",
+    });
+    closeAllModals();
+    return;
+  }
+
   const currentTftPrices = get(tftPrices);
 
   // If we have parsed new crafts, build and save.
