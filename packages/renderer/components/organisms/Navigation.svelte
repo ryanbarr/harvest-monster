@@ -7,7 +7,6 @@
   import { formatValue } from "../../utils/formatValue";
   import { getInventory } from "../../utils/getInventory";
   import { crafts, exaltToChaosRate } from "../../stores";
-  import { LS_EXALT_PRICE_KEY } from "../../constants";
   import { onDestroy } from "svelte";
   import { success } from "../../utils/toast";
 
