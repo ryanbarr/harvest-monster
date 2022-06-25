@@ -42,7 +42,7 @@ select:focus {
 }
 
 .inactive {
-  @apply border-background;
+  @apply border-container;
   @apply border-l-2;
   @apply pl-1.5;
 }
