@@ -9,11 +9,14 @@
   import Input from "../components/atoms/Input.svelte";
   import ExtLink from "../components/atoms/ExtLink.svelte";
   import Toggle from "../components/atoms/Toggle.svelte";
+  import PrimaryButton from "../components/atoms/PrimaryButton.svelte";
   import { settings } from "../stores";
   import themes from "../assets/themes";
   import { fetchData } from "../utils/fetchData";
   import { getAppVersion } from "#preload";
   import { onDestroy, onMount, afterUpdate } from "svelte";
+  import { DownloadCloudIcon } from "svelte-feather-icons";
+  import { success } from "../utils/toast";
 
   let languages = [
     { code: "en", name: "English" }, // English
@@ -120,7 +123,7 @@
               <label for="autoPrices">Auto-update prices</label>
               <span class="text-xs"
                 >HarvestMonster will manage your craft prices automatically,
-                using the latest prices from The Forbidden Trove.</span
+                using the latest prices from The Forbidden Trove and PoE.Ninja.</span
               >
             </div>
             <Toggle
@@ -131,6 +134,29 @@
               }}
               enabled={$settings.autoPrice}
             />
+          </div>
+        </InputGroup>
+        <InputGroup class={`${$settings.autoPrice ? "opacity-50" : ""}`}>
+          <div class="flex flex-row items-center space-x-8 justify-between">
+            <div class="flex flex-col">
+              <label for="autoPrices">Fetch latest prices</label>
+              <span class="text-xs"
+                >Force HarvestMonster to download the latest TFT craft prices
+                and PoE.Ninja currency rates.</span
+              >
+            </div>
+            <PrimaryButton
+              class="inline-flex items-center whitespace-nowrap"
+              on:click={async () => {
+                await fetchData(true);
+                success({
+                  title: "Pricing data fetched",
+                  text: "The latest available data from TFT and PoE.Ninja has been downloaded and applied.",
+                });
+              }}
+              disabled={$settings.autoPrice}
+              ><DownloadCloudIcon size="1.25x" class="mr-2" /> Fetch Prices</PrimaryButton
+            >
           </div>
         </InputGroup>
       </Card>
