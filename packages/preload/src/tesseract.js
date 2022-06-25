@@ -23,9 +23,15 @@ export const tesseract = (blob) => {
     const keywords = Object.keys(craft_keywords);
     const { data } = await worker.recognize(blob);
     await worker.terminate();
-    const cleanLines = data.lines.map((line) =>
-      line.text.replace(/\W\s/g, " ").toLowerCase().trim()
-    );
+    const cleanLines = data.lines.map((line) => {
+      console.log(line);
+      const newLine = line.text
+        .replace(/\W\s\n/gi, " ")
+        .toLowerCase()
+        .trim();
+      console.log(newLine);
+      return newLine;
+    });
     const crafts = [];
 
     log.info("Identifying crafts...");
@@ -85,10 +91,8 @@ export const tesseract = (blob) => {
 
         /**
          * Finally, return the craft which matched the most lines.
-         * Note that a two-line craft with a level will still match at three,
-         * which is why we make sure the level is non-existent.
          */
-        if (tft_crafts.hasOwnProperty(lineThreeCraft) && lineThreeLevel < 0) {
+        if (tft_crafts.hasOwnProperty(lineThreeCraft)) {
           crafts.push({
             id: Symbol("harvest_craft"),
             key: lineThreeCraft,
@@ -99,10 +103,7 @@ export const tesseract = (blob) => {
           log.info(
             `Identified ${lineThreeCraft} as ${tft_crafts[lineThreeCraft]} in three lines. (Level ${lineFourLevel})`
           );
-        } else if (
-          tft_crafts.hasOwnProperty(lineTwoCraft) &&
-          lineTwoLevel < 0
-        ) {
+        } else if (tft_crafts.hasOwnProperty(lineTwoCraft)) {
           crafts.push({
             id: Symbol("harvest_craft"),
             key: lineTwoCraft,

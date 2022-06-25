@@ -1,6 +1,5 @@
 export const filterBadWords = (line, target_words) => {
-    const split = line.split(" ");
-    if (split.length === 1) return split;
+  const split = line.split(" ");
 
-    return split.filter((word) => target_words.includes(word));
+  return split.filter((word) => target_words.includes(word));
 };
