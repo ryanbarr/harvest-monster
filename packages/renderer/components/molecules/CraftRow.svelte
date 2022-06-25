@@ -1,13 +1,14 @@
 <script>
   import { _ } from "svelte-i18n";
+  import { get } from "svelte/store";
   import Button from "../atoms/Button.svelte";
   import Input from "../atoms/Input.svelte";
   import { DollarSignIcon, XIcon } from "svelte-feather-icons";
-  import { crafts, settings } from "../../stores";
+  import { crafts, settings, exaltToChaosRate } from "../../stores";
   import { formatPrice } from "../../utils/formatPrice";
   import { warning } from "../../utils/toast";
   import { onMount } from "svelte";
-  import { LS_EXALT_PRICE_KEY } from "../../constants";
+  import { forceResize } from "#preload";
 
   let craft,
     index,
@@ -30,6 +31,7 @@
     }
 
     priceError = false;
+    const rate = get(exaltToChaosRate);
     const length = fieldPrice.length;
     const isExalts = fieldPrice.substr(length - 2, length) === "ex";
     const isChaos = fieldPrice.substr(length - 1, length) === "c";
@@ -41,11 +43,7 @@
       exaltValue = parseFloat(fieldPrice.substr(0, length - 2));
     } else if (isChaos) {
       const chaosValue = parseInt(fieldPrice.substr(0, length - 1));
-      const fpp = parseInt(
-        (chaosValue /
-          parseFloat(window.localStorage.getItem(LS_EXALT_PRICE_KEY))) *
-          100
-      );
+      const fpp = parseInt((chaosValue / rate) * 100);
       exaltValue = parseFloat(fpp / 100);
     }
 
@@ -97,6 +95,7 @@
         on:click={() => {
           crafts.sell(craft);
           crafts.save();
+          forceResize();
         }}
       >
         <div class="inline-flex items-center">
@@ -109,6 +108,7 @@
         on:click={() => {
           crafts.delete(craft);
           crafts.save();
+          forceResize();
         }}
       >
         <div class="inline-flex items-center">

@@ -5,7 +5,7 @@ import { openModal } from "svelte-modals";
 import { fetchData } from "./utils/fetchData";
 import { get } from "svelte/store";
 import { crafts, tftPrices } from "./stores";
-import { parseCrafts } from "#preload";
+import { forceResize, parseCrafts } from "#preload";
 
 await fetchData();
 
@@ -16,6 +16,7 @@ const app = new App({
 
 document.onpaste = async function () {
   openModal(CraftProcessingModal);
+  forceResize(400);
   const newCrafts = await parseCrafts();
   const currentTftPrices = get(tftPrices);
 
@@ -36,6 +37,7 @@ document.onpaste = async function () {
     crafts.sort();
     // Save all of the crafts to memory.
     crafts.save();
+    forceResize();
   }
 };
 

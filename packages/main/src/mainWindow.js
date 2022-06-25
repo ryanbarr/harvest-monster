@@ -9,7 +9,7 @@ async function createWindow() {
     // width: 705,
     // height: 760,
     minWidth: 705,
-    minHeight: 400,
+    minHeight: 100,
     height: 400,
     useContentSize: true,
     show: false, // Use 'ready-to-show' event to show window

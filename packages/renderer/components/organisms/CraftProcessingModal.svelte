@@ -18,6 +18,7 @@
 
   afterUpdate(() => {
     if (progress === 100) {
+      // Gives the user a brief moment to see the completion.
       setTimeout(closeAllModals, 400);
     }
   });

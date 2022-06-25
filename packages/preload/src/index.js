@@ -18,8 +18,23 @@ export const getAppVersion = async () => {
   return await ipcRenderer.invoke("version");
 };
 
-export const forceResize = async () => {
-  ipcRenderer.invoke("forceResize", document.body.scrollHeight);
+export const forceResize = async (requestedHeight) => {
+  // This timeout forces the resize to take place after all changes have been made to the DOM.
+  setTimeout(() => {
+    if (
+      requestedHeight === null ||
+      requestedHeight === undefined ||
+      requestedHeight < 1
+    ) {
+      requestedHeight = document.body.scrollHeight;
+    }
+
+    if (requestedHeight < 100) {
+      requestedHeight = 200;
+    }
+
+    ipcRenderer.invoke("forceResize", requestedHeight);
+  }, 0);
 };
 
 export { copyPost, fetchNinjaPrices, fetchTFTPrices, minimize, parseCrafts };

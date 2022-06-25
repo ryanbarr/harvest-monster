@@ -1,15 +1,14 @@
-import { LS_EXALT_PRICE_KEY } from "../constants";
+import { exaltToChaosRate } from "../stores";
+import { get } from "svelte/store";
 
 export const formatPrice = (price) => {
-  const exaltToChaos = parseFloat(
-    window.localStorage.getItem(LS_EXALT_PRICE_KEY)
-  );
+  const rate = get(exaltToChaosRate);
 
   if (price >= 1) {
     return `${price}ex`;
   }
 
-  const chaosPrice = Math.ceil(price * exaltToChaos);
+  const chaosPrice = Math.ceil(price * rate);
 
   if (isNaN(chaosPrice) || chaosPrice <= 0) return "";
 

@@ -6,7 +6,7 @@
   import { formatPost } from "../../utils/formatPost";
   import { formatValue } from "../../utils/formatValue";
   import { getInventory } from "../../utils/getInventory";
-  import { crafts } from "../../stores";
+  import { crafts, exaltToChaosRate } from "../../stores";
   import { LS_EXALT_PRICE_KEY } from "../../constants";
   import { onDestroy } from "svelte";
   import { success } from "../../utils/toast";
@@ -32,9 +32,9 @@
       >{inventory.count}
       {$_("nav_crafts").toLowerCase()} | {formatValue(inventory.value)}</span
     >
-    <span class="text-xs"
-      >{window.localStorage.getItem(LS_EXALT_PRICE_KEY)}:1</span
-    ></div
+    {#if $exaltToChaosRate > 1}
+      <span class="text-xs">{$exaltToChaosRate}:1</span>
+    {/if}</div
   >
   <div class="grow">
     <div class="flex flex-row justify-end space-x-6">

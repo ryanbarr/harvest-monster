@@ -222,6 +222,7 @@ function createSettings() {
 const settings = createSettings();
 
 const ninjaPrices = writable<Currency[]>([]);
+const exaltToChaosRate = writable<number>(0);
 
 /**
  * After we fetch new PoE.Ninja data (via TFT) we store the exalt price
@@ -232,7 +233,7 @@ ninjaPrices.subscribe((v: Currency[]) => {
   let exaltToChaos = Math.round(exalt?.chaosEquivalent) ?? 0;
   if (isNaN(exaltToChaos)) exaltToChaos = -1;
   log.info(`Storing Exalt to Chaos conversion rate at ${exaltToChaos}.`);
-  window.localStorage.setItem(LS_EXALT_PRICE_KEY, exaltToChaos.toString());
+  exaltToChaosRate.set(exaltToChaos);
 });
 
 const tftPrices = writable<TFTData>({});
@@ -260,7 +261,7 @@ page.subscribe(async () => {
   // When users switch pages, reset the scroll position.
   window.scroll(0, 0);
   // We use setTimeout to trick the resize to happen after the page content has updated.
-  setTimeout(() => forceResize(), 0);
+  forceResize();
 });
 
-export { crafts, ninjaPrices, page, settings, tftPrices };
+export { crafts, exaltToChaosRate, ninjaPrices, page, settings, tftPrices };

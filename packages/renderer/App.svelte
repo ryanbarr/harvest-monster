@@ -24,8 +24,7 @@
     root.style.setProperty("--toastBackground", $settings.containerColor);
   });
   onDestroy(unsubscribe);
-  // This timeout forces a resize after all content is loaded and only after the window is presented.
-  setTimeout(() => forceResize(document.body.scrollHeight), 0);
+  forceResize();
 
   const toastOptions = {
     dismissable: false,
