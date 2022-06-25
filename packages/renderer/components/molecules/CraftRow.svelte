@@ -39,16 +39,7 @@
     crafts.save();
   }, 100);
 
-  const adjustPrice = () => {
-    if ($settings.autoPrice) {
-      settings.changeSetting("autoPrice", false);
-      settings.save();
-      warning({
-        title: "Auto-pricing turned off!",
-        text: "Crafts will no longer be priced automatically since a price was changed manually.",
-      });
-    }
-
+  const adjustPrice = (e) => {
     priceError = false;
     const rate = get(exaltToChaosRate);
     const length = fieldPrice.length;
@@ -70,8 +61,19 @@
       exaltValue = 0;
     }
 
-    crafts.edit(craft.key, "price", exaltValue);
-    crafts.save();
+    if (exaltValue !== craft.price) {
+      crafts.edit(craft.key, "price", exaltValue);
+      crafts.save();
+
+      if ($settings.autoPrice) {
+        settings.changeSetting("autoPrice", false);
+        settings.save();
+        warning({
+          title: "Auto-pricing turned off!",
+          text: "Crafts will no longer be priced automatically since a price was changed manually.",
+        });
+      }
+    }
   };
 
   onMount(() => {
