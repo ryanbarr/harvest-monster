@@ -3,7 +3,6 @@ import themes from "./assets/themes";
 import {
   HM_STANDARD_THEME,
   LS_CRAFTS_KEY,
-  LS_EXALT_PRICE_KEY,
   LS_SETTINGS_KEY,
   NINJA_EXALT_NAME,
 } from "./constants";
