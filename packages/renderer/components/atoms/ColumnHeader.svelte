@@ -27,7 +27,7 @@
 </script>
 
 <button
-  class={`flex flex-row w-full justify-center items-center ${
+  class={`flex flex-row w-full justify-center items-center hover:bg-container rounded py-0.5 ${
     isActive ? "text-highlight" : ""
   } ${clazz}`}
   on:click={handleClick}
