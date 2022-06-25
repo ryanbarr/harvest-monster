@@ -30,6 +30,10 @@ button {
   @apply outline-none;
 }
 
+select:focus {
+  @apply outline-highlight;
+}
+
 .active {
   @apply text-highlight;
   @apply border-highlight;
