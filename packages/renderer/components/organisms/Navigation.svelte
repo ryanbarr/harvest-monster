@@ -32,7 +32,7 @@
       {$_("nav_crafts").toLowerCase()} | {formatValue(inventory.value)}</span
     >
     {#if $exaltToChaosRate > 1}
-      <span class="text-xs">{$exaltToChaosRate}:1</span>
+      <span class="text-xs">{$exaltToChaosRate}c:1ex</span>
     {/if}</div
   >
   <div class="grow">
