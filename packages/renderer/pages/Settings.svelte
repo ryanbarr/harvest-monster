@@ -10,6 +10,7 @@
   import ExtLink from "../components/atoms/ExtLink.svelte";
   import Toggle from "../components/atoms/Toggle.svelte";
   import PrimaryButton from "../components/atoms/PrimaryButton.svelte";
+  import Textarea from "../components/atoms/Textarea.svelte";
   import { settings } from "../stores";
   import themes from "../assets/themes";
   import { fetchData } from "../utils/fetchData";
@@ -107,7 +108,7 @@
     </Container>
     <Container>
       <H2>{$_("settings_post")}</H2>
-      <Card>
+      <Card class="space-y-4">
         <InputGroup>
           <div class="flex flex-row items-center space-x-8 justify-between">
             <div class="flex flex-col">
@@ -125,6 +126,21 @@
               }}
               enabled={$settings.willingToStream}
             />
+          </div>
+        </InputGroup>
+        <InputGroup>
+          <div class="flex flex-col space-y-2">
+            <div class="flex flex-col">
+              <label for="autoPrices">{$_("settings_custom_notes")}</label>
+              <span class="text-xs">{$_("settings_custom_notes_desc")}</span>
+            </div>
+            <div>
+              <Textarea
+                name="customNotes"
+                bind:value={$settings.customNotes}
+                on:change={() => settings.save()}
+              />
+            </div>
           </div>
         </InputGroup>
       </Card>

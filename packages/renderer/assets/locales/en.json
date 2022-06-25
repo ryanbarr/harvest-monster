@@ -14,6 +14,8 @@
   "settings_background_color": "Background color",
   "settings_container_color": "Container color",
   "settings_credits": "Credits",
+  "settings_custom_notes": "Custom notes",
+  "settings_custom_notes_desc": "Add custom notes, such as disclaimers or rules, to your generated posts.",
   "settings_discord": "Discord connection",
   "settings_highlight_color": "Highlight color",
   "settings_language": "Language",

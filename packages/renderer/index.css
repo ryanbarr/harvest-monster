@@ -31,6 +31,7 @@ button {
   @apply outline-none;
 }
 
+textarea:focus,
 select:focus {
   @apply outline-highlight;
 }
