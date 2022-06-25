@@ -98,6 +98,8 @@
         dark
         bind:value={craft["name"]}
         on:change={() => handleChange("name")}
+        name="name"
+        id={`name-${craft.key}`}
       />
       <Input
         class="w-12 text-center"

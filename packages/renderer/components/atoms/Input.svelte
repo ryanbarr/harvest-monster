@@ -1,11 +1,12 @@
 <script>
   let clazz = "",
+    id = "",
     name = "",
     value = "",
     dark = false,
     round = false,
     hasError = false;
-  export { clazz as class, dark, hasError, name, round, value };
+  export { clazz as class, dark, hasError, id, name, round, value };
 </script>
 
 <input
@@ -21,4 +22,5 @@
       : "focus:outline-highlight focus:ring-highlight"
   } ${round ? "rounded-xl" : "rounded-lg"} ${clazz}`}
   {name}
+  {id}
 />
