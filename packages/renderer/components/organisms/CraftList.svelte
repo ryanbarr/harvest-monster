@@ -91,9 +91,6 @@
             ></Button
           >
         </div>
-        {#if crafts.length > 0}
-          <div class="w-24">&nbsp;</div>
-        {/if}
       </div>
     </div>
   </div>
