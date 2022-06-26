@@ -64,7 +64,7 @@
         </div>
       {:else}
         <div
-          class="p-12 border-4 border-container bg-container rounded-xl text-center text-lg leading-loose"
+          class="px-12 py-8 border-4 border-container bg-container rounded-xl text-center text-lg leading-loose"
           >{#if platform === "win32"}
             Use <Pre>Windows + Shift + S</Pre> to take a screengrab of your crafts.
             Then, use <Pre>Ctrl + V</Pre> to paste it here.
