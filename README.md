@@ -10,7 +10,6 @@ HarvestMonster drew inspiration from [HarvestVendor by Esge](https://github.com/
 
 Some of the unique features HarvestMonster includes are:
 
-* 🤖 **Automatic listing management:** this tool can automatically post your crafts, edit the post with updated quantities, and delete and re-post listings in accordance with the active slowmode.
 * 💱 **Automatic price adjustments:** exalt-to-chaos currency conversions and craft prices are regularly fetched, resulting in crafts that are always priced at the current market rate.
 * 🔼 **Sortable crafts:** crafts can be sorted with a primary and secondary sort, so you stay in control of how crafts are presented in the app and in your listings.
 * 🎨 **Preset and customizable themes:** choose from over a dozen preset themes, adjust one to your liking, or supply your own colors to make the tool fit your style and preference.
@@ -24,7 +23,7 @@ It is recommended that you [visit our website](https://www.harvestmonster.com) w
 
 ### Latest Stable
 
-You can always find the latest stable build of HarvestMonster on [the releases page](https://github.com/ryanbarr/harvest-monster/releases):
+You can always find the latest stable build of HarvestMonster on [the latest release page](https://github.com/ryanbarr/harvest-monster/releases/latest):
 
 1. Look for the most recent release with the green "Latest" badge (hint: it should be at the top!)
 2. Expand the "Assets" section if it is not already open.
@@ -47,7 +46,7 @@ Once we become feature-stable and can feel confident about the latest stable bui
 First and foremost, this is a passion project built with the intent to meet three specific needs:
 
 1. A non-intrusive way to quickly convert in-game crafts to an organized list of sellable crafts.
-2. An efficient way to automatically list crafts for sale and update their status when sold.
+2. An efficient way to list crafts for sale and update their status when sold.
 3. A way to deliver quality-of-life enhancements to keep the player's focus on playing the game.
 
 With that in mind, there are a handful of features and enhancements that should be considered in the future. Features being actively considered, discussed, and planned can be found [in the discussions section](https://github.com/ryanbarr/harvest-monster/discussions). Here are a few broad examples for enhancements and feature additions that may be considered:
