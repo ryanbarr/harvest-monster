@@ -4,10 +4,13 @@ export const getInventory = (crafts) => {
 
   crafts.forEach((craft) => {
     const quant = parseInt(craft.quantity);
+    let price = 0;
+
+    if (craft.price > 0) price = craft.price;
 
     if (!isNaN(quant)) {
       count += parseInt(craft.quantity);
-      value += craft.quantity * craft.price;
+      value += (craft.quantity * (craft.price * 100)) / 100;
     }
   });
 
