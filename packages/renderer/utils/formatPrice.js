@@ -8,7 +8,7 @@ export const formatPrice = (price) => {
     return `${price}ex`;
   }
 
-  const chaosPrice = Math.ceil(price * rate);
+  const chaosPrice = Math.floor(price * rate);
 
   if (isNaN(chaosPrice) || chaosPrice <= 0) return "";
 
