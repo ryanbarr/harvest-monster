@@ -179,7 +179,7 @@
         <InputGroup class={`${$settings.autoPrice ? "opacity-50" : ""}`}>
           <div class="flex flex-row items-center space-x-8 justify-between">
             <div class="flex flex-col">
-              <label for="autoPrices">Fetch latest prices</label>
+              <label for="fetchManually">Fetch latest prices</label>
               <span class="text-xs"
                 >Force HarvestMonster to download the latest TFT craft prices
                 and PoE.Ninja currency rates.</span
