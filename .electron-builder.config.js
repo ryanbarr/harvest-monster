@@ -32,6 +32,7 @@ const config = {
     ],
   },
   linux: {
+    artifactName: "${productName}.${ext}",
     target: ["deb", "AppImage"],
   },
   nsis: {
