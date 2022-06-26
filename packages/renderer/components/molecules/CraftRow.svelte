@@ -26,9 +26,9 @@
     e.preventDefault();
     let newQuantity = craft.quantity;
     if (e.deltaY > 0) {
-      newQuantity += 1;
-    } else if (e.deltaY < 0) {
       newQuantity -= 1;
+    } else if (e.deltaY < 0) {
+      newQuantity += 1;
     }
 
     if (newQuantity < 0) {
