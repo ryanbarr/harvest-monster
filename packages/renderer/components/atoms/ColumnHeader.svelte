@@ -13,8 +13,10 @@
         $settings.sortDirection === "ascending" ? "descending" : "ascending";
     }
 
-    settings.changeSetting("sortColumn", field);
-    settings.changeSetting("sortDirection", newDirection);
+    settings.updateSettings({
+      sortColumn: field,
+      sortDirection: newDirection,
+    });
     settings.save();
     crafts.sort();
     crafts.save();

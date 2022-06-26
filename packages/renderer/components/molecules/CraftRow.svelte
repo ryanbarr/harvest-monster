@@ -80,6 +80,8 @@
     fieldPrice = craft ? formatPrice(craft.price) : "";
   });
 
+  $: fieldPrice = craft ? formatPrice(craft.price) : "";
+
   export { craft };
 </script>
 

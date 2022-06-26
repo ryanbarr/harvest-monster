@@ -106,8 +106,15 @@ function createCrafts() {
 
         // Whenever we save the crafts, also sort them.
         crafts.sort((a, b) => {
-          const ax = a[sortColumn] ?? "";
-          const bx = b[sortColumn] ?? "";
+          let ax = a[sortColumn] ?? 0;
+          let bx = b[sortColumn] ?? 0;
+
+          if (sortColumn === "price") {
+            // @ts-ignore-line
+            ax = parseInt(ax * 100);
+            // @ts-ignore-line
+            bx = parseInt(bx * 100);
+          }
 
           if (sortDirection === "ascending") {
             return ax > bx ? 1 : -1;
