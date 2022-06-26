@@ -68,7 +68,7 @@
           >{#if platform === "win32"}
             Use <Pre>Windows + Shift + S</Pre> to take a screengrab of your crafts.
             Then, use <Pre>Ctrl + V</Pre> to paste it here.
-          {:else if platform === "darwin1"}
+          {:else if platform === "darwin"}
             Use <Pre>⌘ + Shift + 4</Pre>
             to take a screenshot. Click the image that appears in the bottom right
             notification. Use
