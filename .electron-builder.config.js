@@ -1,8 +1,8 @@
 if (process.env.VITE_APP_VERSION === undefined) {
   const now = new Date();
-  process.env.VITE_APP_VERSION = `${now.getUTCFullYear() - 2000}.${
+  process.env.VITE_APP_VERSION = `1${now.getUTCFullYear() - 2000}.${
     now.getUTCMonth() + 1
-  }.${now.getUTCDate()}${now.getUTCHours() * 60 + now.getUTCMinutes()}`;
+  }.${now.getUTCDate()}-${now.getUTCHours() * 60 + now.getUTCMinutes()}`;
 }
 
 /**
