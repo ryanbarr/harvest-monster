@@ -5,12 +5,15 @@ import { parseCraftLevel } from "./parseCraftLevel";
 import craft_keywords from "../assets/craft_keywords";
 import tft_crafts from "../assets/tft_crafts";
 import log from "electron-log";
+import path from "path";
 
 export const tesseract = (blob) => {
   return new Promise(async (resolve, reject) => {
     try {
       log.info("Creating Tesseract worker...");
+      console.log(path.join(__dirname, "lang-data"));
       const worker = createWorker({
+        cachePath: path.join(__dirname, "lang-data"),
         logger: (v) => {
           log.info(
             `(${v.userJobId}) ${Math.ceil(v.progress * 100)}% - ${v.status}`
