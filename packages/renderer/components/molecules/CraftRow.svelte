@@ -9,7 +9,7 @@
   import { crafts, settings, exaltToChaosRate } from "../../stores";
   import { formatPrice } from "../../utils/formatPrice";
   import { warning } from "../../utils/toast";
-  import { onMount } from "svelte";
+  import { onDestroy, onMount } from "svelte";
   import { forceResize } from "#preload";
 
   let craft,
@@ -76,11 +76,15 @@
     }
   };
 
+  const unsubscribe = settings.subscribe(() => {
+    fieldPrice = craft ? formatPrice(craft.price) : "";
+  });
+
   onMount(() => {
     fieldPrice = craft ? formatPrice(craft.price) : "";
   });
 
-  $: fieldPrice = craft ? formatPrice(craft.price) : "";
+  onDestroy(unsubscribe);
 
   export { craft };
 </script>
