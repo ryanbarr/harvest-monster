@@ -1,7 +1,6 @@
 <script>
   import { _ } from "svelte-i18n";
   import PrimaryButton from "../atoms/PrimaryButton.svelte";
-  import LabeledToggle from "../molecules/LabeledToggle.svelte";
   import { copyPost } from "#preload";
   import { formatPost } from "../../utils/formatPost";
   import { formatValue } from "../../utils/formatValue";
@@ -11,10 +10,6 @@
   import { success } from "../../utils/toast";
 
   let inventory = getInventory($crafts);
-  let autoList = false;
-  function handleAutoListToggle() {
-    autoList = !autoList;
-  }
 
   const unsubscribe = crafts.subscribe(() => {
     inventory = getInventory($crafts);
@@ -37,9 +32,6 @@
   >
   <div class="grow">
     <div class="flex flex-row justify-end space-x-6">
-      <LabeledToggle on:click={handleAutoListToggle} enabled={autoList}>
-        {$_("nav_autolist")}
-      </LabeledToggle>
       <PrimaryButton
         on:click={() => {
           success({
