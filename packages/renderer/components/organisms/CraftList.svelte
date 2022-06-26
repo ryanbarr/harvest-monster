@@ -1,12 +1,16 @@
 <script>
   import { _ } from "svelte-i18n";
+  import { onMount } from "svelte";
   import { crafts as craftStore } from "../../stores";
   import CraftRow from "../molecules/CraftRow.svelte";
   import ColumnHeader from "../atoms/ColumnHeader.svelte";
   import Button from "../atoms/Button.svelte";
   import { PlusCircleIcon } from "svelte-feather-icons";
+  import { getOS } from "#preload";
+  import Pre from "../atoms/Pre.svelte";
 
   let crafts;
+  let platform;
 
   const addCraft = () => {
     const key = `custom-craft-${new Date().getTime()}`;
@@ -23,34 +27,60 @@
     }, 0);
   };
 
+  onMount(async () => {
+    platform = await getOS();
+  });
+
   export { crafts };
 </script>
 
 {#if crafts}
   <div>
-    <div class="flex flex-row space-x-2 text-center">
-      <div class="flex flex-row flex-grow space-x-1 p-1 text-xs">
-        <ColumnHeader class="w-12" field="quantity"
-          >{$_("crafts_quantity")}</ColumnHeader
-        >
-        <ColumnHeader class="w-72 flex-grow" field="name"
-          >{$_("crafts_craft")}</ColumnHeader
-        >
-        <ColumnHeader class="w-12" field="level"
-          >{$_("crafts_level")}</ColumnHeader
-        >
-        <ColumnHeader class="w-16" field="price"
-          >{$_("crafts_price")}</ColumnHeader
-        >
+    {#if crafts.length > 0}
+      <div class="flex flex-row space-x-2 text-center">
+        <div class="flex flex-row flex-grow space-x-1 p-1 text-xs">
+          <ColumnHeader class="w-12" field="quantity"
+            >{$_("crafts_quantity")}</ColumnHeader
+          >
+          <ColumnHeader class="w-72 flex-grow" field="name"
+            >{$_("crafts_craft")}</ColumnHeader
+          >
+          <ColumnHeader class="w-12" field="level"
+            >{$_("crafts_level")}</ColumnHeader
+          >
+          <ColumnHeader class="w-16" field="price"
+            >{$_("crafts_price")}</ColumnHeader
+          >
+        </div>
+        <div class="w-24 text-sm" />
       </div>
-      <div class="w-24 text-sm" />
-    </div>
+    {/if}
     <div class="space-y-1.5">
-      <div id="crafts-list" class="space-y-1.5">
-        {#each crafts as craft}
-          <CraftRow bind:craft />
-        {/each}
-      </div>
+      {#if crafts.length > 0}
+        <div id="crafts-list" class="space-y-1.5">
+          {#each crafts as craft}
+            <CraftRow bind:craft />
+          {/each}
+        </div>
+      {:else}
+        <div
+          class="p-12 border-4 border-container bg-container rounded-xl text-center text-lg leading-loose"
+          >{#if platform === "win32"}
+            Use <Pre>Windows + Shift + S</Pre> to take a screengrab of your crafts.
+            Then, use <Pre>Ctrl + V</Pre> to paste it here.
+          {:else if platform === "darwin1"}
+            Use <Pre>⌘ + Shift + 4</Pre>
+            to take a screenshot. Click the image that appears in the bottom right
+            notification. Use
+            <Pre>⌘ + C</Pre>
+            to copy it to your clipboard. Finally, use
+            <Pre>⌘ + V</Pre> to paste it here.
+          {:else}
+            Take a screenshot of the crafts in your Horticrafting station. Then,
+            paste the image here to process the crafts.
+          {/if}</div
+        >
+      {/if}
       <div class="flex flex-row space-x-2">
         <div class="flex-grow">
           <Button
@@ -61,7 +91,9 @@
             ></Button
           >
         </div>
-        <div class="w-24">&nbsp;</div>
+        {#if crafts.length > 0}
+          <div class="w-24">&nbsp;</div>
+        {/if}
       </div>
     </div>
   </div>

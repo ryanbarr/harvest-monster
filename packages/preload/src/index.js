@@ -18,6 +18,10 @@ export const getAppVersion = async () => {
   return await ipcRenderer.invoke("version");
 };
 
+export const getOS = async () => {
+  return await ipcRenderer.invoke("os");
+};
+
 export const forceResize = async (requestedHeight) => {
   // This timeout forces the resize to take place after all changes have been made to the DOM.
   setTimeout(() => {

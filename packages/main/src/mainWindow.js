@@ -2,6 +2,7 @@ import log from "electron-log";
 import { app, BrowserWindow, ipcMain, screen, shell } from "electron";
 import { join } from "path";
 import { URL } from "url";
+import os from "os";
 
 async function createWindow() {
   log.info("Creating the main window...");
@@ -69,6 +70,12 @@ async function createWindow() {
     const version = app.getVersion();
     log.info(`Reporting app version as v${version}.`);
     return version;
+  });
+
+  ipcMain.handle("os", async () => {
+    const platform = os.platform();
+    log.info(`Reporting platform as ${platform}.`);
+    return platform;
   });
 
   ipcMain.handle("forceResize", async (event, requestedHeight) => {
