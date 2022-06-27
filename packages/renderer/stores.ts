@@ -16,7 +16,8 @@ export interface Craft {
   key: string;
   level: number;
   name: string;
-  price?: number;
+  price?: CraftPrice;
+  displayPrice?: string;
   quantity: number;
 }
 
@@ -258,7 +259,7 @@ tftPrices.subscribe((tft: TFTData) => {
     // TODO: Only apply price if user indicated they prefer this.
     const price = tft?.data?.filter((v) => v.name === craft.name)[0];
     // TODO: Limit low confidence.
-    craft.price = price?.exalt ?? -1;
+    craft.price = price;
     return craft;
   });
   crafts.set(updatedCrafts);

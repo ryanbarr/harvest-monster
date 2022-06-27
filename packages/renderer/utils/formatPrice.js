@@ -1,16 +1,15 @@
-import { exaltToChaosRate } from "../stores";
-import { get } from "svelte/store";
+export const formatPrice = (parsedPrice) => {
+  if (!parsedPrice) return "";
+  let { type, value } = parsedPrice;
+  let formattedValue = "";
 
-export const formatPrice = (price) => {
-  const rate = get(exaltToChaosRate);
-
-  if (price >= 1) {
-    return `${price}ex`;
+  if (value > 0) {
+    if (type === "ex") {
+      formattedValue = `${value}ex`;
+    } else {
+      formattedValue = `${value}c`;
+    }
   }
 
-  const chaosPrice = Math.floor(price * rate);
-
-  if (isNaN(chaosPrice) || chaosPrice <= 0) return "";
-
-  return `${chaosPrice}c`;
+  return formattedValue;
 };

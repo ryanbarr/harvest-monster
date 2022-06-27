@@ -11,6 +11,7 @@
   import { warning } from "../../utils/toast";
   import { onDestroy, onMount } from "svelte";
   import { forceResize } from "#preload";
+  import { parsePrice } from "../../utils/parsePrice";
 
   let craft,
     index,
@@ -77,11 +78,11 @@
   };
 
   const unsubscribe = settings.subscribe(() => {
-    fieldPrice = craft ? formatPrice(craft.price) : "";
+    fieldPrice = craft ? formatPrice(parsePrice(craft.displayPrice)) : "";
   });
 
   onMount(() => {
-    fieldPrice = craft ? formatPrice(craft.price) : "";
+    fieldPrice = craft ? formatPrice(parsePrice(craft.displayPrice)) : "";
   });
 
   onDestroy(unsubscribe);
@@ -116,7 +117,7 @@
       <Input
         class="w-16 text-center text-xs"
         hasError={priceError}
-        bind:value={fieldPrice}
+        bind:value={craft["displayPrice"]}
         on:keyup={adjustPrice}
         round
       />

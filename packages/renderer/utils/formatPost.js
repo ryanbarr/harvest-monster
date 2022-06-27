@@ -1,6 +1,7 @@
 import { get } from "svelte/store";
 import { crafts, settings } from "../stores";
 import { formatPrice } from "./formatPrice";
+import { parsePrice } from "./parsePrice";
 
 let leagues = {
   std: "Standard",
@@ -22,15 +23,15 @@ const formatter = {
 
     post += `\n`;
 
+    // Custom Notes
     if (customNotes.trim() !== "") {
       post += `${customNotes}\n`;
     }
 
+    // Willing to Stream
     if (willingToStream) {
       post += `   *Can stream if requested*\n`;
     }
-
-    // Custom notes would go here.
 
     return post;
   },
@@ -50,7 +51,7 @@ const formatter = {
 
     post += `\`${craft.quantity}x ${craft.name}${buffer} [${
       craft.level > 0 ? craft.level : "83"
-    }]  <${formatPrice(craft.price)}>\``;
+    }]  <${formatPrice(parsePrice(craft.displayPrice))}>\``;
 
     if (craft.quantity === 0) {
       post += "~~";

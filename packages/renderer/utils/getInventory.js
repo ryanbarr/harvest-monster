@@ -1,21 +1,24 @@
-export const getInventory = (crafts) => {
-  let count = 0,
-    value = 0;
+import { parsePrice } from "./parsePrice";
 
-  crafts.forEach((craft) => {
-    const quant = parseInt(craft.quantity);
-    let price = 0;
+export const getInventory = (crafts) =>
+  crafts.reduce(
+    (total, craft) => {
+      const quantity = parseInt(craft.quantity);
+      const price = parsePrice(craft.displayPrice);
 
-    if (craft.price > 0) price = craft.price;
+      if (price && quantity > 0) {
+        total.count += quantity;
 
-    if (!isNaN(quant)) {
-      count += parseInt(craft.quantity);
-      value += (craft.quantity * (craft.price * 100)) / 100;
-    }
-  });
+        if (price.value > 0) {
+          if (price.type === "ex") {
+            total.exalt += price.value * quantity;
+          } else {
+            total.chaos += price.value * quantity;
+          }
+        }
+      }
 
-  return {
-    count,
-    value,
-  };
-};
+      return total;
+    },
+    { count: 0, exalt: 0, chaos: 0 }
+  );

@@ -34,6 +34,8 @@ document.onpaste = async function () {
 
   const currentTftPrices = get(tftPrices);
 
+  console.log(currentTftPrices);
+
   // If we have parsed new crafts, build and save.
   if (newCrafts && newCrafts.length > 0) {
     for (let craft of newCrafts) {
@@ -41,8 +43,16 @@ document.onpaste = async function () {
       const price = currentTftPrices?.data?.filter(
         (c) => c.name === craft.name
       )[0];
+
       // TODO: Limit low confidence.
-      craft.price = price?.exalt ?? -1;
+      craft.price = price;
+
+      // Add the display price.
+      if (price?.exalt >= 1) {
+        craft.displayPrice = `${price.exalt}ex`;
+      } else if (price?.chaos > 0) {
+        craft.displayPrice = `${price.chaos}c`;
+      }
 
       // Add the craft to the store.
       crafts.add(craft);
