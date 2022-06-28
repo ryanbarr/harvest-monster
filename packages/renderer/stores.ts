@@ -123,7 +123,6 @@ function createCrafts() {
           } else {
             return bx > ax ? 1 : -1;
           }
-          return 0;
         });
 
         return [...crafts];
