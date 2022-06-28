@@ -2,8 +2,15 @@ import standard from "./standard";
 import standardEmoji from "./standardEmoji";
 import plainText from "./plainText";
 import plainTextEmoji from "./plainTextEmoji";
+import richText from "./richText";
 
-const formatters = { standard, standardEmoji, plainText, plainTextEmoji };
+const formatters = {
+  standard,
+  standardEmoji,
+  plainText,
+  plainTextEmoji,
+  richText,
+};
 export const formatterOptions = [];
 
 Object.keys(formatters).forEach((key) => {
