@@ -113,9 +113,9 @@ function createCrafts() {
 
           if (sortColumn === "displayPrice") {
             // @ts-ignore-line
-            ax = parsePrice(a[sortColumn])?.normalizedValue;
+            ax = parsePrice(a[sortColumn])?.normalizedValue ?? 0;
             // @ts-ignore-line
-            bx = parsePrice(b[sortColumn])?.normalizedValue;
+            bx = parsePrice(b[sortColumn])?.normalizedValue ?? 0;
           }
 
           if (sortDirection === "ascending") {
