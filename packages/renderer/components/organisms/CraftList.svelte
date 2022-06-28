@@ -6,7 +6,7 @@
   import ColumnHeader from "../atoms/ColumnHeader.svelte";
   import Button from "../atoms/Button.svelte";
   import { PlusCircleIcon } from "svelte-feather-icons";
-  import { getOS } from "#preload";
+  import { forceResize, getOS } from "#preload";
   import Pre from "../atoms/Pre.svelte";
 
   let crafts;
@@ -23,6 +23,7 @@
     });
 
     setTimeout(() => {
+      forceResize();
       document.getElementById(`name-${key}`).focus();
     }, 0);
   };
