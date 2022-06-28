@@ -14,12 +14,14 @@
   import { SegmentationMode, settings } from "../stores";
   import themes from "../assets/themes";
   import { fetchData } from "../utils/fetchData";
-  import { getAppVersion } from "#preload";
+  import { forceResize, getAppVersion } from "#preload";
   import { onDestroy, onMount, afterUpdate } from "svelte";
   import { DownloadCloudIcon } from "svelte-feather-icons";
   import { success } from "../utils/toast";
   import { formatterOptions } from "../assets/formatters";
   import DetailedSelect from "../components/atoms/DetailedSelect.svelte";
+  import { openModal } from "svelte-modals";
+  import ExampleModal from "../components/organisms/ExampleModal.svelte";
 
   let languages = [
     { code: "en", name: "English" }, // English
@@ -198,7 +200,16 @@
       </Card>
     </Container>
     <Container>
-      <H2>{$_("settings_app")}</H2>
+      <div class="flex flex-row justify-between">
+        <H2>{$_("settings_app")}</H2>
+        <button
+          class="text-highlight underline"
+          on:click={() => {
+            openModal(ExampleModal);
+            forceResize();
+          }}>How do I take a good screenshot?</button
+        >
+      </div>
       <Card class="space-y-4">
         <InputGroup>
           <label for="language">{$_("settings_language")}</label>

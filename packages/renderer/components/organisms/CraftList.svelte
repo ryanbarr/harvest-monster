@@ -8,6 +8,8 @@
   import { PlusCircleIcon } from "svelte-feather-icons";
   import { forceResize, getOS } from "#preload";
   import Pre from "../atoms/Pre.svelte";
+  import { openModal } from "svelte-modals";
+  import ExampleModal from "./ExampleModal.svelte";
 
   let crafts;
   let platform;
@@ -66,20 +68,31 @@
       {:else}
         <div
           class="px-12 py-8 border-4 border-container bg-container rounded-xl text-center text-lg leading-loose"
-          >{#if platform === "win32"}
-            Use <Pre>Windows + Shift + S</Pre> to take a screengrab of your crafts.
-            Then, use <Pre>Ctrl + V</Pre> to paste it here.
-          {:else if platform === "darwin"}
-            Use <Pre>⌘ + Shift + 4</Pre>
-            to take a screenshot. Click the image that appears in the bottom right
-            notification. Use
-            <Pre>⌘ + C</Pre>
-            to copy it to your clipboard. Finally, use
-            <Pre>⌘ + V</Pre> to paste it here.
-          {:else}
-            Take a screenshot of the crafts in your Horticrafting station. Then,
-            paste the image here to process the crafts.
-          {/if}</div
+          ><span
+            >{#if platform === "win32"}
+              Use <Pre>Windows + Shift + S</Pre> to take a screengrab of your crafts.
+              Then, use <Pre>Ctrl + V</Pre> to paste it here.
+            {:else if platform === "darwin"}
+              Use <Pre>⌘ + Shift + 4</Pre>
+              to take a screenshot. Click the image that appears in the bottom right
+              notification. Use
+              <Pre>⌘ + C</Pre>
+              to copy it to your clipboard. Finally, use
+              <Pre>⌘ + V</Pre> to paste it here.
+            {:else}
+              Take a screenshot of the crafts in your Horticrafting station.
+              Then, paste the image here to process the crafts.
+            {/if}</span
+          >
+          <p class="pt-4"
+            ><button
+              class="text-highlight underline"
+              on:click={() => {
+                openModal(ExampleModal);
+                forceResize();
+              }}>Click here</button
+            > to see an example of how to take good screenshots!</p
+          ></div
         >
       {/if}
       <div class="flex flex-row space-x-2">
