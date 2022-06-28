@@ -7,7 +7,15 @@ import tft_crafts from "../assets/tft_crafts";
 import log from "electron-log";
 import path from "path";
 
-export const tesseract = (blob) => {
+const segMap = {
+  PSM_SINGLE_BLOCK: Tesseract.PSM.SINGLE_BLOCK,
+  PSM_SINGLE_COLUMN: Tesseract.PSM.SINGLE_COLUMN,
+  PSM_SPARSE_TEXT: Tesseract.PSM_SPARSE_TEXT,
+};
+
+export const tesseract = (blob, currentSettings) => {
+  const segMode =
+    segMap[currentSettings?.segmentationMode] ?? segMap.PSM_SINGLE_BLOCK;
   return new Promise(async (resolve, reject) => {
     try {
       log.info("Creating Tesseract worker...");
@@ -24,7 +32,7 @@ export const tesseract = (blob) => {
       await worker.loadLanguage();
       await worker.initialize();
       await worker.setParameters({
-        tessedit_pageseg_mode: Tesseract.PSM.SINGLE_COLUMN,
+        tessedit_pageseg_mode: segMode,
       });
       const keywords = Object.keys(craft_keywords);
       const { data } = await worker.recognize(blob);

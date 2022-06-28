@@ -46,6 +46,12 @@ export interface League {
   name: "Standard" | "Sentinel Softcore" | "Sentinel Hardcore";
 }
 
+export enum SegmentationMode {
+  PSM_SINGLE_BLOCK = "PSM_SINGLE_BLOCK",
+  PSM_SINGLE_COLUMN = "PSM_SINGLE_COLUMN",
+  PSM_SPARSE_TEXT = "PSM_SPARSE_TEXT",
+}
+
 export interface Settings {
   username: string;
   language: Language;
@@ -62,6 +68,7 @@ export interface Settings {
   includeExchangeRate: boolean;
   customNotes: string;
   postFormatter: string;
+  segmentationMode: SegmentationMode;
 }
 
 export interface TFTData {
@@ -85,6 +92,7 @@ const defaultSettings: Settings = {
   includeExchangeRate: false,
   customNotes: "",
   postFormatter: "standard",
+  segmentationMode: SegmentationMode.PSM_SINGLE_BLOCK,
 };
 
 /**

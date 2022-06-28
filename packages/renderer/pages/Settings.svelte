@@ -11,7 +11,7 @@
   import Toggle from "../components/atoms/Toggle.svelte";
   import PrimaryButton from "../components/atoms/PrimaryButton.svelte";
   import Textarea from "../components/atoms/Textarea.svelte";
-  import { settings } from "../stores";
+  import { SegmentationMode, settings } from "../stores";
   import themes from "../assets/themes";
   import { fetchData } from "../utils/fetchData";
   import { getAppVersion } from "#preload";
@@ -19,6 +19,7 @@
   import { DownloadCloudIcon } from "svelte-feather-icons";
   import { success } from "../utils/toast";
   import { formatterOptions } from "../assets/formatters";
+  import DetailedSelect from "../components/atoms/DetailedSelect.svelte";
 
   let languages = [
     { code: "en", name: "English" }, // English
@@ -33,6 +34,23 @@
     { code: "std", name: "Standard" },
     { code: "lsc", name: "Sentinel Softcore" },
     { code: "lhc", name: "Sentinel Hardcore" },
+  ];
+  let segmentationModes = [
+    {
+      key: SegmentationMode.PSM_SINGLE_BLOCK,
+      name: "Single Block (Recommended)",
+      description: "Fastest, best at processing individual crafts.",
+    },
+    {
+      key: SegmentationMode.PSM_SINGLE_COLUMN,
+      name: "Single Column",
+      description: "Accurate, but slower. Good at multiple crafts.",
+    },
+    {
+      key: SegmentationMode.PSM_SPARSE_TEXT,
+      name: "Sparse Text",
+      description: "Most accurate, but slowest. Good option for variety.",
+    },
   ];
   let appVersion = "(Unknown Version)";
 
@@ -294,6 +312,23 @@
               <option value={t.id}>{t.name}</option>
             {/each}
           </Select>
+        </InputGroup>
+      </Card>
+    </Container>
+    <Container>
+      <H2>Advanced settings</H2>
+      <Card class="space-y-4">
+        <InputGroup>
+          <label for="formatter">{$_("settings_segmentation")}</label>
+          <span class="text-xs">{$_("settings_segmentation_desc")}</span>
+          <DetailedSelect
+            onChange={(selected) => {
+              settings.changeSetting("segmentationMode", selected);
+              settings.save();
+            }}
+            options={segmentationModes}
+            bind:selected={$settings.segmentationMode}
+          />
         </InputGroup>
       </Card>
     </Container>

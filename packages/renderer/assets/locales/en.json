@@ -26,6 +26,8 @@
   "settings_league": "Path of Exile League",
   "settings_league_desc": "Select the league in which your crafts are available.",
   "settings_post": "Post settings",
+  "settings_segmentation": "OCR Segmentation mode",
+  "settings_segmentation_desc": "The segmentation mode determines how the image processing library scans your screenshots and converts them to text. Adjusting this balances accuracy against processing speed.",
   "settings_willing": "Willing to stream",
   "settings_willing_desc": "Adds a note to your posts indicating that you are willing to stream the performed services live in Discord.",
   "settings_text_color": "Text color",

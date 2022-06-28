@@ -5,7 +5,7 @@ import { openModal, closeAllModals } from "svelte-modals";
 import { error, success, warning } from "./utils/toast";
 import { fetchData } from "./utils/fetchData";
 import { get } from "svelte/store";
-import { crafts, tftPrices } from "./stores";
+import { crafts, settings, tftPrices } from "./stores";
 import { forceResize, parseCrafts } from "#preload";
 
 // Bind the application to the root element.
@@ -14,6 +14,7 @@ const app = new App({
 });
 
 document.onpaste = async function () {
+  const currentSettings = get(settings);
   openModal(CraftProcessingModal);
 
   fetchData();
@@ -21,7 +22,7 @@ document.onpaste = async function () {
   let newCrafts;
 
   try {
-    newCrafts = await parseCrafts();
+    newCrafts = await parseCrafts(currentSettings);
   } catch (e) {
     error({
       title: "Unable to process crafts!",
