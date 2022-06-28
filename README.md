@@ -4,6 +4,8 @@ HarvestMonster is a [Path of Exile](https://www.pathofexile.com/) Harvest craft 
 
 ![release](https://github.com/ryanbarr/harvest-monster/actions/workflows/release.yml/badge.svg) ![issues](https://img.shields.io/github/issues/ryanbarr/harvest-monster) ![stars](https://img.shields.io/github/stars/ryanbarr/harvest-monster) ![license](https://img.shields.io/github/license/ryanbarr/harvest-monster)
 
+![HarvestMonster](./hm-themes.png)
+
 ## About HarvestMonster
 
 HarvestMonster drew inspiration from [HarvestVendor by Esge](https://github.com/esge/PoE-HarvestVendor) and the popular [HarvestVendor fork by Stregon](https://github.com/Stregon/PoE-HarvestVendor). The purpose of this tool is to quickly convert the Harvest crafts in your Horticrafting Station into text that can be used in Discord to advertise them for sale.
