@@ -17,7 +17,7 @@ document.onpaste = async function () {
   openModal(CraftProcessingModal);
 
   fetchData();
-  forceResize(400);
+  forceResize();
   let newCrafts;
 
   try {
