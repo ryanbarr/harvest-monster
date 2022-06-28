@@ -1,5 +1,5 @@
 import { createCraftString } from "./createCraftString";
-import { createWorker } from "tesseract.js";
+import Tesseract, { createWorker } from "tesseract.js";
 import { filterBadWords } from "./filterBadWords";
 import { parseCraftLevel } from "./parseCraftLevel";
 import craft_keywords from "../assets/craft_keywords";
@@ -11,7 +11,6 @@ export const tesseract = (blob) => {
   return new Promise(async (resolve, reject) => {
     try {
       log.info("Creating Tesseract worker...");
-      console.log(path.join(__dirname, "lang-data"));
       const worker = createWorker({
         cachePath: path.join(__dirname, "lang-data"),
         logger: (v) => {
@@ -24,16 +23,17 @@ export const tesseract = (blob) => {
       await worker.load();
       await worker.loadLanguage();
       await worker.initialize();
+      await worker.setParameters({
+        tessedit_pageseg_mode: Tesseract.PSM.SINGLE_COLUMN,
+      });
       const keywords = Object.keys(craft_keywords);
       const { data } = await worker.recognize(blob);
       await worker.terminate();
       const cleanLines = data.lines.map((line) => {
-        console.log(line);
         const newLine = line.text
           .replace(/\W\s\n/gi, " ")
           .toLowerCase()
           .trim();
-        console.log(newLine);
         return newLine;
       });
       const crafts = [];
