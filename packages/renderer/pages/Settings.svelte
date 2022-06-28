@@ -122,7 +122,6 @@
                   !$settings.willingToStream
                 );
                 settings.save();
-                await fetchData();
               }}
               enabled={$settings.willingToStream}
             />

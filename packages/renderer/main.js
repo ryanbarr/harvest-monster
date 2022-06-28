@@ -8,8 +8,6 @@ import { get } from "svelte/store";
 import { crafts, tftPrices } from "./stores";
 import { forceResize, parseCrafts } from "#preload";
 
-await fetchData();
-
 // Bind the application to the root element.
 const app = new App({
   target: document.getElementById("app"),
@@ -17,6 +15,8 @@ const app = new App({
 
 document.onpaste = async function () {
   openModal(CraftProcessingModal);
+
+  fetchData();
   forceResize(400);
   let newCrafts;
 
@@ -33,8 +33,6 @@ document.onpaste = async function () {
   }
 
   const currentTftPrices = get(tftPrices);
-
-  console.log(currentTftPrices);
 
   // If we have parsed new crafts, build and save.
   if (newCrafts && newCrafts.length > 0) {

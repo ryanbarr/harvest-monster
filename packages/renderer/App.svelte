@@ -6,9 +6,10 @@
   import ModalBackdrop from "./components/atoms/ModalBackdrop.svelte";
   import MainTemplate from "./components/templates/MainTemplate.svelte";
   import "./index.css";
-  import { onDestroy } from "svelte";
+  import { onDestroy, onMount } from "svelte";
   import { isLoading, locale } from "svelte-i18n";
   import { forceResize } from "#preload";
+  import { fetchData } from "./utils/fetchData.js";
 
   /**
    * This allows us to subscribe to store changes and change CSS variables
@@ -24,7 +25,11 @@
     root.style.setProperty("--toastBackground", $settings.containerColor);
   });
   onDestroy(unsubscribe);
-  forceResize();
+
+  onMount(() => {
+    forceResize();
+    fetchData();
+  });
 
   const toastOptions = {
     dismissable: false,
