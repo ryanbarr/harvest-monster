@@ -41,13 +41,8 @@ export default {
 
     return post;
   },
-  craft: (craft, { maxCraftLength }) => {
+  craft: (craft) => {
     let post = "";
-    const quantityLengthAdjustment = `${craft.quantity}`.length - 1;
-    let bufferLength =
-      maxCraftLength - craft.name.length + 4 - quantityLengthAdjustment;
-
-    const buffer = Array.from(Array(bufferLength), () => "").join(" ");
 
     post += "   ";
 
@@ -55,9 +50,9 @@ export default {
       post += "~~";
     }
 
-    post += `${craft.quantity}x ${craft.name}${buffer} [${
+    post += `${craft.quantity}x ${craft.name} [${
       craft.level > 0 ? craft.level : "83"
-    }]  <${formatPrice(parsePrice(craft.displayPrice))}>`;
+    }] <${formatPrice(parsePrice(craft.displayPrice))}>`;
 
     if (craft.quantity === 0) {
       post += "~~";
