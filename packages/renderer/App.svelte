@@ -39,7 +39,7 @@
 {#if $isLoading}
   <span>Loading...</span>
 {:else}
-  <main>
+  <main id="main-content">
     <Modals>
       <ModalBackdrop slot="backdrop" />
     </Modals>

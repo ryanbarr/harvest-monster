@@ -30,7 +30,7 @@ export const forceResize = async (requestedHeight) => {
       requestedHeight === undefined ||
       requestedHeight < 1
     ) {
-      requestedHeight = document.body.scrollHeight;
+      requestedHeight = document.getElementById("main-content").clientHeight;
     }
 
     if (requestedHeight < 100) {
