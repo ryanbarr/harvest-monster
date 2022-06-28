@@ -1,6 +1,7 @@
 import standard from "./standard";
+import standardEmoji from "./standardEmoji";
 
-const formatters = { standard };
+const formatters = { standard, standardEmoji };
 export const formatterOptions = [];
 
 Object.keys(formatters).forEach((key) => {
