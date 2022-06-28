@@ -327,7 +327,13 @@
     </Container>
     <Container>
       <Card>
-        <p>HarvestMonster {appVersion}</p>
+        <p
+          >HarvestMonster {appVersion} - This application is in beta and your feedback
+          is appreciated! <ExtLink
+            href="https://github.com/ryanbarr/harvest-monster/discussions"
+            >Submit questions, feedback, and bugs on GitHub.</ExtLink
+          ></p
+        >
       </Card>
     </Container>
   </div>

@@ -41,6 +41,10 @@
     </button>
   </nav>
   <div class="inline-flex items-center flex-grow justify-end space-x-0.5 pr-2">
+    <span
+      class="bg-background text-highlight text-xs font-bold px-1 py-0.5 rounded mr-4"
+      >BETA BUILD</span
+    >
     <ToolbarButton on:click={() => minimize()}
       ><MinusIcon size="1x" /></ToolbarButton
     >
