@@ -61,6 +61,7 @@ export interface Settings {
   willingToStream: boolean;
   includeExchangeRate: boolean;
   customNotes: string;
+  postFormatter: string;
 }
 
 export interface TFTData {
@@ -83,6 +84,7 @@ const defaultSettings: Settings = {
   willingToStream: false,
   includeExchangeRate: false,
   customNotes: "",
+  postFormatter: "standard",
 };
 
 /**

@@ -18,6 +18,7 @@
   import { onDestroy, onMount, afterUpdate } from "svelte";
   import { DownloadCloudIcon } from "svelte-feather-icons";
   import { success } from "../utils/toast";
+  import { formatterOptions } from "../assets/formatters";
 
   let languages = [
     { code: "en", name: "English" }, // English
@@ -130,7 +131,7 @@
         <InputGroup>
           <div class="flex flex-row items-center space-x-8 justify-between">
             <div class="flex flex-col">
-              <label for="autoPrices">{$_("settings_exchange")}</label>
+              <label for="includeExchangeRate">{$_("settings_exchange")}</label>
               <span class="text-xs">{$_("settings_exchange_desc")}</span>
             </div>
             <Toggle
@@ -144,6 +145,22 @@
               enabled={$settings.includeExchangeRate}
             />
           </div>
+        </InputGroup>
+        <InputGroup>
+          <label for="formatter">{$_("settings_formatter")}</label>
+          <span class="text-xs">{$_("settings_formatter_desc")}</span>
+          <Select
+            name="formatter"
+            bind:value={$settings.postFormatter}
+            on:change={async () => {
+              settings.save();
+              await fetchData();
+            }}
+          >
+            {#each formatterOptions as formatter}
+              <option value={formatter.key}>{formatter.name}</option>
+            {/each}
+          </Select>
         </InputGroup>
         <InputGroup>
           <div class="flex flex-col space-y-2">

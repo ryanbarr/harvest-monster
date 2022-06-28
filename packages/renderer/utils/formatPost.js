@@ -22,7 +22,8 @@ export const formatPost = () => {
   };
   let post = "";
 
-  const formatter = formatters.standard;
+  const formatter =
+    formatters[currentSettings.postFormatter] ?? formatters.standard;
 
   post += formatter.prefix(formatterSettings);
 

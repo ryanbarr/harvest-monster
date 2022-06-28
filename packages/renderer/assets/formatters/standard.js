@@ -2,6 +2,8 @@ import { formatPrice } from "../../utils/formatPrice";
 import { parsePrice } from "../../utils/parsePrice";
 
 export default {
+  key: "standard",
+  name: "Standard",
   prefix: ({
     currentLeagueName,
     username,
