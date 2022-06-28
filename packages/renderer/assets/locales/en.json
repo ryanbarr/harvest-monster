@@ -24,6 +24,8 @@
   "settings_post": "Post settings",
   "settings_willing": "Willing to stream",
   "settings_willing_desc": "Adds a note to your posts indicating that you are willing to stream the performed services live in Discord.",
+  "settings_exchange": "Include exchange rate",
+  "settings_exchange_desc": "Adds the current exchange rate of chaos to exalt from PoE.Ninja to your post.",
   "settings_text_color": "Text color",
   "settings_theme": "Theme settings",
   "settings_user": "User settings",

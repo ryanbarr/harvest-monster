@@ -59,6 +59,7 @@ export interface Settings {
   sortColumn: "quantity" | "name" | "level" | "displayPrice";
   sortDirection: "ascending" | "descending";
   willingToStream: boolean;
+  includeExchangeRate: boolean;
   customNotes: string;
 }
 
@@ -80,6 +81,7 @@ const defaultSettings: Settings = {
   sortColumn: "name",
   sortDirection: "ascending",
   willingToStream: false,
+  includeExchangeRate: false,
   customNotes: "",
 };
 

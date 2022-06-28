@@ -1,5 +1,5 @@
 import { get } from "svelte/store";
-import { crafts, settings } from "../stores";
+import { crafts, settings, exaltToChaosRate } from "../stores";
 import { formatPrice } from "./formatPrice";
 import { parsePrice } from "./parsePrice";
 
@@ -10,7 +10,14 @@ let leagues = {
 };
 
 const formatter = {
-  prefix: ({ currentLeagueName, username, customNotes, willingToStream }) => {
+  prefix: ({
+    currentLeagueName,
+    username,
+    customNotes,
+    exchangeRate,
+    includeExchangeRate,
+    willingToStream,
+  }) => {
     let post = "";
 
     post += `**WTS ${currentLeagueName}**`;
@@ -26,6 +33,11 @@ const formatter = {
     // Custom Notes
     if (customNotes.trim() !== "") {
       post += `${customNotes}\n`;
+    }
+
+    // Exchange Rate
+    if (includeExchangeRate) {
+      post += `   **Exchange Rate:** ${exchangeRate}c to 1ex\n`;
     }
 
     // Willing to Stream
@@ -67,11 +79,13 @@ const formatter = {
 export const formatPost = () => {
   const currentCrafts = get(crafts);
   const currentSettings = get(settings);
+  const exchangeRate = get(exaltToChaosRate);
   const formatterSettings = {
     currentLeagueName: leagues[currentSettings.league.code],
     maxCraftLength: [...currentCrafts].sort((a, b) =>
       b.name.length > a.name.length ? 1 : -1
     )[0].name.length,
+    exchangeRate: exchangeRate,
     ...currentSettings,
   };
   let post = "";

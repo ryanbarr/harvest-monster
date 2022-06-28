@@ -128,6 +128,24 @@
           </div>
         </InputGroup>
         <InputGroup>
+          <div class="flex flex-row items-center space-x-8 justify-between">
+            <div class="flex flex-col">
+              <label for="autoPrices">{$_("settings_exchange")}</label>
+              <span class="text-xs">{$_("settings_exchange_desc")}</span>
+            </div>
+            <Toggle
+              on:click={async () => {
+                settings.changeSetting(
+                  "includeExchangeRate",
+                  !$settings.includeExchangeRate
+                );
+                settings.save();
+              }}
+              enabled={$settings.includeExchangeRate}
+            />
+          </div>
+        </InputGroup>
+        <InputGroup>
           <div class="flex flex-col space-y-2">
             <div class="flex flex-col">
               <label for="autoPrices">{$_("settings_custom_notes")}</label>
