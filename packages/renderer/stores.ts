@@ -6,6 +6,7 @@ import {
   LS_SETTINGS_KEY,
   NINJA_EXALT_NAME,
 } from "./constants";
+import { parsePrice } from "./utils/parsePrice";
 // @ts-ignore-line
 import { log, forceResize } from "#preload";
 
@@ -55,7 +56,7 @@ export interface Settings {
   highlightColor: string;
   textColor: string;
   autoPrice: boolean;
-  sortColumn: "quantity" | "name" | "level" | "price";
+  sortColumn: "quantity" | "name" | "level" | "displayPrice";
   sortDirection: "ascending" | "descending";
   willingToStream: boolean;
   customNotes: string;
@@ -110,11 +111,11 @@ function createCrafts() {
           let ax = a[sortColumn] ?? 0;
           let bx = b[sortColumn] ?? 0;
 
-          if (sortColumn === "price") {
+          if (sortColumn === "displayPrice") {
             // @ts-ignore-line
-            ax = parseInt(ax * 100);
+            ax = parsePrice(a[sortColumn])?.normalizedValue;
             // @ts-ignore-line
-            bx = parseInt(bx * 100);
+            bx = parsePrice(b[sortColumn])?.normalizedValue;
           }
 
           if (sortDirection === "ascending") {

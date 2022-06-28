@@ -48,7 +48,7 @@
           <ColumnHeader class="w-12" field="level"
             >{$_("crafts_level")}</ColumnHeader
           >
-          <ColumnHeader class="w-16" field="price"
+          <ColumnHeader class="w-16" field="displayPrice"
             >{$_("crafts_price")}</ColumnHeader
           >
         </div>
