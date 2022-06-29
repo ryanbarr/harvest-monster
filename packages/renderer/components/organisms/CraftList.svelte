@@ -91,7 +91,7 @@
                 openModal(ExampleModal);
                 forceResize();
               }}>Click here</button
-            > to see an example of how to take good screenshots!</p
+            > to see an example of how to take screenshots!</p
           ></div
         >
       {/if}
