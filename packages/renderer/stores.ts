@@ -146,7 +146,7 @@ function createCrafts() {
         log.info("Adding craft...", craft);
         // Check to see if this craft exists in the store already.
         const existingCraftIndex: number = crafts.findIndex(
-          (v) => v.key == craft.key
+          (v) => v.key == craft.key && v.level == craft.level
         );
 
         // If the craft does exist, update its quantity by one and splice it over the old craft.
