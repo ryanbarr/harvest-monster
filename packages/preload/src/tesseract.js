@@ -52,7 +52,10 @@ export const tesseract = (blob, currentSettings) => {
       const { data } = await worker.recognize(blob);
 
       const crafts = [];
-      const potential_exp = new RegExp(`(?=${craft_keywords.join("|")})`, "gi");
+      const potential_exp = new RegExp(
+        `(?=\\b${craft_keywords.join("\\b|\\b")}\\b)`,
+        "gi"
+      );
       const potential_crafts = data.text
         .replace(/\n/g, " ")
         .split(potential_exp);
