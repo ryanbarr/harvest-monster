@@ -179,7 +179,7 @@ function createCrafts() {
         const thisCraftIndex = crafts.findIndex((c) => c.key === craft.key);
         const thisCraft = crafts[thisCraftIndex];
         // If we have more than one of this craft, decrement and save.
-        if (thisCraft.quantity > 1) {
+        if (thisCraft.quantity > 0) {
           thisCraft.quantity -= 1;
           crafts.splice(thisCraftIndex, 1, thisCraft);
           // Otherwise, remove it from the list.
