@@ -12,10 +12,11 @@ const segMap = {
 
 const craft_expressions = Object.keys(tft_crafts)
   .map((key) => {
-    let expression = "";
+    let expression = "(?=";
     key.split(" ").forEach((word) => {
-      expression += `(?=.*\\b${word}\\b)`;
+      expression += `.*\\b${word}\\b`;
     });
+    expression += ")";
     return [new RegExp(expression, "i"), key, tft_crafts[key]];
   })
   .reverse();
