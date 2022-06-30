@@ -38,19 +38,20 @@ document.onpaste = async function () {
   // If we have parsed new crafts, build and save.
   if (newCrafts && newCrafts.length > 0) {
     for (let craft of newCrafts) {
-      // TODO: Only apply price if user indicated they prefer this.
-      const price = currentTftPrices?.data?.filter(
-        (c) => c.name === craft.name
-      )[0];
+      if (currentSettings.autoPrice) {
+        let price = "";
 
-      // TODO: Limit low confidence.
-      craft.price = price;
+        price = currentTftPrices?.data?.filter((c) => c.name === craft.name)[0];
 
-      // Add the display price.
-      if (price?.exalt >= 1) {
-        craft.displayPrice = `${price.exalt}ex`;
-      } else if (price?.chaos > 0) {
-        craft.displayPrice = `${price.chaos}c`;
+        // TODO: Limit low confidence.
+        craft.price = price;
+
+        // Add the display price.
+        if (price?.exalt >= 1) {
+          craft.displayPrice = `${price.exalt}ex`;
+        } else if (price?.chaos > 0) {
+          craft.displayPrice = `${price.chaos}c`;
+        }
       }
 
       // Add the craft to the store.
