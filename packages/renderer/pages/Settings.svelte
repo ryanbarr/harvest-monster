@@ -358,7 +358,7 @@
             href="https://twitch.tv/little_fabz">little_fabz</ExtLink
           >. Russian translations by <ExtLink href="https://github.com/Stregon"
             >Stregon</ExtLink
-          ></p
+          >.</p
         >
         <p
           >Inspired by <ExtLink href="https://github.com/esge/PoE-HarvestVendor"
