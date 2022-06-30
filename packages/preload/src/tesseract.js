@@ -20,42 +20,41 @@ const craft_expressions = Object.keys(tft_crafts)
   })
   .reverse();
 const level_expression = /(?<=level\s)[0-9]+/i;
+let worker;
+
+(async () => {
+  log.info("Creating Tesseract worker...");
+  worker = createWorker({
+    cachePath: path.join(__dirname, "lang-data"),
+    logger: (v) => {
+      log.info(
+        `(${v.userJobId}) ${Math.ceil(v.progress * 100)}% - ${v.status}`
+      );
+      window.postMessage(v);
+    },
+  });
+  await worker.load();
+  await worker.loadLanguage();
+  await worker.initialize();
+})();
 
 export const tesseract = (blob, currentSettings) => {
   const segMode =
     segMap[currentSettings?.segmentationMode] ?? segMap.PSM_SINGLE_BLOCK;
   return new Promise(async (resolve, reject) => {
     try {
-      log.info("Creating Tesseract worker...");
-      const worker = createWorker({
-        cachePath: path.join(__dirname, "lang-data"),
-        logger: (v) => {
-          log.info(
-            `(${v.userJobId}) ${Math.ceil(v.progress * 100)}% - ${v.status}`
-          );
-          window.postMessage(v);
-        },
-      });
-      await worker.load();
-      await worker.loadLanguage();
-      await worker.initialize();
       await worker.setParameters({
         tessedit_pageseg_mode: segMode,
         tessedit_char_whitelist:
           "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-+%,. ",
       });
       const { data } = await worker.recognize(blob);
-      await worker.terminate();
 
       const crafts = [];
       const potential_exp = new RegExp(`(?=${craft_keywords.join("|")})`, "gi");
       const potential_crafts = data.text
         .replace(/\n/g, " ")
         .split(potential_exp);
-      const crafts_exp = new RegExp(
-        `(?=${Object.keys(tft_crafts).join("|")})`,
-        "gi"
-      );
 
       log.info("Identifying crafts...");
 
