@@ -101,7 +101,7 @@
         round
       />
       <Input
-        class="w-72 flex-grow"
+        class={`w-72 flex-grow ${craft.quantity === 0 ? "line-through" : ""}`}
         dark
         bind:value={craft["name"]}
         on:change={() => handleChange("name")}
