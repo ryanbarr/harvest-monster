@@ -3,7 +3,7 @@
   import ProgressBar from "../atoms/ProgressBar.svelte";
   import { closeAllModals } from "svelte-modals";
 
-  let message = "Articulating splines...";
+  let message = "Reticulating splines...";
   let progress = 4;
   export let isOpen;
 
