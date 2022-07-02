@@ -9,6 +9,7 @@ import {
 import { parsePrice } from "./utils/parsePrice";
 // @ts-ignore-line
 import { log, forceResize } from "#preload";
+import dictionaries from "./assets/dictionaries";
 
 const standardTheme = themes.filter((t) => t.id === HM_STANDARD_THEME)[0];
 
@@ -298,13 +299,12 @@ settings.subscribe(async (currentSettings) => {
   const currentDictionary = get(dictionary);
   const newCode = currentSettings?.language?.code;
   if (newCode !== currentDictionary?.code) {
-    const res = await fetch(`./assets/dictionaries/${newCode}.json`);
+    const dict = dictionaries[newCode];
     // If we don't have this dictionary, don't attempt to save it.
-    if (res.status === 404) return;
-    const newDict = await res.json();
+    if (!dict) return;
     dictionary.set({
       code: newCode,
-      value: newDict,
+      value: dict,
     });
   }
 });
