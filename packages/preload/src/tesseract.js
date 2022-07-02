@@ -34,6 +34,7 @@ let worker;
       window.postMessage(v);
     },
   });
+  Tesseract.setLogging(true);
   await worker.load();
   await worker.loadLanguage();
   await worker.initialize();
@@ -51,6 +52,8 @@ export const tesseract = (blob, currentSettings) => {
       });
       const { data } = await worker.recognize(blob);
 
+      log.info("Raw OCR text: ", data?.text);
+
       const crafts = [];
       const potential_exp = new RegExp(
         `(?=\\b${craft_keywords.join("\\b|\\b")}\\b)`,
@@ -60,11 +63,14 @@ export const tesseract = (blob, currentSettings) => {
         .replace(/\n/g, " ")
         .split(potential_exp);
 
+      log.info("Potential crafts: ", JSON.stringify(potential_crafts));
+
       log.info("Identifying crafts...");
 
       potential_crafts.forEach((value) => {
         for (let pair of craft_expressions) {
           if (pair[0].test(value)) {
+            log.info(`Hit craft on test of \`${pair[0]}\`: `, value);
             const level_guess = value.match(level_expression)?.[0] ?? 83;
             const level = parseInt(level_guess) ?? 83;
             crafts.push({
