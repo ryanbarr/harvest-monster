@@ -25,12 +25,26 @@ export const getOS = async () => {
 export const forceResize = async (requestedHeight) => {
   // This timeout forces the resize to take place after all changes have been made to the DOM.
   setTimeout(() => {
+    const autocomplete = document.getElementById("autocomplete");
+
     if (
       requestedHeight === null ||
       requestedHeight === undefined ||
       requestedHeight < 1
     ) {
       requestedHeight = document.getElementById("main-content").clientHeight;
+    }
+
+    // If autocomplete is open, account for it.
+    if (autocomplete) {
+      const rect = autocomplete.getBoundingClientRect();
+      const acHeight = rect.top + autocomplete.offsetHeight;
+      if (acHeight > requestedHeight) {
+        requestedHeight = acHeight;
+        document
+          .getElementById("main-content")
+          .setAttribute("style", `height: ${requestedHeight}`);
+      }
     }
 
     if (requestedHeight < 100) {

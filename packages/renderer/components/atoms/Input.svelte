@@ -11,7 +11,9 @@
 
 <input
   bind:value
+  on:blur
   on:change
+  on:focus
   on:keyup
   on:mousewheel
   class={`${

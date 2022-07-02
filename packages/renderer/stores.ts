@@ -36,6 +36,11 @@ export interface Currency {
   icon: string;
 }
 
+export interface Dictionary {
+  code: string;
+  value: object;
+}
+
 export interface Language {
   code: string;
   name: string;
@@ -287,4 +292,29 @@ page.subscribe(async () => {
   forceResize();
 });
 
-export { crafts, exaltToChaosRate, ninjaPrices, page, settings, tftPrices };
+const dictionary = writable<Dictionary>();
+
+settings.subscribe(async (currentSettings) => {
+  const currentDictionary = get(dictionary);
+  const newCode = currentSettings?.language?.code;
+  if (newCode !== currentDictionary?.code) {
+    const res = await fetch(`./assets/dictionaries/${newCode}.json`);
+    // If we don't have this dictionary, don't attempt to save it.
+    if (res.status === 404) return;
+    const newDict = await res.json();
+    dictionary.set({
+      code: newCode,
+      value: newDict,
+    });
+  }
+});
+
+export {
+  crafts,
+  dictionary,
+  exaltToChaosRate,
+  ninjaPrices,
+  page,
+  settings,
+  tftPrices,
+};

@@ -6,9 +6,7 @@
   import { page } from "../../stores";
 </script>
 
-<div
-  class="bg-background w-full h-full rounded-lg overflow-hidden bg-clip-content"
->
+<div class="bg-background w-full h-full rounded-lg bg-clip-content">
   <Titlebar />
   <Navigation />
   <div class="pt-32 relative">

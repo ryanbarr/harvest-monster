@@ -6,17 +6,20 @@
   import Input from "../atoms/Input.svelte";
   import NumberInput from "../atoms/NumberInput.svelte";
   import { DollarSignIcon, XIcon } from "svelte-feather-icons";
-  import { crafts, settings, exaltToChaosRate } from "../../stores";
+  import { crafts, settings, exaltToChaosRate, dictionary } from "../../stores";
   import { formatPrice } from "../../utils/formatPrice";
   import { warning } from "../../utils/toast";
   import { onDestroy, onMount } from "svelte";
-  import { forceResize } from "#preload";
+  import { forceResize, log } from "#preload";
   import { parsePrice } from "../../utils/parsePrice";
+  import Autocomplete from "./Autocomplete.svelte";
 
   let craft,
     index,
     fieldPrice,
-    priceError = false;
+    priceError = false,
+    suggestions = [],
+    isFocused = false;
 
   const handleChange = (field) => {
     crafts.edit(craft.key, field, craft[field]);
@@ -77,6 +80,45 @@
     }
   };
 
+  const handleSuggestions = async (e) => {
+    const name = craft["name"];
+    const dict = await get(dictionary);
+
+    // If we don't have autocomplete support for this language, don't try.
+    if (!dict) return;
+
+    let options = Object.keys(dict.value);
+
+    // Filter to only crafts that start with this input.
+    options = options.filter((v) =>
+      v.toLowerCase().startsWith(name.toLowerCase().trim())
+    );
+
+    // Only show five suggestions.
+    options.length = options.length > 5 ? 5 : options.length;
+
+    // If there is only one suggestion and it matches the current value, don't show it.
+    if (options.length === 1 && options[0] === name) {
+      options.length = 0;
+    }
+
+    suggestions = options;
+
+    forceResize();
+  };
+
+  const clearSuggestions = (e) => {
+    suggestions = null;
+    forceResize();
+  };
+
+  const acceptSuggestion = async (suggestion) => {
+    const dict = await get(dictionary);
+    craft["name"] = dict?.value[suggestion];
+    handleChange("name");
+    clearSuggestions();
+  };
+
   const unsubscribe = settings.subscribe(() => {
     fieldPrice = craft ? formatPrice(parsePrice(craft.displayPrice)) : "";
   });
@@ -98,20 +140,30 @@
         bind:value={craft["quantity"]}
         on:change={() => handleChange("quantity")}
         on:mousewheel={(e) => handleMousewheel(e)}
+        on:focus={() => clearSuggestions()}
         round
       />
-      <Input
-        class={`w-72 flex-grow ${craft.quantity === 0 ? "line-through" : ""}`}
-        dark
-        bind:value={craft["name"]}
-        on:change={() => handleChange("name")}
-        name="name"
-        id={`name-${craft.key}`}
-      />
+      <div class="relative w-72 flex-grow">
+        <Input
+          class={`w-full ${craft.quantity === 0 ? "line-through" : ""}`}
+          dark
+          bind:value={craft["name"]}
+          on:keyup={() => handleSuggestions()}
+          on:change={() => handleChange("name")}
+          name="name"
+          id={`name-${craft.key}`}
+        />
+        <Autocomplete
+          bind:suggestions
+          on:clickoutside={() => clearSuggestions()}
+          onSelect={acceptSuggestion}
+        />
+      </div>
       <Input
         class="w-12 text-center"
         bind:value={craft["level"]}
         on:change={() => handleChange("level")}
+        on:focus={() => clearSuggestions()}
         round
       />
       <Input
@@ -119,6 +171,7 @@
         hasError={priceError}
         bind:value={craft["displayPrice"]}
         on:keyup={adjustPrice}
+        on:focus={() => clearSuggestions()}
         round
       />
     </div>
