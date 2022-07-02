@@ -6,6 +6,37 @@ import os from "os";
 
 async function createWindow() {
   log.info("Creating the main window...");
+
+  ipcMain.handle("minimize", async () => {
+    browserWindow.minimize();
+  });
+
+  ipcMain.handle("version", async () => {
+    const version = app.getVersion();
+    log.info(`Reporting app version as v${version}.`);
+    return version;
+  });
+
+  ipcMain.handle("os", async () => {
+    const platform = os.platform();
+    log.info(`Reporting platform as ${platform}.`);
+    return platform;
+  });
+
+  ipcMain.handle("forceResize", async (event, requestedHeight) => {
+    const primaryDisplay = screen.getPrimaryDisplay();
+    const { height } = primaryDisplay.workAreaSize;
+    const maxHeight = parseInt(height * 0.7);
+    let setHeight = requestedHeight;
+
+    // Don't allow the window to get _too_ tall on forced resizes.
+    if (requestedHeight > maxHeight) {
+      setHeight = maxHeight;
+    }
+
+    browserWindow.setSize(browserWindow.getSize()[0], setHeight);
+  });
+
   const browserWindow = new BrowserWindow({
     // width: 705,
     // height: 760,
@@ -60,36 +91,6 @@ async function createWindow() {
   browserWindow.webContents.setWindowOpenHandler(({ url }) => {
     log.info("Opening external link...");
     shell.openExternal(url);
-  });
-
-  ipcMain.handle("minimize", async () => {
-    browserWindow.minimize();
-  });
-
-  ipcMain.handle("version", async () => {
-    const version = app.getVersion();
-    log.info(`Reporting app version as v${version}.`);
-    return version;
-  });
-
-  ipcMain.handle("os", async () => {
-    const platform = os.platform();
-    log.info(`Reporting platform as ${platform}.`);
-    return platform;
-  });
-
-  ipcMain.handle("forceResize", async (event, requestedHeight) => {
-    const primaryDisplay = screen.getPrimaryDisplay();
-    const { height } = primaryDisplay.workAreaSize;
-    const maxHeight = parseInt(height * 0.7);
-    let setHeight = requestedHeight;
-
-    // Don't allow the window to get _too_ tall on forced resizes.
-    if (requestedHeight > maxHeight) {
-      setHeight = maxHeight;
-    }
-
-    browserWindow.setSize(browserWindow.getSize()[0], setHeight);
   });
 
   return browserWindow;
