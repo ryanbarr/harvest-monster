@@ -115,12 +115,12 @@ const tft_crafts = {
     "Set Implicit, Basic Jewel",
   "set implicit abyss jewel timeless": "Set Implicit, Abyss/Timeless Jewel",
   "synthesise an item": "Synthesise an item",
-  "upgrade magic rare two high-tier": "Upgrade Magic to Rare 2 High Tier Mod",
-  "upgrade magic rare three high-tier": "Upgrade Magic to Rare 3 High Tier Mod",
-  "upgrade magic rare four high-tier": "Upgrade Magic to Rare 4 High Tier Mod",
   "upgrade magic rare four": "Upgrade Magic to Rare 4 Mod",
   "upgrade magic rare two": "Upgrade Magic to Rare 2 Mod",
   "upgrade magic rare three": "Upgrade Magic to Rare 3 Mod",
+  "upgrade magic rare two high-tier": "Upgrade Magic to Rare 2 High Tier Mod",
+  "upgrade magic rare three high-tier": "Upgrade Magic to Rare 3 High Tier Mod",
+  "upgrade magic rare four high-tier": "Upgrade Magic to Rare 4 High Tier Mod",
   "upgrade normal magic two high-tier":
     "Upgrade Normal to Magic 2 High Tier Mod",
   "upgrade normal magic one high-tier":
