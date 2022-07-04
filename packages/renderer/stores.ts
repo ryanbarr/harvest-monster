@@ -75,6 +75,7 @@ export interface Settings {
   customNotes: string;
   postFormatter: string;
   segmentationMode: SegmentationMode;
+  openDiscordOnCopy: boolean;
 }
 
 export interface TFTData {
@@ -99,6 +100,7 @@ const defaultSettings: Settings = {
   customNotes: "",
   postFormatter: "standard",
   segmentationMode: SegmentationMode.PSM_SINGLE_BLOCK,
+  openDiscordOnCopy: false,
 };
 
 /**

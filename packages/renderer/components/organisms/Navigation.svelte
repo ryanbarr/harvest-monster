@@ -7,7 +7,6 @@
   import { getInventory } from "../../utils/getInventory";
   import { crafts, exaltToChaosRate, settings } from "../../stores";
   import { onDestroy } from "svelte";
-  import { get } from "svelte/store";
   import { success } from "../../utils/toast";
 
   let inventory = getInventory($crafts);
@@ -75,6 +74,9 @@
               text: "Paste your clipboard contents in the appropriate TFT channel.",
             });
             copyPost(formatPost());
+            if ($settings?.openDiscordOnCopy) {
+              window.open(channelLink, "_blank");
+            }
           }}>{$_("nav_copy")}</PrimaryButton
         >
       </div>

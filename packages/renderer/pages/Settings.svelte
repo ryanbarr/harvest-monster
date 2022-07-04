@@ -167,6 +167,25 @@
           </div>
         </InputGroup>
         <InputGroup>
+          <div class="flex flex-row items-center space-x-8 justify-between">
+            <div class="flex flex-col">
+              <label for="openDiscordOnCopy">{$_("settings_opendiscord")}</label
+              >
+              <span class="text-xs">{$_("settings_opendiscord_desc")}</span>
+            </div>
+            <Toggle
+              on:click={async () => {
+                settings.changeSetting(
+                  "openDiscordOnCopy",
+                  !$settings.openDiscordOnCopy
+                );
+                settings.save();
+              }}
+              enabled={$settings.openDiscordOnCopy}
+            />
+          </div>
+        </InputGroup>
+        <InputGroup>
           <label for="formatter">{$_("settings_formatter")}</label>
           <span class="text-xs">{$_("settings_formatter_desc")}</span>
           <Select

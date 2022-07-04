@@ -25,6 +25,8 @@
   "settings_language_desc": "Adjust the language of HarvestMonster. Craft posts will remain in English.",
   "settings_league": "Path of Exile League",
   "settings_league_desc": "Select the league in which your crafts are available.",
+  "settings_opendiscord": "Open Discord on copy",
+  "settings_opendiscord_desc": "Automatically open the correct TFT trading channel when copying to clipboard.",
   "settings_post": "Post settings",
   "settings_segmentation": "OCR Segmentation mode",
   "settings_segmentation_desc": "The segmentation mode determines how the image processing library scans your screenshots and converts them to text. Adjusting this balances accuracy against processing speed.",
