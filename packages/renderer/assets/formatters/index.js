@@ -1,9 +1,10 @@
-import standard from "./standard";
-import standardEmoji from "./standardEmoji";
+import markdown from "./markdown";
 import plainText from "./plainText";
 import plainTextEmoji from "./plainTextEmoji";
 import richText from "./richText";
 import richTextEmoji from "./richTextEmoji";
+import standard from "./standard";
+import standardEmoji from "./standardEmoji";
 
 const formatters = {
   standard,
@@ -12,6 +13,7 @@ const formatters = {
   plainTextEmoji,
   richText,
   richTextEmoji,
+  markdown,
 };
 export const formatterOptions = [];
 
