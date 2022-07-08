@@ -53,7 +53,7 @@ export default {
       post += "~~";
     }
 
-    post += `[0;36m${craft.quantity}x[0m[0;30m |[1;37m ${craft.name}${buffer} [0;30m |[0;34m[${
+    post += `[0;36m${craft.quantity}x[0m[0;30m |[1;37m ${craft.name}${buffer} [0;30m | [0;34m[${
       craft.level > 0 ? craft.level : "83"
     }] [0;33m<${formatPrice(parsePrice(craft.displayPrice))}>`;
 
