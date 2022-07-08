@@ -1,3 +1,4 @@
+import ansi from "./ansi";
 import markdown from "./markdown";
 import plainText from "./plainText";
 import plainTextEmoji from "./plainTextEmoji";
@@ -14,6 +15,7 @@ const formatters = {
   richText,
   richTextEmoji,
   markdown,
+  ansi,
 };
 export const formatterOptions = [];
 
