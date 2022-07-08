@@ -9,19 +9,19 @@ export const parsePrice = (displayPrice) => {
   let normalizedValue = parseInt(value[0]);
   const remainder = value % 1;
 
-  if (type[0] === "ex" && remainder > 0) {
+  if (type?.[0] === "ex" && remainder > 0) {
     value = parseFloat(value[0]).toFixed(2);
   } else {
     value = parseInt(value[0]);
   }
 
-  if (type[0] === "ex") {
+  if (type?.[0] === "ex") {
     normalizedValue = value * exchangeRate;
   }
 
   return {
     value: value,
-    type: type[0],
+    type: type?.[0],
     normalizedValue,
   };
 };
