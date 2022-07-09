@@ -2,7 +2,8 @@
   import Titlebar from "../organisms/Titlebar.svelte";
   import Navigation from "../organisms/Navigation.svelte";
   import Crafts from "../../pages/Crafts.svelte";
-  import SettingsPage from "../../pages/Settings.svelte";
+  import Settings from "../../pages/Settings.svelte";
+  import Prices from "../../pages/Prices.svelte";
   import { page } from "../../stores";
 </script>
 
@@ -13,7 +14,9 @@
     {#if $page === "crafts"}
       <Crafts />
     {:else if $page === "settings"}
-      <SettingsPage />
+      <Settings />
+    {:else if $page === "prices"}
+      <Prices />
     {/if}
   </div>
 </div>

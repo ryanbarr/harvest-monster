@@ -4,9 +4,19 @@
     name = "",
     value = "",
     dark = false,
+    placeholder = "",
     round = false,
     hasError = false;
-  export { clazz as class, dark, hasError, id, name, round, value };
+  export {
+    clazz as class,
+    dark,
+    hasError,
+    id,
+    name,
+    placeholder,
+    round,
+    value,
+  };
 </script>
 
 <input
@@ -25,4 +35,5 @@
   } ${round ? "rounded-xl" : "rounded-lg"} ${clazz}`}
   {name}
   {id}
+  {placeholder}
 />

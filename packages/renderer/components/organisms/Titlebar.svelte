@@ -3,6 +3,7 @@
   import { _ } from "svelte-i18n";
   import ToolbarButton from "../atoms/ToolbarButton.svelte";
   import {
+    DollarSignIcon,
     MinusIcon,
     ServerIcon,
     SettingsIcon,
@@ -36,6 +37,15 @@
       <span class="inline-flex items-center">
         <ServerIcon size="1.25x" class="mr-2" />
         {$_("nav_crafts")}
+      </span>
+    </button>
+    <button
+      class={`border-l-4 ${$page === "prices" ? "active" : "inactive"}`}
+      on:click={() => page.set("prices")}
+    >
+      <span class="inline-flex items-center">
+        <DollarSignIcon size="1.25x" class="mr-1" />
+        {$_("nav_prices")}
       </span>
     </button>
     <button
