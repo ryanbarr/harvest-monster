@@ -5,6 +5,7 @@ import logger from "electron-log";
 import { copyPost } from "./copyPost";
 import { fetchNinjaPrices } from "./fetchNinjaPrices";
 import { fetchTFTPrices } from "./fetchTFTPrices";
+import { fetchLatestVersion } from "./fetchLatestVersion";
 import { ipcRenderer } from "electron";
 import { parseCrafts } from "./parseCrafts";
 
@@ -55,4 +56,5 @@ export const forceResize = async (requestedHeight) => {
   }, 0);
 };
 
-export { copyPost, fetchNinjaPrices, fetchTFTPrices, minimize, parseCrafts };
+// prettier-ignore
+export { copyPost, fetchLatestVersion, fetchNinjaPrices, fetchTFTPrices, minimize, parseCrafts };

@@ -9,7 +9,7 @@
   import { onDestroy, onMount } from "svelte";
   import { isLoading, locale } from "svelte-i18n";
   import { forceResize } from "#preload";
-  import { fetchData } from "./utils/fetchData.js";
+  import { fetchData } from "./utils/fetchData";
 
   /**
    * This allows us to subscribe to store changes and change CSS variables

@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte";
   import { _ } from "svelte-i18n";
   import ToolbarButton from "../atoms/ToolbarButton.svelte";
   import {
@@ -9,6 +10,13 @@
   } from "svelte-feather-icons";
   import { minimize } from "#preload";
   import { page } from "../../stores";
+  import { isNewVersionAvailable } from "../../utils/isNewVersionAvailable";
+
+  let updateAvailable = false;
+
+  onMount(async () => {
+    updateAvailable = await isNewVersionAvailable();
+  });
 </script>
 
 <div
@@ -41,10 +49,17 @@
     </button>
   </nav>
   <div class="inline-flex items-center flex-grow justify-end space-x-0.5 pr-2">
-    <span
-      class="bg-background text-highlight text-xs font-bold px-1 py-0.5 rounded mr-4"
-      >BETA BUILD</span
-    >
+    {#if updateAvailable}
+      <span
+        class="bg-background text-highlight text-xs font-bold px-1 py-0.5 rounded mr-4"
+        >UPDATE AVAILABLE</span
+      >
+    {:else}
+      <span
+        class="bg-background text-highlight text-xs font-bold px-1 py-0.5 rounded mr-4"
+        >BETA BUILD</span
+      >
+    {/if}
     <ToolbarButton on:click={() => minimize()}
       ><MinusIcon size="1x" /></ToolbarButton
     >
