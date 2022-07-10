@@ -14,6 +14,9 @@ Some of the unique features HarvestMonster includes are:
 
 * 💱 **Automatic price adjustments:** exalt-to-chaos currency conversions and craft prices are regularly fetched, resulting in crafts that are always priced at the current market rate.
 * 🔼 **Sortable crafts:** crafts can be sorted with a primary and secondary sort, so you stay in control of how crafts are presented in the app and in your listings.
+* 🧠 **Craft autocompletion:** upon manually entering crafts, you'll receive locale-specific autocomplete recommendations which insert the English TFT craft identifier for you.
+* 🏃‍♀️ **Share posts quickly:** click the Discord button, or enable auto-open Discord on copy in your settings, to quickly open the correct TFT Harvest trading channel for your league.
+* 💰 **Price catalog**: browse, filter, and sort all of the TFT crafts right inside the app to help you quickly identify which crafts are worth storing.
 * 🎨 **Preset and customizable themes:** choose from over a dozen preset themes, adjust one to your liking, or supply your own colors to make the tool fit your style and preference.
 * 🌐 **Language support:** the beta version of our tool ships with basic translations for half-a-dozen languages, including Spanish, Japanese, Korean, Portuguese, Russian, and Simplified Chinese.
 * 🖥️ **Support for all major platforms:** whether you play on Windows, your favorite flavor of Linux, or on Mac via cloud gaming or the native installer, HarvestMonster aims to work for you. This tool is actively developed on both Windows and Mac and is tested on Linux regularly.
