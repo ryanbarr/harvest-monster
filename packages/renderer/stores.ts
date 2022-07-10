@@ -9,7 +9,7 @@ import {
 import { parsePrice } from "./utils/parsePrice";
 // @ts-ignore-line
 import { log, forceResize } from "#preload";
-import dictionaries from "./assets/dictionaries";
+import dictionaries from "./assets/locales/_tft";
 
 const standardTheme = themes.filter((t) => t.id === HM_STANDARD_THEME)[0];
 

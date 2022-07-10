@@ -10,7 +10,7 @@
   import { formatPrice } from "../../utils/formatPrice";
   import { warning } from "../../utils/toast";
   import { onDestroy, onMount } from "svelte";
-  import { forceResize, log } from "#preload";
+  import { forceResize } from "#preload";
   import { parsePrice } from "../../utils/parsePrice";
   import Autocomplete from "./Autocomplete.svelte";
 
@@ -87,7 +87,7 @@
     // If we don't have autocomplete support for this language, don't try.
     if (!dict) return;
 
-    let options = Object.keys(dict.value);
+    let options = Object.values(dict.value);
 
     // Filter to only crafts that start with this input.
     options = options.filter((v) =>
@@ -114,7 +114,9 @@
 
   const acceptSuggestion = async (suggestion) => {
     const dict = await get(dictionary);
-    craft["name"] = dict?.value[suggestion];
+    craft["name"] = Object.keys(dict?.value).find(
+      (v) => dict?.value[v] === suggestion
+    );
     handleChange("name");
     clearSuggestions();
   };
