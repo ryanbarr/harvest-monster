@@ -95,7 +95,7 @@
   onDestroy(unsubscribe);
 </script>
 
-<div class="py-4 px-8 overflow-y-auto">
+<div class="py-4 px-8 pt-20 overflow-y-auto">
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4">
     <Container>
       <H2>{$_("settings_user")}</H2>

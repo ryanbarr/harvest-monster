@@ -3,6 +3,6 @@
   import { crafts } from "../stores";
 </script>
 
-<div class="p-2">
+<div class="p-2 pt-32">
   <CraftList bind:crafts={$crafts} />
 </div>

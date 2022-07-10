@@ -61,8 +61,8 @@
   onDestroy(unsubscribe);
 </script>
 
-<div class="p-2 flex flex-col">
-  <div class="flex flex-row pt-1 pb-3">
+<div class="p-2 pt-16 flex flex-col">
+  <div class="flex flex-row pt-3 pb-3">
     <Input
       dark
       class="w-full"
@@ -73,7 +73,7 @@
   </div>
   <table class="table-fixed">
     <thead class="text-left">
-      <tr class="sticky top-32 z-10">
+      <tr class="sticky top-[4.25rem] shadow z-10">
         <th
           class="text-sm px-4 py-2 bg-container rounded-l-lg cursor-pointer"
           colspan={2}
