@@ -63,9 +63,15 @@
   };
 
   const handleFilter = () => {
-    prices = data.filter((v) =>
-      v.name.toLowerCase().includes(filterText.toLowerCase())
-    );
+    prices = data.filter((v) => {
+      const matchesName = v.name
+        .toLowerCase()
+        .includes(filterText.toLowerCase());
+      const matchesEnglishName = v.en_name
+        .toLowerCase()
+        .includes(filterText.toLowerCase());
+      return matchesName || matchesEnglishName;
+    });
     handleSort();
   };
 
