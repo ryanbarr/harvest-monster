@@ -3,10 +3,11 @@
   import { onDestroy, onMount } from "svelte";
   import { fetchData } from "../utils/fetchData";
   import { determinePrice } from "../utils/determinePrice";
-  import { tftPrices } from "../stores";
+  import { settings, tftPrices } from "../stores";
   import Input from "../components/atoms/Input.svelte";
   import { forceResize } from "#preload";
   import { ChevronDownIcon, ChevronUpIcon } from "svelte-feather-icons";
+  import tftTranslations from "../assets/locales/_tft";
 
   let filterText;
   let data = [];
@@ -14,6 +15,8 @@
   $: sortDirection = "ascending";
   $: Icon = sortDirection === "ascending" ? ChevronUpIcon : ChevronDownIcon;
   $: prices = [];
+
+  console.log($settings.language.code);
 
   onMount(async () => {
     // Get the latest pricing data, since the user explicitly loaded this page.
@@ -29,6 +32,20 @@
       sortDirection = "ascending";
     }
     handleSort();
+  };
+
+  const handleTranslate = () => {
+    const languageCode = $settings.language.code;
+    const translations =
+      tftTranslations?.[languageCode] ?? tftTranslations["en"];
+    data = data.map((v) => {
+      return {
+        ...v,
+        en_name: v.name,
+        name: translations[v.name],
+      };
+    });
+    prices = [...data];
   };
 
   const handleSort = () => {
@@ -55,6 +72,7 @@
   const unsubscribe = tftPrices.subscribe((tftData) => {
     data = tftData.data;
     prices = tftData.data;
+    handleTranslate();
     handleSort();
   });
 
@@ -109,9 +127,13 @@
       {#each prices as craft, i}
         <tr>
           <td
-            class={`px-4 py-1 rounded-l-lg ${
+            class={`group px-4 py-1 rounded-l-lg ${
               i % 2 === 1 ? "bg-container" : ""
-            }`}>{craft.name}</td
+            }`}
+          >
+            <span class="inline-block group-hover:hidden">{craft.name}</span
+            ><span class="hidden group-hover:inline-block">{craft.en_name}</span
+            ></td
           >
           <td class={`${i % 2 === 1 ? "bg-container" : ""}`}>
             {#if craft.lowConfidence}
