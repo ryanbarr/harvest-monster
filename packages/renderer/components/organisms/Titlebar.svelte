@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import { _ } from "svelte-i18n";
   import ToolbarButton from "../atoms/ToolbarButton.svelte";
+  import ExtLink from "../atoms/ExtLink.svelte";
   import {
     DollarSignIcon,
     MinusIcon,
@@ -60,9 +61,10 @@
   </nav>
   <div class="inline-flex items-center flex-grow justify-end space-x-0.5 pr-2">
     {#if updateAvailable}
-      <span
-        class="bg-background text-highlight text-xs font-bold px-1 py-0.5 rounded mr-4"
-        >UPDATE AVAILABLE</span
+      <ExtLink
+        href="https://www.harvestmonster.com"
+        class="bg-background text-highlight text-xs font-bold px-1 py-0.5 rounded mr-4 no-underline cursor-pointer"
+        >UPDATE AVAILABLE</ExtLink
       >
     {:else}
       <span
