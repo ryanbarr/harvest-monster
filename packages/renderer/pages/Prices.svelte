@@ -38,28 +38,33 @@
     const languageCode = $settings.language.code;
     const translations =
       tftTranslations?.[languageCode] ?? tftTranslations["en"];
-    data = data.map((v) => {
-      return {
-        ...v,
-        en_name: v.name,
-        name: translations[v.name],
-      };
-    });
-    prices = [...data];
+
+    if (data) {
+      data = data.map((v) => {
+        return {
+          ...v,
+          en_name: v.name,
+          name: translations[v.name],
+        };
+      });
+      prices = [...data];
+    }
   };
 
   const handleSort = () => {
-    prices.sort((a, b) => {
-      const ax = a[sortColumn];
-      const bx = b[sortColumn];
+    if (prices && prices?.length > 0) {
+      prices.sort((a, b) => {
+        const ax = a[sortColumn];
+        const bx = b[sortColumn];
 
-      if (sortDirection === "ascending") {
-        return ax > bx ? 1 : -1;
-      } else {
-        return bx > ax ? 1 : -1;
-      }
-    });
-    prices = [...prices];
+        if (sortDirection === "ascending") {
+          return ax > bx ? 1 : -1;
+        } else {
+          return bx > ax ? 1 : -1;
+        }
+      });
+      prices = [...prices];
+    }
   };
 
   const handleFilter = () => {
