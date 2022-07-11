@@ -8,6 +8,7 @@ import { fetchTFTPrices } from "./fetchTFTPrices";
 import { fetchLatestVersion } from "./fetchLatestVersion";
 import { ipcRenderer } from "electron";
 import { parseCrafts } from "./parseCrafts";
+import { hasClipboardImage } from "./hasClipboardImage";
 
 export const log = logger;
 
@@ -57,4 +58,4 @@ export const forceResize = async (requestedHeight) => {
 };
 
 // prettier-ignore
-export { copyPost, fetchLatestVersion, fetchNinjaPrices, fetchTFTPrices, minimize, parseCrafts };
+export { copyPost, fetchLatestVersion, fetchNinjaPrices, fetchTFTPrices, hasClipboardImage, minimize, parseCrafts };

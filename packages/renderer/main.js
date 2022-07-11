@@ -6,7 +6,7 @@ import { error, success, warning } from "./utils/toast";
 import { fetchData } from "./utils/fetchData";
 import { get } from "svelte/store";
 import { crafts, settings, tftPrices } from "./stores";
-import { forceResize, parseCrafts } from "#preload";
+import { forceResize, hasClipboardImage, parseCrafts } from "#preload";
 
 // Bind the application to the root element.
 const app = new App({
@@ -14,64 +14,68 @@ const app = new App({
 });
 
 document.onpaste = async function () {
-  const currentSettings = get(settings);
-  openModal(CraftProcessingModal);
+  if (hasClipboardImage()) {
+    const currentSettings = get(settings);
+    openModal(CraftProcessingModal);
 
-  fetchData();
-  forceResize();
-  let newCrafts;
-
-  try {
-    newCrafts = await parseCrafts(currentSettings);
-  } catch (e) {
-    error({
-      title: "Unable to process crafts!",
-      text: "There was something wrong with what you pasted. Make sure an image is on your clipboard and try again.",
-    });
-    closeAllModals();
+    fetchData();
     forceResize();
-    return;
-  }
+    let newCrafts;
 
-  const currentTftPrices = get(tftPrices);
-
-  // If we have parsed new crafts, build and save.
-  if (newCrafts && newCrafts.length > 0) {
-    for (let craft of newCrafts) {
-      if (currentSettings.autoPrice) {
-        let price = "";
-
-        price = currentTftPrices?.data?.filter((c) => c.name === craft.name)[0];
-
-        // TODO: Limit low confidence.
-        craft.price = price;
-
-        // Add the display price.
-        if (price?.exalt >= 1) {
-          craft.displayPrice = `${price.exalt}ex`;
-        } else if (price?.chaos > 0) {
-          craft.displayPrice = `${price.chaos}c`;
-        }
-      }
-
-      // Add the craft to the store.
-      crafts.add(craft);
+    try {
+      newCrafts = await parseCrafts(currentSettings);
+    } catch (e) {
+      error({
+        title: "Unable to process crafts!",
+        text: "There was something wrong with what you pasted. Make sure an image is on your clipboard and try again.",
+      });
+      closeAllModals();
+      forceResize();
+      return;
     }
-    // Sort the crafts based on current settings.
-    crafts.sort();
-    // Save all of the crafts to memory.
-    crafts.save();
-    forceResize();
 
-    success({
-      title: `${newCrafts.length} crafts added`,
-      text: `Success! We found ${newCrafts.length} crafts in your screenshot. Check to make sure everything looks right!`,
-    });
-  } else {
-    warning({
-      title: "No crafts found!",
-      text: "Ruh roh raggy. We didn't find any crafts in that screenshot. Make sure you get a clear capture.",
-    });
+    // If we have parsed new crafts, build and save.
+    if (newCrafts && newCrafts.length > 0) {
+      const currentTftPrices = get(tftPrices);
+
+      for (let craft of newCrafts) {
+        if (currentSettings.autoPrice) {
+          let price = "";
+
+          price = currentTftPrices?.data?.filter(
+            (c) => c.name === craft.name
+          )[0];
+
+          // TODO: Limit low confidence.
+          craft.price = price;
+
+          // Add the display price.
+          if (price?.exalt >= 1) {
+            craft.displayPrice = `${price.exalt}ex`;
+          } else if (price?.chaos > 0) {
+            craft.displayPrice = `${price.chaos}c`;
+          }
+        }
+
+        // Add the craft to the store.
+        crafts.add(craft);
+      }
+      // Sort the crafts based on current settings.
+      crafts.sort();
+      // Save all of the crafts to memory.
+      crafts.save();
+      forceResize();
+
+      success({
+        title: `${newCrafts.length} crafts added`,
+        text: `Success! We found ${newCrafts.length} crafts in your screenshot. Check to make sure everything looks right!`,
+      });
+    } else {
+      warning({
+        title: "No crafts found!",
+        text: "Ruh roh raggy. We didn't find any crafts in that screenshot. Make sure you get a clear capture.",
+      });
+    }
   }
 };
 
