@@ -16,8 +16,6 @@
   $: Icon = sortDirection === "ascending" ? ChevronUpIcon : ChevronDownIcon;
   $: prices = [];
 
-  console.log($settings.language.code);
-
   onMount(async () => {
     // Get the latest pricing data, since the user explicitly loaded this page.
     await fetchData(true);
