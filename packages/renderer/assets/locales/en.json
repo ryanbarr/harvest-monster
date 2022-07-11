@@ -38,7 +38,5 @@
   "settings_willing_desc": "Adds a note to your posts indicating that you are willing to stream the performed services live in Discord.",
   "settings_text_color": "Text color",
   "settings_theme": "Theme settings",
-  "settings_user": "User settings",
-  "settings_username": "Path of Exile Username",
-  "settings_username_desc": "This is the name other players will use to message you."
+  "settings_user": "User settings"
 }

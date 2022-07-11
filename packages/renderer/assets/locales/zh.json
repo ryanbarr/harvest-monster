@@ -34,7 +34,5 @@
   "settings_willing_desc": "在您的帖子中添加一条注释，表明您愿意在 Discord 中直播已执行的服务。",
   "settings_text_color": "文字颜色",
   "settings_theme": "主题设置",
-  "settings_user": "用户设置",
-  "settings_username": "Path of Exile 用户名",
-  "settings_username_desc": "这是其他玩家用来向您发送消息的名称。"
+  "settings_user": "用户设置"
 }

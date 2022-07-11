@@ -59,7 +59,6 @@ export enum SegmentationMode {
 }
 
 export interface Settings {
-  username: string;
   language: Language;
   league: League;
   theme: string;
@@ -84,7 +83,6 @@ export interface TFTData {
 }
 
 const defaultSettings: Settings = {
-  username: "",
   language: { code: "en", name: "English" },
   league: { code: "lsc", name: "Sentinel Softcore" },
   theme: "standard",

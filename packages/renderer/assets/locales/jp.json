@@ -34,7 +34,5 @@
   "settings_willing_desc": "実行したサービスをDiscordでライブストリーミングする用意があることを示すメモを投稿に追加します。",
   "settings_text_color": "テキストの色",
   "settings_theme": "テーマ設定",
-  "settings_user": "ユーザー設定",
-  "settings_username": "Path of Exile ユーザー名",
-  "settings_username_desc": "これは、他のプレイヤーがあなたにメッセージを送るために使用する名前です。"
+  "settings_user": "ユーザー設定"
 }

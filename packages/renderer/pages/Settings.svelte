@@ -101,15 +101,6 @@
       <H2>{$_("settings_user")}</H2>
       <Card class="space-y-4">
         <InputGroup>
-          <label for="username">{$_("settings_username")}</label>
-          <span class="text-xs">{$_("settings_username_desc")}</span>
-          <Input
-            name="username"
-            bind:value={$settings.username}
-            on:change={() => settings.save()}
-          />
-        </InputGroup>
-        <InputGroup>
           <label for="league">{$_("settings_league")}</label>
           <span class="text-xs">{$_("settings_league_desc")}</span>
           <Select

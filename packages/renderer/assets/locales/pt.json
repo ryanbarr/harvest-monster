@@ -34,7 +34,5 @@
   "settings_willing_desc": "Adiciona uma nota às suas postagens indicando que você deseja transmitir os serviços realizados ao vivo no Discord.",
   "settings_text_color": "Cor do texto",
   "settings_theme": "Definições de tema",
-  "settings_user": "Definições de usuário",
-  "settings_username": "Nome do usuário no jogo",
-  "settings_username_desc": "Este será o nome que os outros jogadores irão usar para enviar mensagens."
+  "settings_user": "Definições de usuário"
 }

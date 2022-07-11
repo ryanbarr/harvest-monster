@@ -34,7 +34,5 @@
   "settings_willing_desc": "Discord에서 수행된 서비스를 라이브로 스트리밍할 의향이 있음을 나타내는 메모를 게시물에 추가합니다.",
   "settings_text_color": "텍스트 색상",
   "settings_theme": "주제 설정",
-  "settings_user": "사용자 설정",
-  "settings_username": "Path of Exile 사용자 이름",
-  "settings_username_desc": "이것은 다른 플레이어가 당신에게 메시지를 보낼 때 사용할 이름입니다."
+  "settings_user": "사용자 설정"
 }
