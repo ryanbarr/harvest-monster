@@ -6,7 +6,6 @@
   import H2 from "../components/atoms/H2.svelte";
   import InputGroup from "../components/atoms/InputGroup.svelte";
   import Select from "../components/atoms/Select.svelte";
-  import Input from "../components/atoms/Input.svelte";
   import ExtLink from "../components/atoms/ExtLink.svelte";
   import Toggle from "../components/atoms/Toggle.svelte";
   import PrimaryButton from "../components/atoms/PrimaryButton.svelte";
@@ -22,6 +21,7 @@
   import DetailedSelect from "../components/atoms/DetailedSelect.svelte";
   import { openModal } from "svelte-modals";
   import ExampleModal from "../components/organisms/ExampleModal.svelte";
+  import { updateCraftPrices } from "../utils/updateCraftPrices";
 
   let languages = [
     { code: "en", name: "English" }, // English
@@ -244,6 +244,9 @@
                 settings.changeSetting("autoPrice", !$settings.autoPrice);
                 settings.save();
                 await fetchData();
+                if ($settings.autoPrice) {
+                  updateCraftPrices();
+                }
               }}
               enabled={$settings.autoPrice}
             />
@@ -254,16 +257,17 @@
             <div class="flex flex-col">
               <label for="fetchManually">Fetch latest prices</label>
               <span class="text-xs"
-                >Force HarvestMonster to download the latest TFT craft prices
-                and PoE.Ninja currency rates.</span
+                >Force HarvestMonster to download and apply the latest TFT craft
+                prices and PoE.Ninja currency rates.</span
               >
             </div>
             <PrimaryButton
               class="inline-flex items-center whitespace-nowrap"
               on:click={async () => {
                 await fetchData(true);
+                updateCraftPrices();
                 success({
-                  title: "Pricing data fetched",
+                  title: "Pricing data fetched and applied",
                   text: "The latest available data from TFT and PoE.Ninja has been downloaded and applied.",
                 });
               }}
