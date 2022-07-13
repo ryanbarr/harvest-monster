@@ -278,10 +278,6 @@
         </InputGroup>
       </Card>
     </Container>
-    <!-- <Container>
-      <H2>{$_("settings_discord")}</H2>
-      <Card>Test</Card>
-    </Container> -->
     <Container>
       <H2>{$_("settings_theme")}</H2>
       <Card class="grid grid-cols-1 sm:grid-cols-3 gap-6">
