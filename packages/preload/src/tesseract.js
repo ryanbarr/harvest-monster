@@ -43,6 +43,7 @@ let worker;
 export const tesseract = (blob, currentSettings) => {
   const segMode =
     segMap[currentSettings?.segmentationMode] ?? segMap.PSM_SINGLE_BLOCK;
+  const fallback = currentSettings?.fallback ? 83 : "";
   return new Promise(async (resolve, reject) => {
     try {
       await worker.setParameters({
@@ -71,8 +72,8 @@ export const tesseract = (blob, currentSettings) => {
         for (let pair of craft_expressions) {
           if (pair[0].test(value)) {
             log.info(`Hit craft on test of \`${pair[0]}\`: `, value);
-            const level_guess = value.match(level_expression)?.[0] ?? 83;
-            const level = parseInt(level_guess) ?? 83;
+            const level_guess = value.match(level_expression)?.[0] ?? fallback;
+            const level = parseInt(level_guess) ?? fallback;
             crafts.push({
               id: Symbol("harvest_craft"),
               key: pair[1],

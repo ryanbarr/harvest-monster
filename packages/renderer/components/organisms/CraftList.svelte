@@ -1,7 +1,7 @@
 <script>
   import { _ } from "svelte-i18n";
   import { onMount } from "svelte";
-  import { crafts as craftStore } from "../../stores";
+  import { crafts as craftStore, settings } from "../../stores";
   import CraftRow from "../molecules/CraftRow.svelte";
   import ColumnHeader from "../atoms/ColumnHeader.svelte";
   import Button from "../atoms/Button.svelte";
@@ -18,7 +18,7 @@
     const key = `custom-craft-${new Date().getTime()}`;
     craftStore.add({
       key,
-      level: 83,
+      level: $settings?.fallback ? 83 : "",
       name: "",
       price: 0,
       quantity: 1,

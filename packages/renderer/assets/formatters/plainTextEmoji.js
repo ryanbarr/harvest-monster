@@ -48,7 +48,8 @@ export default {
 
     return post;
   },
-  craft: (craft) => {
+  craft: (craft, { fallback }) => {
+    const fb = fallback ? "83" : "";
     const emoji = findEmoji(craft.name);
     let post = "";
 
@@ -59,7 +60,7 @@ export default {
     }
 
     post += `${craft.quantity}x ${emoji} ${craft.name} [${
-      craft.level > 0 ? craft.level : "83"
+      craft.level > 0 ? craft.level : fb
     }] <${formatPrice(parsePrice(craft.displayPrice))}>`;
 
     if (craft.quantity === 0) {

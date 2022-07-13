@@ -344,6 +344,21 @@
       <H2>Advanced settings</H2>
       <Card class="space-y-4">
         <InputGroup>
+          <div class="flex flex-row items-center space-x-8 justify-between">
+            <div class="flex flex-col">
+              <label for="fallback">{$_("settings_fallback")}</label>
+              <span class="text-xs">{$_("settings_fallback_desc")}</span>
+            </div>
+            <Toggle
+              on:click={async () => {
+                settings.changeSetting("fallback", !$settings.fallback);
+                settings.save();
+              }}
+              enabled={$settings.fallback}
+            />
+          </div>
+        </InputGroup>
+        <InputGroup>
           <label for="formatter">{$_("settings_segmentation")}</label>
           <span class="text-xs">{$_("settings_segmentation_desc")}</span>
           <DetailedSelect

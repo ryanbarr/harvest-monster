@@ -36,8 +36,9 @@ export default {
 
     return post;
   },
-  craft: (craft, { maxCraftLength }) => {
+  craft: (craft, { maxCraftLength, fallback }) => {
     let post = "";
+    const fb = fallback ? "83" : "";
     const quantityLengthAdjustment = `${craft.quantity}`.length - 1;
     let bufferLength =
       maxCraftLength - craft.name.length + 3 - quantityLengthAdjustment;
@@ -49,7 +50,7 @@ export default {
     }
 
     post += `[0;36m${craft.quantity}x[0m[0;30m |[1;37m ${craft.name}${buffer} [0;30m | [0;34m[${
-      craft.level > 0 ? craft.level : "83"
+      craft.level > 0 ? craft.level : fb
     }] [0;33m<${formatPrice(parsePrice(craft.displayPrice))}>`;
 
     if (craft.quantity === 0) {

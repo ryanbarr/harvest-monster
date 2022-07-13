@@ -36,8 +36,9 @@ export default {
 
     return post;
   },
-  craft: (craft) => {
+  craft: (craft, { fallback }) => {
     let post = "";
+    const fb = fallback ? "83" : "";
 
     post += "   ";
 
@@ -46,7 +47,7 @@ export default {
     }
 
     post += `${craft.quantity}x ${craft.name} [${
-      craft.level > 0 ? craft.level : "83"
+      craft.level > 0 ? craft.level : fb
     }] <${formatPrice(parsePrice(craft.displayPrice))}>`;
 
     if (craft.quantity === 0) {

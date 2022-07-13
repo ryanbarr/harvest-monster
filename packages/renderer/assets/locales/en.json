@@ -22,6 +22,8 @@
   "settings_discord": "Discord connection",
   "settings_exchange": "Include exchange rate",
   "settings_exchange_desc": "Adds the current exchange rate of chaos to exalt from PoE.Ninja to your post.",
+  "settings_fallback": "Level 83 fallback",
+  "settings_fallback_desc": "If a level cannot be determined for a craft, use Level 83 as its fallback.",
   "settings_formatter": "Post formatter",
   "settings_formatter_desc": "Choose which format you would like your posts to appear in.",
   "settings_highlight_color": "Highlight color",
