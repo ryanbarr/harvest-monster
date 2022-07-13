@@ -68,11 +68,16 @@
           ></ExtLink
         >
         <PrimaryButton
-          on:click={() => {
+          on:click={async (e) => {
             success({
               title: "Copied to clipboard!",
               text: "Paste your clipboard contents in the appropriate TFT channel.",
             });
+
+            if (e.shiftKey) {
+              await crafts.removeZero();
+            }
+
             copyPost(formatPost());
             if ($settings?.openDiscordOnCopy) {
               window.open(channelLink, "_blank");

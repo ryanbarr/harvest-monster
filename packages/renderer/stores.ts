@@ -181,6 +181,14 @@ function createCrafts() {
         crafts.splice(thisCraftIndex, 1);
         return [...crafts];
       }),
+    removeZero: async () =>
+      new Promise((resolve) =>
+        update((crafts: Craft[]) => {
+          crafts = crafts.filter((c) => c.quantity > 0);
+          resolve([...crafts]);
+          return [...crafts];
+        })
+      ),
     sell: (craft: Craft) =>
       update((crafts: Craft[]) => {
         log.info("Selling craft...", craft);
