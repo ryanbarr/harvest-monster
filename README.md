@@ -42,9 +42,7 @@ You can always find the latest stable build of HarvestMonster on [the latest rel
 
 ### Automatic Updates
 
-As we continue early development of the HarvestVendor Beta, automatic updates are enabled. Upon launching the application a check will be made in the background for a new version. When a new version is identified, it will be downloaded and the update applied the next time you launch the application.
-
-Once we become feature-stable and can feel confident about the latest stable build becoming more permanent on users' machines, we'll migrate to an opt-in update functionality where users can decide if the update will be downloaded and applied.
+HarvestMonster attempts to apply updates automatically in the background. If an update is available that isn't automatically applied, you will see an `Update Available` banner in the titlebar of the application.
 
 ## Roadmap
 
