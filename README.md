@@ -4,7 +4,7 @@ HarvestMonster is a [Path of Exile](https://www.pathofexile.com/) Harvest craft 
 
 ![release](https://github.com/ryanbarr/harvest-monster/actions/workflows/release.yml/badge.svg) ![issues](https://img.shields.io/github/issues/ryanbarr/harvest-monster) ![stars](https://img.shields.io/github/stars/ryanbarr/harvest-monster) ![license](https://img.shields.io/github/license/ryanbarr/harvest-monster) ![downloads](https://img.shields.io/github/downloads/ryanbarr/harvest-monster/total)
 
-![HarvestMonster](./hm-themes.png)
+![HarvestMonster](./gitimage.png)
 
 ## About HarvestMonster
 
