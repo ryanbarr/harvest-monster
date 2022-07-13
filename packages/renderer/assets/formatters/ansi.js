@@ -45,17 +45,11 @@ export default {
 
     const buffer = Array.from(Array(bufferLength), () => "").join(" ");
 
-    if (craft.quantity === 0) {
-      post += "~~";
-    }
-
-    post += `[0;36m${craft.quantity}x[0m[0;30m |[1;37m ${craft.name}${buffer} [0;30m | [0;34m[${
-      craft.level > 0 ? craft.level : fb
-    }] [0;33m<${formatPrice(parsePrice(craft.displayPrice))}>`;
-
-    if (craft.quantity === 0) {
-      post += "~~";
-    }
+    post += `[0;36m${craft.quantity}x[0m[0;30m |[1;3${craft.quantity > 0 ? "7" : "0"}m ${
+      craft.name
+    }${buffer} [0;30m | [0;34m[${craft.level > 0 ? craft.level : fb}] [0;33m<${formatPrice(
+      parsePrice(craft.displayPrice)
+    )}>`;
 
     post += "\n";
 
