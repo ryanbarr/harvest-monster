@@ -217,7 +217,7 @@
           on:click={() => {
             openModal(ExampleModal);
             forceResize();
-          }}>How do I take a good screenshot?</button
+          }}>{$_("settings_screenshot")}</button
         >
       </div>
       <Card class="space-y-4">
@@ -233,11 +233,8 @@
         <InputGroup>
           <div class="flex flex-row items-center space-x-8 justify-between">
             <div class="flex flex-col">
-              <label for="autoPrices">Auto-update prices</label>
-              <span class="text-xs"
-                >HarvestMonster will manage your craft prices automatically,
-                using the latest prices from The Forbidden Trove and PoE.Ninja.</span
-              >
+              <label for="autoPrices">{$_("settings_autoprice")}</label>
+              <span class="text-xs">{$_("settings_autoprice_desc")}</span>
             </div>
             <Toggle
               on:click={async () => {
@@ -255,11 +252,8 @@
         <InputGroup class={`${$settings.autoPrice ? "opacity-50" : ""}`}>
           <div class="flex flex-row items-center space-x-8 justify-between">
             <div class="flex flex-col">
-              <label for="fetchManually">Fetch latest prices</label>
-              <span class="text-xs"
-                >Force HarvestMonster to download and apply the latest TFT craft
-                prices and PoE.Ninja currency rates.</span
-              >
+              <label for="fetchManually">{$_("settings_fetchprice")}</label>
+              <span class="text-xs">{$_("settings_fetchprice_desc")}</span>
             </div>
             <PrimaryButton
               class="inline-flex items-center whitespace-nowrap"
@@ -272,7 +266,8 @@
                 });
               }}
               disabled={$settings.autoPrice}
-              ><DownloadCloudIcon size="1.25x" class="mr-2" /> Fetch Prices</PrimaryButton
+              ><DownloadCloudIcon size="1.25x" class="mr-2" />
+              {$_("settings_fetchprice_button")}</PrimaryButton
             >
           </div>
         </InputGroup>
