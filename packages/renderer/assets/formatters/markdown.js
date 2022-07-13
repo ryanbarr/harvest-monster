@@ -44,20 +44,18 @@ export default {
     const quantityLengthAdjustment = `${craft.quantity}`.length - 1;
     let bufferLength =
       maxCraftLength - craft.name.length + 3 - quantityLengthAdjustment;
+    let name = craft.name;
+
+    if (craft.quantity === 0) {
+      name = "-" + craft.name.replace(/\s/g, "-") + "-";
+      bufferLength = bufferLength - 2;
+    }
 
     const buffer = Array.from(Array(bufferLength), () => "").join(" ");
 
-    if (craft.quantity === 0) {
-      post += "~~";
-    }
-
-    post += `${craft.quantity}x | ${craft.name}${buffer} [${
+    post += `${craft.quantity}x | ${name}${buffer} [${
       craft.level > 0 ? craft.level : fb
     }] <${formatPrice(parsePrice(craft.displayPrice))}>`;
-
-    if (craft.quantity === 0) {
-      post += "~~";
-    }
 
     post += "\n";
 
