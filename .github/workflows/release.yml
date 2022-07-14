@@ -126,14 +126,12 @@ jobs:
           max_attempts: 3
 
           # Code Signing params
-          CSC_LINK: ${{ secrets.CSC_LINK }}
-          CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
 
           # Base64-encoded code signing certificate for Windows
-          # windows_certs: ''
+          windows_certs: ${{ secrets.WINDOWS_CERTS }}
 
           # Password for decrypting `windows_certs`
-          # windows_certs_password: ''
+          windows_certs_password: ${{ secrets.WINDOWS_CERTS_PASSWORD }}
 
           # Base64-encoded code signing certificate for macOS
           # mac_certs: ''
