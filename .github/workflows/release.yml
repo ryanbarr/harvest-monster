@@ -126,6 +126,8 @@ jobs:
           max_attempts: 3
 
           # Code Signing params
+          CSC_LINK: ${{ secrets.CSC_LINK }}
+          CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
 
           # Base64-encoded code signing certificate for Windows
           # windows_certs: ''
