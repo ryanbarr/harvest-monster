@@ -1,7 +1,21 @@
 <script>
-  import { ZapIcon } from "svelte-feather-icons";
+  import { RefreshCwIcon, ZapIcon } from "svelte-feather-icons";
   import tips from "../../assets/tips.json";
-  $: tipIndex = Math.floor(Math.random() * tips.length);
+
+  const generateIndex = () => {
+    return Math.floor(Math.random() * tips.length);
+  };
+
+  const newTip = () => {
+    const newIndex = generateIndex();
+    if (newIndex === tipIndex) {
+      newTip();
+    } else {
+      tipIndex = newIndex;
+    }
+  };
+
+  $: tipIndex = generateIndex();
 </script>
 
 {#if tipIndex !== null}
@@ -10,5 +24,10 @@
       ><ZapIcon size="1.5x" /></div
     >
     <p>{tips[tipIndex]}</p>
+    <div class="inline-flex items-center min-h-full px-2">
+      <button on:click={() => newTip()}
+        ><RefreshCwIcon size="1.25x" class="opacity-70" /></button
+      >
+    </div>
   </div>
 {/if}
