@@ -6,17 +6,19 @@ export const parsePrice = (displayPrice) => {
   if (!displayPrice) return null;
   let value = displayPrice.match(/\d+/g);
   const type = displayPrice.match(/[a-z]+/g);
-  let normalizedValue = parseInt(value[0]);
+  let normalizedValue = parseInt(value?.[0]) ?? displayPrice;
   const remainder = value % 1;
 
-  if (type?.[0] === "ex" && remainder > 0) {
-    value = parseFloat(value[0]).toFixed(2);
-  } else {
-    value = parseInt(value[0]);
-  }
+  if (value) {
+    if (type?.[0] === "ex" && remainder > 0) {
+      value = parseFloat(value[0]).toFixed(2);
+    } else {
+      value = parseInt(value[0]);
+    }
 
-  if (type?.[0] === "ex") {
-    normalizedValue = value * exchangeRate;
+    if (type?.[0] === "ex") {
+      normalizedValue = value * exchangeRate;
+    }
   }
 
   return {
