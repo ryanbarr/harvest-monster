@@ -1,0 +1,12 @@
+[
+  "Pressing shift while clicking 'Copy to clipboard' removes all crafts with zero quantity!",
+  "Screenshotting a single craft when storing it is more accurate and processes faster than doing multiple at once!",
+  "Use your mousewheel while hovering a craft quantity to quickly increase or decrease the amount!",
+  "Click the color circles in 'Theme settings' to open a custom color picker and build your own personal theme!",
+  "Click on table headings in the Crafts and Prices sections to change the sort direction!",
+  "Toggling auto-pricing off and on will force all current crafts to receive the latest prices!",
+  "Pressing the '$' button sells a craft, reducing the quantity by one each time!",
+  "Pressing the 'X' button deletes a craft, regardless of how many of that specific craft are remaining.",
+  "When a craft quantity reaches zero, it will be crossed out to indicate it being sold out when you update a post.",
+  "Avoid making new posts with crafts that have zero quantity, as it will result in your post being deleted."
+]

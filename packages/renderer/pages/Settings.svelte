@@ -22,6 +22,7 @@
   import { openModal } from "svelte-modals";
   import ExampleModal from "../components/organisms/ExampleModal.svelte";
   import { updateCraftPrices } from "../utils/updateCraftPrices";
+  import Tips from "../components/organisms/Tips.svelte";
 
   let languages = [
     { code: "en", name: "English" }, // English
@@ -96,6 +97,7 @@
 </script>
 
 <div class="py-4 px-8 pt-20 overflow-y-auto">
+  <Tips />
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4">
     <Container>
       <H2>{$_("settings_user")}</H2>
