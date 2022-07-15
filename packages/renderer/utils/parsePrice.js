@@ -5,7 +5,7 @@ export const parsePrice = (displayPrice) => {
   const exchangeRate = get(exaltToChaosRate);
   if (!displayPrice) return null;
   let value = displayPrice.match(/\d+/g);
-  const type = displayPrice.match(/[a-z]+/g);
+  const type = displayPrice.match(/[A-Za-z]+/g);
   let normalizedValue = parseInt(value?.[0]) ?? displayPrice;
   const remainder = value % 1;
 
@@ -24,6 +24,6 @@ export const parsePrice = (displayPrice) => {
   return {
     value: value,
     type: type?.[0],
-    normalizedValue,
+    normalizedValue: !isNaN(normalizedValue) ? normalizedValue : displayPrice,
   };
 };
