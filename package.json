@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@types/tesseract.js": "^2.0.0",
-    "autoprefixer": "^10.4.7",
+    "autoprefixer": "^10.4.8",
     "cross-env": "7.0.3",
     "electron": "^19.0.10",
     "electron-builder": "^23.3.3",
