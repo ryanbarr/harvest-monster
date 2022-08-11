@@ -41,7 +41,7 @@
     "electron": "^20.0.1",
     "electron-builder": "^23.3.3",
     "happy-dom": "6.0.4",
-    "playwright": "1.24.2",
+    "playwright": "1.25.0",
     "postcss": "^8.4.16",
     "prettier": "2.7.1",
     "prettier-plugin-svelte": "^2.7.0",
