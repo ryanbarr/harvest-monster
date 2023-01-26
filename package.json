@@ -38,7 +38,7 @@
     "@types/tesseract.js": "^2.0.0",
     "autoprefixer": "^10.4.8",
     "cross-env": "7.0.3",
-    "electron": "^20.0.1",
+    "electron": "^22.1.0",
     "electron-builder": "^23.3.3",
     "happy-dom": "6.0.4",
     "playwright": "1.24.2",
